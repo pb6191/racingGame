@@ -1,0 +1,304 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://Assets/Textures/TexturesCom_MetalFloorsBare0063_2_seamless_S.jpg" type="Texture" id=1]
+[ext_resource path="res://Assets/Cars/Caterham/Car.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Script/Camera.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Textures/TexturesCom_Roads0069_1_seamless_S.jpg" type="Texture" id=4]
+[ext_resource path="res://transparent-circle-with-line-through-it-11.png" type="Texture" id=5]
+[ext_resource path="res://charge-circle-electric-fast-lightning-power-icon-symbol-number-text-recycling-symbol-transparent-png-1724406.png" type="Texture" id=6]
+[ext_resource path="res://pngwing.com.png" type="Texture" id=7]
+[ext_resource path="res://Big_Blue_Circle-removebg.png" type="Texture" id=8]
+[ext_resource path="res://big_yellow_triangle-removebg-preview.png" type="Texture" id=9]
+[ext_resource path="res://big_red_diamond-removebg-preview.png" type="Texture" id=10]
+[ext_resource path="res://kisspng-electric-fireplace-electricity-fireplace-insert-he-rectangle-border-5b0c0bb5df07a3.4164679815275160859135.png" type="Texture" id=11]
+[ext_resource path="res://toppng.com-right-arrow-icon-221x361.png" type="Texture" id=12]
+
+[sub_resource type="PlaneShape" id=1]
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_texture = ExtResource( 1 )
+roughness = 0.0
+uv1_scale = Vector3( 500, 500, 500 )
+
+[sub_resource type="PlaneMesh" id=3]
+material = SubResource( 2 )
+size = Vector2( 1000, 1000 )
+subdivide_width = 10
+subdivide_depth = 10
+
+[sub_resource type="Curve3D" id=4]
+_data = {
+"points": PoolVector3Array( -12.8069, 0, 17.7587, 12.8069, 0, -17.7587, -22.995, 0, -61.9992, -0.158661, 0, 15.1341, 0.158661, 0, -15.1341, -5.0809, -7.62939e-06, -98.3851, 1.13313, 0, 24.003, -1.13313, 0, -24.003, -30.2419, -7.62939e-06, -152.373, -2.04597, 0, 21.031, 2.04597, 0, -21.031, -8.14209, -7.62939e-06, -211.693, 5.70631, 0, 16.1279, -5.70631, 0, -16.1279, -34.8151, -7.62939e-06, -251.618, -2.90619, 0, 19.9738, 2.90619, 0, -19.9738, -20.0897, -1.52588e-05, -298.836, -1.29599, 0, 21.5663, 1.29599, 0, -21.5663, -23.7375, -1.52588e-05, -359.228, 0.614929, 7.62939e-06, 21.8591, -0.614929, -7.62939e-06, -21.8591, -12.556, -1.52588e-05, -416.863, 2.11032, 0, 24.0392, -2.11032, 0, -24.0392, -47.7133, -2.28882e-05, -472.11, -0.428619, 0, 21.3411, 0.428619, 0, -21.3411, -22.6011, -2.28882e-05, -532.379, 5.42288, 7.62939e-06, 18.3728, -5.42288, -7.62939e-06, -18.3728, -57.7582, -2.28882e-05, -587.626, 10.9573, 0, 22.5489, -10.9573, 0, -22.5489, -42.6908, -3.05176e-05, -667.986, 0, 0, 0, 0, 0, 0, -87.8928, -3.05176e-05, -700.631, 25.9743, 0, 2.69037, -25.9743, 0, -2.69037, -158.207, -3.05176e-05, -728.255, 24.4437, 0, 0.249573, -24.4437, 0, -0.249573, -231.033, -3.05176e-05, -720.721, 40.9238, 0, -1.25549, -40.9238, 0, 1.25549, -316.414, -3.05176e-05, -745.833, 33.945, 0, -10.4681, -33.945, 0, 10.4681, -376.683, -3.05176e-05, -698.12, 23.4587, 0, -1.44806, -23.4587, 0, 1.44806, -434.442, -3.05176e-05, -720.721, 16.0406, 0, -7.27148, -16.0406, 0, 7.27148, -467.088, -3.05176e-05, -688.075, 29.5196, 0, -3.20349, -29.5196, 0, 3.20349, -534.891, -3.05176e-05, -700.631, 26.2978, 0, -5.15765, -26.2978, 0, 5.15765, -595.16, -3.05176e-05, -670.497, 30.3983, 0, -5.77887, -30.3983, 0, 5.77887, -678.03, -3.05176e-05, -690.587, 28.4, 0, 0.21698, -28.4, 0, -0.21698, -735.789, -3.05176e-05, -650.407, 35.5626, 0, 2.50427, -35.5626, 0, -2.50427, -806.103, -3.05176e-05, -693.098, 18.1511, 0, -4.06854, -18.1511, 0, 4.06854, -861.35, -3.05176e-05, -665.474, 20.7139, 0, 1.48572, -20.7139, 0, -1.48572, -896.507, -3.05176e-05, -693.098, 22.5912, 0, -0.0584106, -22.5912, 0, 0.0584106, -944.22, -3.05176e-05, -657.941, 35.3912, 0, -0.00695801, -35.3912, 0, 0.00695801, -1012.02, -3.05176e-05, -690.587, 32.9829, 0, 0.755249, -32.9829, 0, -0.755249, -1074.8, -3.05176e-05, -660.452, 30.7029, 0, 2.29932, -30.7029, 0, -2.29932, -1152.65, -3.05176e-05, -695.609, 21.5105, 0, 0.614319, -21.5105, 0, -0.614319, -1202.88, -3.05176e-05, -670.497, 32.4078, 0, 0.0571899, -32.4078, 0, -0.0571899, -1273.19, -3.05176e-05, -698.12, 11.5308, 0, -12.6335, -11.5308, 0, 12.6335, -1333.46, -3.05176e-05, -683.053, 7.16211, 0, -29.7895, -7.16211, 0, 29.7895, -1378.66, -3.05176e-05, -635.34, 5.53491, 0, -16.4523, -5.53491, 0, 16.4523, -1373.64, -2.28882e-05, -580.093, 6.87415, -7.62939e-06, -23.7621, -6.87415, 7.62939e-06, 23.7621, -1411.31, -2.28882e-05, -532.379, 3.82471, 0, -21.091, -3.82471, 0, 21.091, -1398.75, -2.28882e-05, -487.177, 4.15161, 0, -21.6807, -4.15161, 0, 21.6807, -1423.86, -2.28882e-05, -444.487, 1.30713, 0, -24.5766, -1.30713, 0, 24.5766, -1408.8, -1.52588e-05, -396.773, -1.6908, -7.62939e-06, -21.4957, 1.6908, 7.62939e-06, 21.4957, -1428.89, -1.52588e-05, -346.549, -0.858154, 0, -17.0566, 0.858154, 0, 17.0566, -1393.73, -1.52588e-05, -296.324, 0.147705, 0, -17.3772, -0.147705, 0, 17.3772, -1418.84, -7.62939e-06, -258.656, -0.589111, 0, -16.8842, 0.589111, 0, 16.8842, -1398.75, -7.62939e-06, -223.499, -1.81897, -7.62939e-06, -22.0222, 1.81897, 7.62939e-06, 22.0222, -1413.82, -7.62939e-06, -178.297, -0.78772, 0, -24.2391, 0.78772, 0, 24.2391, -1388.71, -7.62939e-06, -130.584, -1.47937, 0, -25.2966, 1.47937, 0, 25.2966, -1413.82, 0, -72.8255, -0.313599, 0, -21.5366, 0.313599, 0, 21.5366, -1391.22, 0, -22.601, 2.9281, -7.62939e-06, -22.9398, -2.9281, 7.62939e-06, 22.9398, -1426.38, 0, 22.601, 0.903564, 0, -18.6416, -0.903564, 0, 18.6416, -1401.26, 0, 62.7806, -2.56848, 0, -23.4402, 2.56848, 0, 23.4402, -1418.84, 7.62939e-06, 107.983, -0.512329, 0, -20.2309, 0.512329, 0, 20.2309, -1381.17, 7.62939e-06, 143.14, -3.58704, -7.62939e-06, -21.2243, 3.58704, 7.62939e-06, 21.2243, -1418.84, 7.62939e-06, 193.364, -1.4668, 0, -19.0978, 1.4668, 0, 19.0978, -1388.71, 7.62939e-06, 236.055, -1.81897, 0, -22.5382, 1.81897, 0, 22.5382, -1413.82, 1.52588e-05, 281.257, 0.0258789, 0, -22.1093, -0.0258789, 0, 22.1093, -1391.22, 1.52588e-05, 323.948, 9.57776, -7.62939e-06, -23.6408, -9.57776, 7.62939e-06, 23.6408, -1436.42, 1.52588e-05, 384.217, -9.77527, 0, -26.1846, 9.77527, 0, 26.1846, -1436.42, 2.28882e-05, 457.043, -10.0316, 0, -9.04858, 10.0316, 0, 9.04858, -1406.29, 2.28882e-05, 504.756, -25.8232, 0, -8.55554, 25.8232, 0, 8.55554, -1346.02, 2.28882e-05, 539.913, -13.5046, 0, 1.22662, 13.5046, 0, -1.22662, -1290.77, 2.28882e-05, 547.447, -19.9177, 0, -5.51233, 19.9177, 0, 5.51233, -1215.43, 2.28882e-05, 514.801, -16.7791, 0, -6.71704, 16.7791, 0, 6.71704, -1185.3, 2.28882e-05, 549.958, -23.1984, 0, -2.71313, 23.1984, 0, 2.71313, -1122.52, 2.28882e-05, 544.936, -21.61, 0, -0.874695, 21.61, 0, 0.874695, -1069.78, 2.28882e-05, 554.981, -22.5972, 0, -0.278625, 22.5972, 0, 0.278625, -1007, 2.28882e-05, 524.846, -20.2015, 0, -3.59088, 20.2015, 0, 3.59088, -969.332, 2.28882e-05, 554.981, -21.054, 0, -1.56628, 21.054, 0, 1.56628, -909.063, 2.28882e-05, 529.868, -21.9769, 0, 0.14386, 21.9769, 0, -0.14386, -853.816, 2.28882e-05, 554.981, -26.4296, 0, 0.265808, 26.4296, 0, -0.265808, -796.058, 2.28882e-05, 527.357, -23.2078, 0, -2.77722, 23.2078, 0, 2.77722, -735.789, 2.28882e-05, 552.469, -23.8552, 0, 0.0609131, 23.8552, 0, -0.0609131, -673.008, 2.28882e-05, 524.846, -27.2189, 0, -2.64276, 27.2189, 0, 2.64276, -610.227, 2.28882e-05, 549.958, -23.1194, 0, 3.78937, 23.1194, 0, -3.78937, -560.003, 2.28882e-05, 512.29, -26.5535, 0, -0.336487, 26.5535, 0, 0.336487, -502.245, 2.28882e-05, 544.936, -28.2196, 0, 0.663208, 28.2196, 0, -0.663208, -439.464, 2.28882e-05, 507.267, -22.2111, 0, -5.77521, 22.2111, 0, 5.77521, -374.172, 2.28882e-05, 532.38, -20.9559, 0, -1.09229, 20.9559, 0, 1.09229, -308.881, 2.28882e-05, 527.357, -25.6777, 0, 0.00305176, 25.6777, 0, -0.00305176, -246.1, 2.28882e-05, 544.936, -24.429, 0, -1.37396, 24.429, 0, 1.37396, -193.364, 2.28882e-05, 507.267, -21.6875, 0, -0.40686, 21.6875, 0, 0.40686, -143.14, 2.28882e-05, 539.913, -12.758, 0, 8.79913, 12.758, 0, -8.79913, -75.3367, 2.28882e-05, 482.155, -17.3451, 0, 8.72247, 17.3451, 0, -8.72247, -15.0674, 2.28882e-05, 464.576, -6.86502, 0, 15.2122, 6.86502, 0, -15.2122, 30.1346, 1.52588e-05, 406.818, 1.83438, 7.62939e-06, 19.1141, -1.83438, -7.62939e-06, -19.1141, 45.202, 1.52588e-05, 333.993, 0.726532, 0, 25.0469, -0.726532, 0, -25.0469, 2.51111, 7.62939e-06, 248.611, 1.82169, 0, 25.7585, -1.82169, 0, -25.7585, 20.0898, 7.62939e-06, 178.297, 1.18793, 0, 24.0997, -1.18793, 0, -24.0997, -25.1123, 7.62939e-06, 120.539, 1.56413, 0, 25.5323, -1.56413, 0, -25.5323, 2.51111, 0, 45.202, 10.6016, 0, 14.4273, -10.6016, 0, -14.4273, -26.9025, 0, 1.58247, 0, 0, 0, 0, 0, 0, -22.995, 0, -61.9992 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
+}
+
+[sub_resource type="Shader" id=5]
+code = "shader_type spatial;
+
+uniform sampler2D road_texture;
+
+void fragment() {
+	vec2 road_uv = vec2(UV.y, UV.x);
+	
+	vec4 color = texture(road_texture, road_uv);
+	ALBEDO = color.rgb;
+	METALLIC = 0.0;
+	ROUGHNESS = 0.8;
+}"
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 5 )
+shader_param/road_texture = ExtResource( 4 )
+
+[node name="Node" type="Node"]
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+margin_right = 1000.0
+margin_bottom = 1000.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 600, 1000 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="Main" type="Spatial" parent="ViewportContainer/Viewport"]
+
+[node name="Ground" type="StaticBody" parent="ViewportContainer/Viewport/Main"]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, -0.1, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="ViewportContainer/Viewport/Main/Ground"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="ViewportContainer/Viewport/Main/Ground"]
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="Sun" type="DirectionalLight" parent="ViewportContainer/Viewport/Main"]
+transform = Transform( 0.353542, 0.746557, -0.563615, -0.565523, 0.650531, 0.506945, 0.745112, 0.139511, 0.652185, 0, 4.1408, 0 )
+shadow_enabled = true
+directional_shadow_max_distance = 200.0
+
+[node name="Car" type="Spatial" parent="ViewportContainer/Viewport/Main"]
+transform = Transform( 0.56717, 0, -0.823601, 0, 1, 0, 0.823601, 0, 0.56717, 220, 1, 0 )
+
+[node name="Car" parent="ViewportContainer/Viewport/Main/Car" instance=ExtResource( 2 )]
+transform = Transform( 0.51946, 0, 0.854495, 0, 1, 0, -0.854495, 0, 0.51946, 0, 0, 0 )
+
+[node name="Camera" type="Camera" parent="ViewportContainer/Viewport/Main"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.38516, 3.59774 )
+script = ExtResource( 3 )
+follow_this_path = NodePath("../../Viewport/Main/Car/Car")
+
+[node name="Track" type="Spatial" parent="ViewportContainer/Viewport/Main"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
+
+[node name="Path" type="Path" parent="ViewportContainer/Viewport/Main/Track"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 136.307, -2.28882e-05, 57.379 )
+curve = SubResource( 4 )
+
+[node name="Road" type="CSGPolygon" parent="ViewportContainer/Viewport/Main/Track/Path"]
+invert_faces = true
+polygon = PoolVector2Array( -4, 0, -4, -0.1, 4, -0.1, 4, 0 )
+mode = 2
+path_node = NodePath("..")
+path_interval = 1.0
+path_rotation = 2
+path_local = false
+path_continuous_u = false
+path_joined = true
+material = SubResource( 6 )
+
+[node name="CollisionShape" type="CSGPolygon" parent="ViewportContainer/Viewport/Main/Track/Path"]
+visible = false
+use_collision = true
+invert_faces = true
+polygon = PoolVector2Array( -4, 0, 4, 0, 4, 2, 4.1, 2, 4.1, -1, -4.1, -1, -4.1, 2, -4, 2 )
+mode = 2
+path_node = NodePath("..")
+path_interval = 1.0
+path_rotation = 2
+path_local = false
+path_continuous_u = false
+path_joined = true
+
+[node name="Sprite" type="Sprite" parent="ViewportContainer/Viewport/Main"]
+visible = false
+position = Vector2( 300, 70 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="ViewportContainer/Viewport/Main"]
+visible = false
+position = Vector2( 300, 70 )
+scale = Vector2( 0.15, 0.15 )
+texture = ExtResource( 7 )
+
+[node name="Sprite3" type="Sprite" parent="ViewportContainer/Viewport/Main"]
+visible = false
+position = Vector2( 300, 70 )
+scale = Vector2( 0.15, 0.15 )
+texture = ExtResource( 5 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ViewportContainer/Viewport/Main"]
+margin_right = 100.0
+margin_bottom = 20.0
+rect_scale = Vector2( 2, 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="ViewportContainer/Viewport/Main"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 25, 15 )
+text = "GAME
+OVER"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="ViewportContainer/Viewport/Main"]
+margin_left = 400.0
+margin_top = 500.0
+margin_right = 480.0
+margin_bottom = 550.0
+rect_scale = Vector2( 2, 2 )
+text = "Time Driven: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="ViewportContainer/Viewport/Main"]
+margin_left = 450.0
+margin_top = 11.0
+margin_right = 509.0
+margin_bottom = 31.0
+rect_scale = Vector2( 2, 2 )
+text = "<-BACK"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="ViewportContainer/Viewport/Main"]
+margin_left = 400.0
+margin_top = 400.0
+margin_right = 480.0
+margin_bottom = 450.0
+rect_scale = Vector2( 2, 2 )
+text = "Time Elapsed: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="ViewportContainer/Viewport/Main"]
+margin_left = 400.0
+margin_top = 320.0
+margin_right = 480.0
+margin_bottom = 390.0
+rect_scale = Vector2( 2, 2 )
+text = "Distance Covered: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="ViewportContainer/Viewport/Main"]
+margin_left = 50.0
+margin_top = 850.0
+margin_right = 100.0
+margin_bottom = 900.0
+rect_scale = Vector2( 2, 2 )
+text = "<-"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button3" type="Button" parent="ViewportContainer/Viewport/Main"]
+margin_left = 450.0
+margin_top = 850.0
+margin_right = 500.0
+margin_bottom = 900.0
+rect_scale = Vector2( 2, 2 )
+text = "->"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button4" type="Button" parent="ViewportContainer/Viewport/Main"]
+margin_left = 50.0
+margin_top = 725.0
+margin_right = 100.0
+margin_bottom = 775.0
+rect_scale = Vector2( 2, 2 )
+text = "N"
+
+[node name="Button5" type="Button" parent="ViewportContainer/Viewport/Main"]
+margin_left = 450.0
+margin_top = 725.0
+margin_right = 500.0
+margin_bottom = 775.0
+rect_scale = Vector2( 2, 2 )
+text = "N"
+
+[node name="Sprite4" type="Sprite" parent="ViewportContainer/Viewport/Main"]
+position = Vector2( 300, 70 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 11 )
+
+[node name="Sprite5" type="Sprite" parent="ViewportContainer/Viewport/Main"]
+visible = false
+position = Vector2( 220, 70 )
+scale = Vector2( 0.15, 0.15 )
+texture = ExtResource( 8 )
+
+[node name="Sprite6" type="Sprite" parent="ViewportContainer/Viewport/Main"]
+visible = false
+position = Vector2( 300, 70 )
+scale = Vector2( 0.15, 0.15 )
+texture = ExtResource( 10 )
+
+[node name="Sprite7" type="Sprite" parent="ViewportContainer/Viewport/Main"]
+visible = false
+position = Vector2( 380, 70 )
+scale = Vector2( 0.15, 0.15 )
+texture = ExtResource( 9 )
+
+[node name="Sprite8" type="Sprite" parent="ViewportContainer/Viewport/Main"]
+visible = false
+position = Vector2( 390, 70 )
+scale = Vector2( 0.07, 0.07 )
+texture = ExtResource( 12 )
+
+[node name="Sprite9" type="Sprite" parent="ViewportContainer/Viewport/Main"]
+visible = false
+position = Vector2( 210, 70 )
+scale = Vector2( 0.07, 0.07 )
+texture = ExtResource( 12 )
+
+[node name="Sprite10" type="Sprite" parent="ViewportContainer/Viewport/Main"]
+visible = false
+position = Vector2( 255, 70 )
+scale = Vector2( 0.07, 0.07 )
+texture = ExtResource( 12 )
+
+[node name="Sprite11" type="Sprite" parent="ViewportContainer/Viewport/Main"]
+visible = false
+position = Vector2( 300, 70 )
+scale = Vector2( 0.07, 0.07 )
+texture = ExtResource( 12 )
+
+[node name="Sprite12" type="Sprite" parent="ViewportContainer/Viewport/Main"]
+visible = false
+position = Vector2( 345, 70 )
+scale = Vector2( 0.07, 0.07 )
+texture = ExtResource( 12 )
+[connection signal="pressed" from="ViewportContainer/Viewport/Main/Button" to="ViewportContainer/Viewport/Main/Car/Car" method="_on_Button_pressed"]
+[connection signal="button_down" from="ViewportContainer/Viewport/Main/Button2" to="ViewportContainer/Viewport/Main/Car/Car" method="_on_Button2_button_down"]
+[connection signal="button_up" from="ViewportContainer/Viewport/Main/Button2" to="ViewportContainer/Viewport/Main/Car/Car" method="_on_Button2_button_up"]
+[connection signal="button_down" from="ViewportContainer/Viewport/Main/Button3" to="ViewportContainer/Viewport/Main/Car/Car" method="_on_Button3_button_down"]
+[connection signal="button_up" from="ViewportContainer/Viewport/Main/Button3" to="ViewportContainer/Viewport/Main/Car/Car" method="_on_Button3_button_up"]
+[connection signal="button_down" from="ViewportContainer/Viewport/Main/Button4" to="ViewportContainer/Viewport/Main/Car/Car" method="_on_Button4_button_down"]
+[connection signal="button_down" from="ViewportContainer/Viewport/Main/Button5" to="ViewportContainer/Viewport/Main/Car/Car" method="_on_Button5_button_down"]
