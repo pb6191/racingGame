@@ -12,7 +12,7 @@ export var MAX_STEER_ANGLE = 0.20
 #export var steer_speed = 1.0
 export var steer_speed = 0.2
 
-var arrayNBACK = [0, 0, 0]
+var arrayNBACK = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 var steer_target = 0.0
 var steer_angle = 0.0
 var fuel
@@ -55,12 +55,31 @@ var responseLimit
 var upcentre
 var sizeComplexity
 var trialNum
-
+var closestPtPath
+var distToPath
 var steer_val = 0
 var throttle_val = accToMaintain
 var brake_val = 0
 var leftBtn = false
 var rightBtn = false
+
+var varTarget = ""
+var varLMcolor = ""
+var varLMshape = ""
+var varLMsize = ""
+var varLcolor = ""
+var varLshape = ""
+var varLsize = ""
+var varCcolor = ""
+var varCshape = ""
+var varCsize = ""
+var varRcolor = ""
+var varRshape = ""
+var varRsize = ""
+var varRMcolor = ""
+var varRMshape = ""
+var varRMsize = ""
+var varCupshift = ""
 
 var allTextures = ["res://big_blue_diamond-removebg-preview.png", "res://big_blue_triangle-removebg-preview.png", "res://big_red_circle-removebg-preview.png", "res://big_red_diamond-removebg-preview.png", "res://Big_red_triangle-removebg-preview.png", "res://big_yellow_circle-removebg-preview.png", "res://Big_Yellow_diamond-removebg-preview.png", "res://big_yellow_triangle-removebg-preview.png", "res://Big_Blue_Circle-removebg.png"]
 var allColors = ["blue", "blue", "red", "red", "red", "yellow", "yellow", "yellow", "blue"]
@@ -101,6 +120,7 @@ func _ready():
 		$"../../Sprite3".position.y -= 15
 		$"../../Sprite6".position.y -= 15
 		$"../../Sprite11".position.y -= 15
+		varCupshift = "Yes"
 	$"../../RichTextLabel".text = "Fuel: "+str(int(fuel))
 	$"../../Sprite4".modulate = Color(0,0,0,1)
 
@@ -116,6 +136,24 @@ func _on_Button3_button_down():
 	steer_val = -1.0
 	if int(totalTime*1000) % 2000 == 0:
 		logData("Key Pressed", "rightArrowOnScreen")
+		
+func resetJSON():
+	varTarget = ""
+	varLMcolor = ""
+	varLMshape = ""
+	varLMsize = ""
+	varLcolor = ""
+	varLshape = ""
+	varLsize = ""
+	varCcolor = ""
+	varCshape = ""
+	varCsize = ""
+	varRcolor = ""
+	varRshape = ""
+	varRsize = ""
+	varRMcolor = ""
+	varRMshape = ""
+	varRMsize = ""
 
 func logData(title, desc):
 	global.dict.thisSession[global.dict.thisSession.size()-1].trials.append(global.dict.thisSession[global.dict.thisSession.size()-1].duplicate(true).trials[0])
@@ -123,7 +161,26 @@ func logData(title, desc):
 	var time_return2 = String(time2.hour) +":"+String(time2.minute)+":"+String(time2.second)
 	global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].timeStamp = time_return2
 	global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].event = title
-	global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc = desc
+	if title != "Stimulus Displayed":
+		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc = desc
+	else:
+		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.target = varTarget
+		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.leftMost.color = varLMcolor
+		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.leftMost.shapeDesc = varLMshape
+		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.leftMost.size = varLMsize
+		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.rightMost.color = varRMcolor
+		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.rightMost.shapeDesc = varRMshape
+		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.rightMost.size = varRMsize
+		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.left.color = varLcolor
+		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.left.shapeDesc = varLshape
+		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.left.size = varLsize
+		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.right.color = varRcolor
+		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.right.shapeDesc = varRshape
+		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.right.size = varRsize
+		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.centre.upShift = varCupshift
+		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.centre.color = varCcolor
+		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.centre.shapeDesc = varCshape
+		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.centre.size = varCsize
 	global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].totalTimeElapsed = totalTime
 	global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].trialTimeElapsed = currentTrialTime
 	global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].distanceCovered = displacement
@@ -132,6 +189,12 @@ func logData(title, desc):
 	global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].currentTrial = trialNum
 
 func _physics_process(delta):
+	$"../../Track/Path/Position3D".global_transform.origin = $".".global_transform.origin
+	closestPtPath = ($"../../Track/Path".curve.get_closest_point($"../../Track/Path/Position3D".translation))
+	distToPath = closestPtPath.distance_to($"../../Track/Path/Position3D".translation)
+	if ($"../../Position3D".translation.distance_to(closestPtPath) < $"../../Position3D".translation.distance_to($"../../Track/Path/Position3D".translation)):
+		distToPath *= -1
+	print(distToPath)
 	if($"left_front".get_rpm() + $"right_front".get_rpm() > 0):
 		direction = "forward"
 	else:
@@ -247,17 +310,25 @@ func _physics_process(delta):
 				$"../../Sprite".visible = true
 				arrayNBACK.push_front(1)
 				arrayNBACK.pop_back()
-				logData("Stimulus Displayed", "Charge")
+				varCshape = "Charge"
+				if $"../../Sprite".scale.x < 0.15:
+					varCsize = "half"
 			elif numRand == 2:
 				$"../../Sprite2".visible = true
 				arrayNBACK.push_front(2)
 				arrayNBACK.pop_back()
-				logData("Stimulus Displayed", "OutwardArrows")
+				varCshape = "OutwardArrows"
+				if $"../../Sprite2".scale.x < 0.1:
+					varCsize = "half"
 			elif numRand == 3:
 				$"../../Sprite3".visible = true
 				arrayNBACK.push_front(3)
 				arrayNBACK.pop_back()
-				logData("Stimulus Displayed", "StopSign")
+				varCshape = "StopSign"
+				if $"../../Sprite3".scale.x < 0.1:
+					varCsize = "half"
+			varTarget = "Charge"
+			logData("Stimulus Displayed", "")
 			executed = 1
 		if ((int(totalTime) % (nBackInterval+stDuration)) == 0 and executed == 1):
 			executed = 0
@@ -287,6 +358,7 @@ func _physics_process(delta):
 			$"../../Sprite2".visible = false
 			$"../../Sprite3".visible = false
 			logData("Stimulus Hidden", "NA")
+			resetJSON()
 		if (Input.is_action_pressed("fKey") or Input.is_action_pressed("jKey")) and hitExec == 0:
 			if currentTrialTime <= responseLimit * stDuration / 100:
 				if (arrayNBACK[nOfBack] == 1 and ($"../../Sprite".visible == true or $"../../Sprite2".visible == true or $"../../Sprite3".visible == true)):
@@ -328,14 +400,17 @@ func _physics_process(delta):
 				if (rngN7.randi_range(0,1) == 1):
 					$"../../Sprite5".scale.y = 0.075
 					$"../../Sprite5".scale.x = 0.075
+					varLsize = "half"
 				rngN7.randomize()
 				if (rngN7.randi_range(0,1) == 1):
 					$"../../Sprite6".scale.y = 0.075
 					$"../../Sprite6".scale.x = 0.075
+					varCsize = "half"
 				rngN7.randomize()
 				if (rngN7.randi_range(0,1) == 1):
 					$"../../Sprite7".scale.y = 0.075
 					$"../../Sprite7".scale.x = 0.075
+					varRsize = "half"
 				rngN7.randomize()
 				if (rngN7.randi_range(0,1) == 1):
 					$"../../Sprite8".scale.y = 0.035
@@ -361,6 +436,8 @@ func _physics_process(delta):
 				rngN2.randomize()
 				numRandCentral = rngN2.randi_range(0, 8)
 				$"../../Sprite6".texture = load(allTextures[numRandCentral])
+			varCcolor = allColors[numRandCentral]
+			varCshape = allShapes[numRandCentral]
 			rngN3.randomize()
 			var numLeft = rngN3.randi_range(0, 8)
 			rngN4.randomize()
@@ -368,10 +445,12 @@ func _physics_process(delta):
 			if countSet%setNExtra == 0:
 				setToggle += 1
 			if setToggle % 2 == 0:
+				varTarget = "Shape"
 				while (allShapes[numRandCentral] != allShapes[numLeft] || allColors[numRandCentral] == allColors[numLeft]):
 					rngN3.randomize()
 					numLeft = rngN3.randi_range(0, 8)
 			else:
+				varTarget = "Color"
 				while (allShapes[numRandCentral] == allShapes[numLeft] || allColors[numRandCentral] != allColors[numLeft]):
 					rngN3.randomize()
 					numLeft = rngN3.randi_range(0, 8)
@@ -382,11 +461,19 @@ func _physics_process(delta):
 			if (rngN5.randi_range(0, 1) == 0):
 				$"../../Sprite5".texture = load(allTextures[numLeft])
 				$"../../Sprite7".texture = load(allTextures[numRight])
+				varLcolor = allColors[numLeft]
+				varLshape = allShapes[numLeft]
+				varRcolor = allColors[numRight]
+				varRshape = allShapes[numRight]
 				correectAnswerSet = "left"
 				stimStr = allTextures[numLeft] + " " + allTextures[numRandCentral] + " " + allTextures[numRight]
 			else:
 				$"../../Sprite5".texture = load(allTextures[numRight])
 				$"../../Sprite7".texture = load(allTextures[numLeft])
+				varLcolor = allColors[numRight]
+				varLshape = allShapes[numRight]
+				varRcolor = allColors[numLeft]
+				varRshape = allShapes[numLeft]
 				correectAnswerSet = "right"
 				stimStr = allTextures[numRight] + " " + allTextures[numRandCentral] + " " + allTextures[numLeft]
 			$"../../Sprite5".visible = true
@@ -394,7 +481,7 @@ func _physics_process(delta):
 			$"../../Sprite7".visible = true
 			executedSet = 1
 			countSet += 1
-			logData("Stimulus Displayed", stimStr)
+			logData("Stimulus Displayed", "")
 		if ((int(totalTime) % (nBackInterval+stDuration)) == 0 and executedSet == 1):
 			executedSet = 0
 			$"../../Sprite".scale.y = 0.1*2
@@ -423,6 +510,7 @@ func _physics_process(delta):
 			$"../../Sprite6".visible = false
 			$"../../Sprite7".visible = false
 			logData("Stimulus Hidden", "NA")
+			resetJSON()
 		if Input.is_action_pressed("fKey") and hitExec == 0:
 			if currentTrialTime <= responseLimit * stDuration / 100:
 				if (correectAnswerSet == "left" and ($"../../Sprite5".visible == true and $"../../Sprite6".visible == true and $"../../Sprite7".visible == true)):
@@ -493,22 +581,27 @@ func _physics_process(delta):
 				if (rngN7.randi_range(0,1) == 1):
 					$"../../Sprite8".scale.y = 0.035
 					$"../../Sprite8".scale.x = 0.035
+					varRMsize = "half"
 				rngN7.randomize()
 				if (rngN7.randi_range(0,1) == 1):
 					$"../../Sprite9".scale.y = 0.035
 					$"../../Sprite9".scale.x = 0.035
+					varLMsize = "half"
 				rngN7.randomize()
 				if (rngN7.randi_range(0,1) == 1):
 					$"../../Sprite10".scale.y = 0.035
 					$"../../Sprite10".scale.x = 0.035
+					varLsize = "half"
 				rngN7.randomize()
 				if (rngN7.randi_range(0,1) == 1):
 					$"../../Sprite11".scale.y = 0.035
 					$"../../Sprite11".scale.x = 0.035
+					varCsize = "half"
 				rngN7.randomize()
 				if (rngN7.randi_range(0,1) == 1):
 					$"../../Sprite12".scale.y = 0.035
 					$"../../Sprite12".scale.x = 0.035
+					varRsize = "half"
 			currentTrialTime = 0
 			$"../../Sprite11".visible = true
 			rngN6.randomize()
@@ -516,30 +609,42 @@ func _physics_process(delta):
 				$"../../Sprite11".scale.x = -1 * $"../../Sprite11".scale.x
 			if (int(100*$"../../Sprite11".scale.x) >= 0):
 				correectAnswerSet = "right"
+				varTarget = ">"
+				varCshape = ">"
 				stimStr = "arrow pointing right with " + str(nFlanks) + " flanks on either side"
 			else:
 				correectAnswerSet = "left"
+				varTarget = "<"
+				varCshape = "<"
 				stimStr = "arrow pointing left with " + str(nFlanks) + " flanks on either side"
 			if nFlanks >= 1:
+				varLshape = ">"
+				varRshape = ">"
 				rngN6.randomize()
 				if (rngN6.randi_range(0, 1) == 0):
 					$"../../Sprite10".scale.x = -1 * $"../../Sprite10".scale.x
+					varLshape = "<"
 				rngN6.randomize()
 				if (rngN6.randi_range(0, 1) == 0):
 					$"../../Sprite12".scale.x = -1 * $"../../Sprite12".scale.x
+					varRshape = "<"
 				$"../../Sprite10".visible = true
 				$"../../Sprite12".visible = true
 			if nFlanks >= 2:
+				varLMshape = ">"
+				varRMshape = ">"
 				rngN6.randomize()
 				if (rngN6.randi_range(0, 1) == 0):
 					$"../../Sprite9".scale.x = -1 * $"../../Sprite9".scale.x
+					varLMshape = "<"
 				rngN6.randomize()
 				if (rngN6.randi_range(0, 1) == 0):
 					$"../../Sprite8".scale.x = -1 * $"../../Sprite8".scale.x
+					varRMshape = "<"
 				$"../../Sprite9".visible = true
 				$"../../Sprite8".visible = true
 			executed = 1
-			logData("Stimulus Displayed", stimStr)
+			logData("Stimulus Displayed", "")
 		if ((int(totalTime) % (nBackInterval+stDuration)) == 0 and executed == 1):
 			executed = 0
 			$"../../Sprite".scale.y = 0.1*2
@@ -570,6 +675,7 @@ func _physics_process(delta):
 			$"../../Sprite12".visible = false
 			$"../../Sprite8".visible = false
 			logData("Stimulus Hidden", "NA")
+			resetJSON()
 		if Input.is_action_pressed("fKey") and hitExec == 0:
 			if currentTrialTime <= responseLimit * stDuration / 100:
 				if (correectAnswerSet == "left" and ($"../../Sprite11".visible == true)):

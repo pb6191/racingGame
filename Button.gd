@@ -44,7 +44,7 @@ func _on_Button_pressed():
 	global.dict.thisSession[global.dict.thisSession.size()-1].bonusFuel = global.bonusFuelIP
 	global.dict.thisSession[global.dict.thisSession.size()-1].stimInterval = global.nBackIntervalIP
 	global.dict.thisSession[global.dict.thisSession.size()-1].timeLimit = global.tLimit
-	global.dict.thisSession[global.dict.thisSession.size()-1].second = global.taskIP
+	global.dict.thisSession[global.dict.thisSession.size()-1].task = global.taskIP
 	global.dict.thisSession[global.dict.thisSession.size()-1].stimDuration = global.setIntervalIP
 	global.dict.thisSession[global.dict.thisSession.size()-1].intraN = global.setNIP
 	global.dict.thisSession[global.dict.thisSession.size()-1].extraN = global.setNExtraIP

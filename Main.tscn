@@ -124,6 +124,8 @@ path_local = false
 path_continuous_u = false
 path_joined = true
 
+[node name="Position3D" type="Position3D" parent="ViewportContainer/Viewport/Main/Track/Path"]
+
 [node name="Sprite" type="Sprite" parent="ViewportContainer/Viewport/Main"]
 visible = false
 position = Vector2( 300, 70 )
@@ -295,6 +297,9 @@ visible = false
 position = Vector2( 345, 70 )
 scale = Vector2( 0.07, 0.07 )
 texture = ExtResource( 12 )
+
+[node name="Position3D" type="Position3D" parent="ViewportContainer/Viewport/Main"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1200, 0, 0 )
 [connection signal="pressed" from="ViewportContainer/Viewport/Main/Button" to="ViewportContainer/Viewport/Main/Car/Car" method="_on_Button_pressed"]
 [connection signal="button_down" from="ViewportContainer/Viewport/Main/Button2" to="ViewportContainer/Viewport/Main/Car/Car" method="_on_Button2_button_down"]
 [connection signal="button_up" from="ViewportContainer/Viewport/Main/Button2" to="ViewportContainer/Viewport/Main/Car/Car" method="_on_Button2_button_up"]
