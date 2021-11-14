@@ -56,7 +56,7 @@ var upcentre
 var sizeComplexity
 var trialNum
 var closestPtPath
-var distToPath
+var distToPath = 0
 var steer_val = 0
 var throttle_val = accToMaintain
 var brake_val = 0
@@ -184,6 +184,7 @@ func logData(title, desc):
 	global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].totalTimeElapsed = totalTime
 	global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].trialTimeElapsed = currentTrialTime
 	global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].distanceCovered = displacement
+	global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].distFrmCentre = distToPath
 	global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].fuelStatus = fuel
 	global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].timeDriven = points
 	global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].currentTrial = trialNum
@@ -194,7 +195,6 @@ func _physics_process(delta):
 	distToPath = closestPtPath.distance_to($"../../Track/Path/Position3D".translation)
 	if ($"../../Position3D".translation.distance_to(closestPtPath) < $"../../Position3D".translation.distance_to($"../../Track/Path/Position3D".translation)):
 		distToPath *= -1
-	print(distToPath)
 	if($"left_front".get_rpm() + $"right_front".get_rpm() > 0):
 		direction = "forward"
 	else:
