@@ -16,12 +16,16 @@ _global_script_class_icons={
 [application]
 
 config/name="Vehicle Demo"
-run/main_scene="res://Menu.tscn"
+run/main_scene="res://Starting.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 global="*res://global.gd"
+
+[display]
+
+window/vsync/vsync_via_compositor=true
 
 [input]
 
@@ -54,3 +58,6 @@ jKey={
 
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
+limits/buffers/canvas_polygon_buffer_size_kb=256
+limits/buffers/canvas_polygon_index_buffer_size_kb=256
+limits/buffers/immediate_buffer_size_kb=4096

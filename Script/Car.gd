@@ -85,6 +85,7 @@ var allTextures = ["res://big_blue_diamond-removebg-preview.png", "res://big_blu
 var allColors = ["blue", "blue", "red", "red", "red", "yellow", "yellow", "yellow", "blue"]
 var allShapes = ["diamond", "triangle", "circle", "diamond", "triangle", "circle", "diamond", "triangle", "circle"]
 
+
 ############################################################
 # Input
 
@@ -96,41 +97,9 @@ export var throttle_mult = 1.0
 export var joy_brake = JOY_ANALOG_L2
 export var brake_mult = 1.0
 
-var http_client2
 
-func get_url():
-	if OS.has_feature('JavaScript'):
-		return JavaScript.eval(""" 
-				window.parent.location.href;
-			""")
-	return null
-
-func get_parameter(param1, param2):
-	if OS.has_feature('JavaScript'):
-		var curr_url = get_url()
-		curr_url = curr_url.split(param1)[1]
-		curr_url = curr_url.split(param2)[0]
-		return curr_url
-	return null
 	
 func _ready():
-	print(get_parameter("Populations/", "/Participants"))
-	global.poplnID = get_parameter("Populations/", "/Participants")
-	print(get_parameter("/Participants/", "/Sessions/"))
-	global.partcnID = get_parameter("/Participants/", "/Sessions/")
-	print(get_parameter("/Sessions/", "/Run/"))
-	global.sessID = get_parameter("/Sessions/", "/Run/")
-	print(get_parameter("/Measures/", "/"))
-	global.measrID = get_parameter("/Measures/", "/")
-	http_client2 = HTTPClient.new()
-	var headers = ["Content-Type: application/json", "x-api-key: 0e89336b-27bc-466b-bebc-03b84ed7cc7b"]
-	http_client2.connect_to_host("https://lnpitask.umn.edu")
-	while(http_client2.get_status() != 5):
-		http_client2.poll()
-	http_client2.poll()
-	http_client2.request(HTTPClient.METHOD_GET, "/api/v1.0/populations/"+global.poplnID+"/participants/"+global.partcnID+"/configurationproperties", headers)
-	http_client2.close()
-	#send a configProperties post request here (for default settings) if it comes back with Value-Value as empty
 	trialNum = 0
 	#nBackIntervalIP is stimulus interval | setIntervalIP is stimulus duration
 	fuel = global.strtFuelIP
@@ -148,6 +117,22 @@ func _ready():
 	responseLimit = global.respLimitIP
 	upcentre = global.centreShift
 	sizeComplexity = global.sizeIP
+	print(global.taskIP)
+	print(fuel)
+	print(speedToMaintain)
+	print(accToMaintain)
+	print(nOfBack)
+	print(fuelIncrement)
+	print(nBackInterval)
+	print(setInterval)
+	print(setN)
+	print(setNExtra)
+	print(stDuration)
+	print(fuelDecrement)
+	print(nFlanks)
+	print(responseLimit)
+	print(upcentre)
+	print(sizeComplexity)
 	if upcentre == 1:
 		$"../../Sprite".position.y -= 15
 		$"../../Sprite2".position.y -= 15
@@ -234,7 +219,7 @@ func _physics_process(delta):
 	else:
 		direction = "backward"
 	if totalTime > global.tLimit:
-		get_tree().change_scene("res://Menu.tscn")
+		get_tree().change_scene("res://Closing.tscn")
 	if speed > speedToMaintain:
 		throttle_val = 0.0
 		if direction == "forward":

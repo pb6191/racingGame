@@ -29,6 +29,9 @@ var partcnID
 var sessID
 var measrID
 
+var startScrn
+var changStartScrn = 0
+
 var dict = {"thisSession": [{"speed": "", "acc": "", "nback": "", "respLimit": "", "startFuel": "", "bonusFuel": "", "stimInterval": "", "timeLimit": "", "task": "", "stimDuration": "", "intraN": "", "extraN": "", "penalty": "", "flankerN": "", "centreUp": "", "symComplexity": "", "trials": [{"timeStamp": "", "totalTimeElapsed": "", "trialTimeElapsed": "", "event":"", "eventDesc": {"target":"", "leftMost":{"color": "", "shapeDesc": "", "size": ""}, "left":{"color": "", "shapeDesc": "", "size": ""}, "right":{"color": "", "shapeDesc": "", "size": ""}, "rightMost":{"color": "", "shapeDesc": "", "size": ""}, "centre":{"color": "", "shapeDesc": "", "size": "", "upShift": ""}}, "distFrmCentre": "", "distanceCovered": "", "fuelStatus": "", "timeDriven": "", "currentTrial": ""}]}]}
 
 

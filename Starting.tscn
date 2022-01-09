@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Starting.gd" type="Script" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
+margin_left = 189.434
+margin_top = 263.959
+margin_right = 439.434
+margin_bottom = 303.959
+rect_scale = Vector2( 3, 3 )
+text = "Press Space Bar to start the game"
+__meta__ = {
+"_edit_use_anchors_": false
+}

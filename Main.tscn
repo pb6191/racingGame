@@ -175,6 +175,7 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="ViewportContainer/Viewport/Main"]
+visible = false
 margin_left = 450.0
 margin_top = 11.0
 margin_right = 509.0
