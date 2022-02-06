@@ -9,3 +9,28 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
+margin_left = 100.0
+margin_top = 100.0
+margin_right = 500.0
+margin_bottom = 300.0
+rect_scale = Vector2( 2, 2 )
+text = "You get to choose the next difficulty level. Press 'g' to add penalty of 5 fuel on incorrect responses OR press 'h' to reduce stimulus duration to 2 seconds."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+visible = false
+margin_left = 442.232
+margin_top = 326.319
+margin_right = 515.232
+margin_bottom = 346.319
+rect_scale = Vector2( 2, 2 )
+text = "End Level"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

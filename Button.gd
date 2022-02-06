@@ -22,7 +22,7 @@ func _on_Button_pressed():
 	global.nBackIP = $"../OptionButton3".selected
 	global.strtFuelIP = 30 * ($"../OptionButton4".selected + 1)
 	global.bonusFuelIP = 10 * ($"../OptionButton5".selected + 1)
-	global.nBackIntervalIP = $"../OptionButton6".selected + 2
+	global.nBackIntervalIP = $"../OptionButton6".selected + 1
 	global.tLimit = 30 * ($"../OptionButton7".selected + 1)
 	global.taskIP = $"../OptionButton8".selected
 	global.setIntervalIP = $"../OptionButton9".selected + 2
@@ -52,4 +52,4 @@ func _on_Button_pressed():
 	global.dict.thisSession[global.dict.thisSession.size()-1].flankerN = global.nFlankIP
 	global.dict.thisSession[global.dict.thisSession.size()-1].centreUp = global.centreShift
 	global.dict.thisSession[global.dict.thisSession.size()-1].symComplexity = global.sizeIP
-	get_tree().change_scene("res://Main.tscn")
+	get_tree().change_scene("res://Instr.tscn")

@@ -24,6 +24,8 @@ var rngN4 = RandomNumberGenerator.new()
 var rngN5 = RandomNumberGenerator.new()
 var rngN6 = RandomNumberGenerator.new()
 var rngN7 = RandomNumberGenerator.new()
+var rngN8 = RandomNumberGenerator.new()
+var rngN9 = RandomNumberGenerator.new()
 var executed = 0
 var executedSet = 0
 var hitExec = 0
@@ -45,6 +47,8 @@ var displacement = 0
 var setInterval
 var setN
 var setNExtra
+var setNOrig
+var setNExtraOrig
 var countSet = 0
 var numRandCentral
 var setToggle = 1
@@ -109,8 +113,10 @@ func _ready():
 	fuelIncrement = global.bonusFuelIP
 	nBackInterval = global.nBackIntervalIP
 	setInterval = global.nBackIntervalIP
-	setN = global.setNIP
-	setNExtra = global.setNExtraIP
+	setNOrig = global.setNIP
+	setNExtraOrig = global.setNExtraIP
+	setN = setNOrig
+	setNExtra = setNExtraOrig
 	stDuration = global.setIntervalIP
 	fuelDecrement = global.penaltyIP
 	nFlanks = global.nFlankIP
@@ -118,6 +124,28 @@ func _ready():
 	upcentre = global.centreShift
 	sizeComplexity = global.sizeIP
 	print(global.taskIP)
+	if global.taskIP == -2:
+		$"../../Sprite".position.y = -400
+		$"../../Sprite2".position.y = -400
+		$"../../Sprite3".position.y = -400
+		$"../../Sprite4".position.y = -400
+		$"../../Sprite5".position.y = -400
+		$"../../Sprite6".position.y = -400
+		$"../../Sprite7".position.y = -400
+		$"../../Sprite8".position.y = -400
+		$"../../Sprite9".position.y = -400
+		$"../../Sprite10".position.y = -400
+		$"../../Sprite11".position.y = -400
+		$"../../Sprite12".position.y = -400
+	if accToMaintain == -1:
+		$"../../Ground".visible = false
+		$"../../Sun".visible = false
+		$"..".visible = false
+		$"../../Camera".visible = false
+		$"../../Track".visible = false
+		$"../../RichTextLabel".visible = false
+		$"../../RichTextLabel3".visible = false
+		$"../../RichTextLabel5".visible = false
 	print(fuel)
 	print(speedToMaintain)
 	print(accToMaintain)
@@ -219,7 +247,12 @@ func _physics_process(delta):
 	else:
 		direction = "backward"
 	if totalTime > global.tLimit:
-		get_tree().change_scene("res://Closing.tscn")
+		if global.taskflowDeploy == 1:
+			global.travelled = displacement
+			get_tree().change_scene("res://Closing.tscn")
+		else:
+			global.travelled = displacement
+			get_tree().change_scene("res://Menu.tscn")
 	if speed > speedToMaintain:
 		throttle_val = 0.0
 		if direction == "forward":
@@ -275,7 +308,7 @@ func _physics_process(delta):
 	$"../../RichTextLabel4".text = "Time Elapsed: "+str(int(totalTime))
 	$"../../RichTextLabel5".text = "Distance Covered: "+str(int(displacement))
 	if global.taskIP == 0:
-		if ((int(totalTime+stDuration) % (nBackInterval+stDuration)) == 0 and executed == 0 and totalTime > 2.0):
+		if ((int(totalTime+stDuration) % int(nBackInterval+stDuration)) == 0 and executed == 0 and totalTime > 2.0):
 			trialNum += 1
 			if sizeComplexity == 1:
 				rngN7.randomize()
@@ -349,7 +382,7 @@ func _physics_process(delta):
 			varTarget = "Charge"
 			logData("Stimulus Displayed", "")
 			executed = 1
-		if ((int(totalTime) % (nBackInterval+stDuration)) == 0 and executed == 1):
+		if ((int(totalTime) % int(nBackInterval+stDuration)) == 0 and executed == 1):
 			executed = 0
 			$"../../Sprite".scale.y = 0.1*2
 			$"../../Sprite".scale.x = 0.1*2
@@ -399,7 +432,7 @@ func _physics_process(delta):
 			hitExec = 0
 			$"../../Sprite4".modulate = Color(0,0,0,1)
 	if global.taskIP == 1:
-		if ((int(totalTime+stDuration) % (nBackInterval+stDuration)) == 0 and executedSet == 0 and totalTime > 2.0):
+		if ((int(totalTime+stDuration) % int(nBackInterval+stDuration)) == 0 and executedSet == 0 and totalTime > 2.0):
 			var stimStr = ""
 			trialNum += 1
 			if sizeComplexity == 1:
@@ -451,19 +484,23 @@ func _physics_process(delta):
 					$"../../Sprite12".scale.y = 0.035
 					$"../../Sprite12".scale.x = 0.035
 			currentTrialTime = 0
-			if countSet%setN == 0:
+			if int(countSet)%int(setN) == 0:
 				rngN2.randomize()
 				numRandCentral = rngN2.randi_range(0, 8)
 				$"../../Sprite6".texture = load(allTextures[numRandCentral])
+				rngN8.randomize()
+				setN = setNOrig + rngN8.randi_range(int(-1 * 0.5 * setNOrig), int(1 * 0.5 * setNOrig))
 			varCcolor = allColors[numRandCentral]
 			varCshape = allShapes[numRandCentral]
 			rngN3.randomize()
 			var numLeft = rngN3.randi_range(0, 8)
 			rngN4.randomize()
 			var numRight = rngN4.randi_range(0, 8)
-			if countSet%setNExtra == 0:
+			if int(countSet)%int(setNExtra) == 0:
 				setToggle += 1
-			if setToggle % 2 == 0:
+				rngN9.randomize()
+				setNExtra = setNExtraOrig + rngN9.randi_range(int(-1 * 0.5 * setNExtraOrig), int(1 * 0.5 * setNExtraOrig))
+			if int(setToggle) % 2 == 0:
 				varTarget = "Shape"
 				while (allShapes[numRandCentral] != allShapes[numLeft] || allColors[numRandCentral] == allColors[numLeft]):
 					rngN3.randomize()
@@ -501,7 +538,7 @@ func _physics_process(delta):
 			executedSet = 1
 			countSet += 1
 			logData("Stimulus Displayed", "")
-		if ((int(totalTime) % (nBackInterval+stDuration)) == 0 and executedSet == 1):
+		if ((int(totalTime) % int(nBackInterval+stDuration)) == 0 and executedSet == 1):
 			executedSet = 0
 			$"../../Sprite".scale.y = 0.1*2
 			$"../../Sprite".scale.x = 0.1*2
@@ -568,7 +605,7 @@ func _physics_process(delta):
 			hitExec = 0
 			$"../../Sprite4".modulate = Color(0,0,0,1)
 	if global.taskIP == 2:
-		if ((int(totalTime+stDuration) % (nBackInterval+stDuration)) == 0 and executed == 0 and totalTime > 2.0):
+		if ((int(totalTime+stDuration) % int(nBackInterval+stDuration)) == 0 and executed == 0 and totalTime > 2.0):
 			var stimStr = ""
 			trialNum += 1
 			if sizeComplexity == 1:
@@ -664,7 +701,7 @@ func _physics_process(delta):
 				$"../../Sprite8".visible = true
 			executed = 1
 			logData("Stimulus Displayed", "")
-		if ((int(totalTime) % (nBackInterval+stDuration)) == 0 and executed == 1):
+		if ((int(totalTime) % int(nBackInterval+stDuration)) == 0 and executed == 1):
 			executed = 0
 			$"../../Sprite".scale.y = 0.1*2
 			$"../../Sprite".scale.x = 0.1*2
@@ -773,10 +810,13 @@ func _physics_process(delta):
 	oldSpeed = speed
 	speed = velocity.length()
 
+# this button would never be visible
 func _on_Button_pressed():
 	logData("Button Pressed", "BackButton")
-	get_tree().change_scene("res://Menu.tscn")
-
+	if global.taskflowDeploy == 1:
+		get_tree().change_scene("res://Closing.tscn")
+	else:
+		get_tree().change_scene("res://Menu.tscn")
 
 
 func _on_Button2_button_up():

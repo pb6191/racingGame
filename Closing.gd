@@ -11,6 +11,11 @@ var dataString = {"filename": "", "filedata":""}
 var headers
 var response
 var rb = PoolByteArray()
+var rb2 = PoolByteArray()
+var http_client2
+var response2
+var maxID = -1
+var extracted_measrTypeID
 
 
 func makeid(length):
@@ -48,6 +53,7 @@ func _make_post_request(url, data_to_send):
 			yield(Engine.get_main_loop(), "idle_frame")
 			rb += http_client.read_response_body_chunk()
 		response = parse_json(rb.get_string_from_ascii())
+		extracted_measrTypeID = response["measureTypeId"]
 		response["json"]=query
 		var resp1 = JSON.print(response)
 		http_client.request(HTTPClient.METHOD_PUT, "/api/v1.0/sessions/"+global.sessID+"/measures/"+global.measrID, headers, resp1)
@@ -56,15 +62,16 @@ func _make_post_request(url, data_to_send):
 			print("Waiting..body")
 			yield(Engine.get_main_loop(), "idle_frame")
 		#send a configProperties post/put? request here (for updated settings-if auto setting/difficulty change)
-		if OS.has_feature('JavaScript'):
-			JavaScript.eval(""" 
-					let message = {
-						_guid: "",
-						_type: "MESSAGETYPE.ACTION",
-						_value: ""
-					};
-					window.parent.postMessage(JSON.stringify(message), '*');
-				""")
+		if global.autoDifficulty != 1:
+			if OS.has_feature('JavaScript'):
+				JavaScript.eval(""" 
+						let message = {
+							_guid: "",
+							_type: "MESSAGETYPE.ACTION",
+							_value: ""
+						};
+						window.parent.postMessage(JSON.stringify(message), '*');
+					""")
 	else:
 		http_client.request(HTTPClient.METHOD_POST, url, headers, query)
 	http_client.close()
@@ -79,8 +86,84 @@ func _ready():
 	dataString.filename = "dataFile_"+makeid(16)+".json"
 	dataString.filedata = (global.dict)
 	_make_post_request(global.endpt, dataString)
+	if global.autoDifficulty == 1:
+		$"Button".visible = true
+		var travelcut = global.threshold * global.json_result[global.task][global.levelSet[global.task]]["maxdistance"]
+		if global.travelled >= travelcut:
+			if global.levelSet[global.task] == "0a":
+				global.levelSet[global.task] = "0b"
+			elif global.levelSet[global.task] == "0b":
+				global.levelSet[global.task] = "1"
+			elif global.levelSet[global.task] == "1":
+				global.levelSet[global.task] = "2"
+			elif global.levelSet[global.task] == "2":
+				$"RichTextLabel".visible = true
+				$"Button".visible = false
+			elif global.levelSet[global.task] == "3a":
+				global.levelSet[global.task] = "3c"
+			elif global.levelSet[global.task] == "3b":
+				global.levelSet[global.task] = "3c"
+			elif global.levelSet[global.task] == "3c":
+				global.levelSet[global.task] = "4"
+
+func _input(ev):
+	if $"RichTextLabel".visible == true and ev is InputEventKey and ev.scancode == KEY_G and not ev.echo:
+		global.levelSet[global.task] = "3a"
+		$"RichTextLabel".visible = false
+		$"Button".visible = true
+	if $"RichTextLabel".visible == true and ev is InputEventKey and ev.scancode == KEY_H and not ev.echo:
+		global.levelSet[global.task] = "3b"
+		$"RichTextLabel".visible = false
+		$"Button".visible = true
+
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func _on_Button_pressed():
+	http_client2 = HTTPClient.new()
+	http_client2.read_chunk_size = 40960
+	headers = ["Content-Type: application/json", "x-api-key: 0e89336b-27bc-466b-bebc-03b84ed7cc7b"]
+	http_client2.connect_to_host("https://lnpitask.umn.edu")
+	while(http_client2.get_status() != 5):
+		http_client2.poll()
+	http_client2.poll()
+	http_client2.request(HTTPClient.METHOD_GET, "/api/v1.0/populations/"+global.poplnID+"/measuretypes", headers)
+	while(http_client2.get_status() != 7):
+		http_client2.poll()
+		print("Waiting..body")
+		yield(Engine.get_main_loop(), "idle_frame")
+	while(http_client2.get_status() == 7):
+		http_client2.poll()
+		print("Requesting..body")
+		yield(Engine.get_main_loop(), "idle_frame")
+		rb2 += http_client2.read_response_body_chunk()
+	response2 = parse_json(rb2.get_string_from_ascii())
+	#for element in response2:
+	#	if element["id"] > maxID:
+	#		maxID = element["id"]
+	#extracted_measrTypeID = maxID
+	var sendDict = {"key": "0e89336b-27bc-466b-bebc-03b84ed7cc7b", "measureTypeId": extracted_measrTypeID, "populationId": global.poplnID, "userId": global.partcnID, "value": JSON.print(global.levelSet)}
+	http_client2.request(HTTPClient.METHOD_POST, "/api/v1.0/populations/"+global.poplnID+"/participants/"+global.partcnID+"/configurationproperties", headers, JSON.print(sendDict))
+	while(http_client2.get_status() != 7):
+		http_client2.poll()
+		print("Waiting..body")
+		yield(Engine.get_main_loop(), "idle_frame")
+	http_client2.close()
+	global.current_round +=1
+	if global.current_round >= global.rounds:
+		if OS.has_feature('JavaScript'):
+			JavaScript.eval(""" 
+					let message = {
+						_guid: "",
+						_type: "MESSAGETYPE.ACTION",
+						_value: ""
+					};
+					window.parent.postMessage(JSON.stringify(message), '*');
+				""")
+	else:
+		get_tree().change_scene("res://Starting.tscn")

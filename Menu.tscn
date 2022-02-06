@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://OptionButton2.gd" type="Script" id=1]
 [ext_resource path="res://OptionButton.gd" type="Script" id=2]
@@ -18,10 +18,14 @@
 [ext_resource path="res://OptionButton15.gd" type="Script" id=16]
 [ext_resource path="res://OptionButton16.gd" type="Script" id=17]
 [ext_resource path="res://Button2.gd" type="Script" id=18]
+[ext_resource path="res://OptionButton19.gd" type="Script" id=19]
+[ext_resource path="res://MenuInit.gd" type="Script" id=20]
+[ext_resource path="res://Button3.gd" type="Script" id=21]
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 20 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -95,12 +99,14 @@ __meta__ = {
 }
 
 [node name="OptionButton17" type="LineEdit" parent="."]
+visible = false
 margin_left = 700.0
 margin_top = 300.0
 margin_right = 729.0
 margin_bottom = 320.0
 
 [node name="OptionButton18" type="LineEdit" parent="."]
+visible = false
 margin_left = 700.0
 margin_top = 400.0
 margin_right = 758.0
@@ -180,86 +186,98 @@ __meta__ = {
 margin_left = 100.0
 margin_top = 65.0
 margin_right = 200.0
-margin_bottom = 80.0
-text = "Max Speed"
+margin_bottom = 95.0
+text = "Max Speed
+-of the Car"
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="."]
 margin_left = 100.0
-margin_top = 165.0
-margin_right = 200.0
-margin_bottom = 180.0
-text = "Acceleration"
+margin_top = 150.0
+margin_right = 280.0
+margin_bottom = 195.0
+text = "Acceleration
+-higher the acc., earlier u reach max speed"
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
 margin_left = 100.0
 margin_top = 265.0
-margin_right = 200.0
-margin_bottom = 280.0
-text = "nBack"
+margin_right = 280.0
+margin_bottom = 295.0
+text = "nBack
+-n value of (n-back)"
 
 [node name="RichTextLabel14" type="RichTextLabel" parent="."]
 margin_left = 100.0
-margin_top = 365.0
-margin_right = 200.0
-margin_bottom = 380.0
-text = "Response Limit"
+margin_top = 350.0
+margin_right = 280.0
+margin_bottom = 395.0
+text = "Response Limit
+-% of stim duration in which to give a response"
 
 [node name="RichTextLabel4" type="RichTextLabel" parent="."]
 margin_left = 300.0
-margin_top = 65.0
-margin_right = 400.0
-margin_bottom = 80.0
-text = "Starting Fuel"
+margin_top = 50.0
+margin_right = 480.0
+margin_bottom = 96.0
+text = "Starting Fuel
+-for the car, car can be driven for (fuel) seconds"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="RichTextLabel9" type="RichTextLabel" parent="."]
 margin_left = 500.0
-margin_top = 65.0
-margin_right = 620.0
-margin_bottom = 80.0
-text = "Stimulus Duration"
+margin_top = 50.0
+margin_right = 680.0
+margin_bottom = 95.0
+text = "Stimulus Duration
+-time in sec for stim presentation on screen"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="RichTextLabel15" type="RichTextLabel" parent="."]
 margin_left = 700.0
-margin_top = 65.0
-margin_right = 820.0
-margin_bottom = 80.0
-text = "Shift Centre Up"
+margin_top = 50.0
+margin_right = 880.0
+margin_bottom = 96.0
+text = "Shift Centre Up
+-shifts central stim up if yes (all tasks)"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="RichTextLabel16" type="RichTextLabel" parent="."]
 margin_left = 700.0
-margin_top = 165.0
-margin_right = 850.0
-margin_bottom = 180.0
-text = "Symbol Complexity"
+margin_top = 135.0
+margin_right = 895.0
+margin_bottom = 195.0
+text = "Symbol Complexity
+-50:50 chance of normal:half size for a stim if 'half sizes'(all tasks)"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="RichTextLabel17" type="RichTextLabel" parent="."]
+visible = false
 margin_left = 700.0
 margin_top = 265.0
 margin_right = 900.0
-margin_bottom = 280.0
-text = "Data URL - https://abc.edu"
+margin_bottom = 295.0
+text = "Data URL - https://abc.edu
+-url to send data to"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="RichTextLabel18" type="RichTextLabel" parent="."]
+visible = false
 margin_left = 700.0
 margin_top = 365.0
 margin_right = 900.0
-margin_bottom = 380.0
-text = "Endpoint - /X1/Y2"
+margin_bottom = 395.0
+text = "Endpoint - /X1/Y2
+-endpoint to send data to"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -267,64 +285,95 @@ __meta__ = {
 [node name="RichTextLabel5" type="RichTextLabel" parent="."]
 margin_left = 300.0
 margin_top = 165.0
-margin_right = 400.0
-margin_bottom = 180.0
-text = "Bonus Fuel"
+margin_right = 480.0
+margin_bottom = 195.0
+text = "Bonus Fuel
+-on getting correct answers"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="RichTextLabel10" type="RichTextLabel" parent="."]
 margin_left = 500.0
-margin_top = 165.0
-margin_right = 600.0
-margin_bottom = 180.0
-text = "Shift IntraD N"
+margin_top = 150.0
+margin_right = 695.0
+margin_bottom = 195.0
+text = "Shift IntraD N
+-mean trials in which to change color/shape(setShift) "
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="RichTextLabel11" type="RichTextLabel" parent="."]
 margin_left = 500.0
-margin_top = 265.0
-margin_right = 600.0
-margin_bottom = 280.0
-text = "Shift ExtraD N"
+margin_top = 245.0
+margin_right = 695.0
+margin_bottom = 295.0
+text = "Shift ExtraD N
+-mean trials in which to toggle color<->shape(setShift)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel19" type="RichTextLabel" parent="."]
+visible = false
+margin_left = 700.0
+margin_top = 245.0
+margin_right = 895.0
+margin_bottom = 295.0
+text = "MeasureTypeId
+-the measure type that needs settings updated for player"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="RichTextLabel12" type="RichTextLabel" parent="."]
 margin_left = 500.0
-margin_top = 365.0
-margin_right = 600.0
-margin_bottom = 380.0
-text = "Penalty"
+margin_top = 350.0
+margin_right = 680.0
+margin_bottom = 395.0
+text = "Penalty
+-fuel deduction on incorrect responses"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel20" type="RichTextLabel" parent="."]
+visible = false
+margin_left = 700.0
+margin_top = 350.0
+margin_right = 880.0
+margin_bottom = 395.0
+text = "Starting Screen
+-should player see a starting screen in beginning"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="RichTextLabel13" type="RichTextLabel" parent="."]
 margin_left = 500.0
-margin_top = 465.0
-margin_right = 600.0
-margin_bottom = 480.0
-text = "Flanker N"
+margin_top = 450.0
+margin_right = 695.0
+margin_bottom = 495.0
+text = "Flanker N
+-num flanks on left and right side of central stim(flanker)"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="RichTextLabel6" type="RichTextLabel" parent="."]
 margin_left = 300.0
-margin_top = 265.0
-margin_right = 410.0
-margin_bottom = 280.0
-text = "Stimulus Interval"
+margin_top = 250.0
+margin_right = 480.0
+margin_bottom = 296.0
+text = "Stimulus Interval
+-time in sec between end of 1 stim and start of next"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Button" type="Button" parent="."]
+visible = false
 margin_left = 100.0
 margin_top = 500.0
 margin_right = 192.0
@@ -333,19 +382,24 @@ text = "START GAME"
 script = ExtResource( 7 )
 
 [node name="Button2" type="Button" parent="."]
+visible = false
 margin_left = 700.0
 margin_top = 500.0
 margin_right = 792.0
 margin_bottom = 520.0
 text = "POST DATA"
 script = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="RichTextLabel7" type="RichTextLabel" parent="."]
 margin_left = 300.0
 margin_top = 365.0
-margin_right = 400.0
-margin_bottom = 380.0
-text = "Time Limit"
+margin_right = 480.0
+margin_bottom = 395.0
+text = "Time Limit
+-in sec for a game session"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -353,9 +407,10 @@ __meta__ = {
 [node name="RichTextLabel8" type="RichTextLabel" parent="."]
 margin_left = 300.0
 margin_top = 465.0
-margin_right = 400.0
-margin_bottom = 480.0
-text = "2nd Task"
+margin_right = 480.0
+margin_bottom = 495.0
+text = "2nd Task
+-to earn fuel"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -379,5 +434,30 @@ script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="LineEdit" type="LineEdit" parent="."]
+visible = false
+margin_left = 700.0
+margin_top = 300.0
+margin_right = 758.0
+margin_bottom = 324.0
+
+[node name="OptionButton19" type="OptionButton" parent="."]
+visible = false
+margin_left = 700.0
+margin_top = 400.0
+margin_right = 729.0
+margin_bottom = 420.0
+script = ExtResource( 19 )
+
+[node name="Button3" type="Button" parent="."]
+visible = false
+margin_left = 100.0
+margin_top = 500.0
+margin_right = 192.0
+margin_bottom = 520.0
+text = "PUT Settings"
+script = ExtResource( 21 )
 [connection signal="pressed" from="Button" to="Button" method="_on_Button_pressed"]
 [connection signal="pressed" from="Button2" to="Button2" method="_on_Button2_pressed"]
+[connection signal="pressed" from="Button3" to="Button3" method="_on_Button3_pressed"]

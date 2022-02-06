@@ -1,4 +1,4 @@
-extends OptionButton
+extends Control
 
 
 # Declare member variables here. Examples:
@@ -8,13 +8,13 @@ extends OptionButton
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$".".add_item("1")
-	$".".add_item("2")
-	$".".add_item("3")
-	$".".add_item("4")
-	$".".add_item("5")
+	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func _on_Button_pressed():
+	get_tree().change_scene("res://Main.tscn")
