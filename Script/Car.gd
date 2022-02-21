@@ -26,6 +26,10 @@ var rngN6 = RandomNumberGenerator.new()
 var rngN7 = RandomNumberGenerator.new()
 var rngN8 = RandomNumberGenerator.new()
 var rngN9 = RandomNumberGenerator.new()
+var rngN11 = RandomNumberGenerator.new()
+var rngN12 = RandomNumberGenerator.new()
+var rngN13 = RandomNumberGenerator.new()
+var rngN14 = RandomNumberGenerator.new()
 var executed = 0
 var executedSet = 0
 var hitExec = 0
@@ -51,6 +55,19 @@ var setNOrig
 var setNExtraOrig
 var countSet = 0
 var numRandCentral
+var numRandCentralColor
+var numRandCentralLine
+var numRandCentralPattern
+
+var numRandLeft
+var numRandLeftColor
+var numRandLeftLine
+var numRandLeftPattern
+var numRandRight
+var numRandRightColor
+var numRandRightLine
+var numRandRightPattern
+
 var setToggle = 1
 var stDuration
 var nFlanks
@@ -66,6 +83,12 @@ var throttle_val = accToMaintain
 var brake_val = 0
 var leftBtn = false
 var rightBtn = false
+var variationsArr = []
+var matchArr = []
+var unmatchArr = []
+var prevMoreMatchArr = []
+var lessmatchArr = []
+var lessunmatchArr = []
 
 var varTarget = ""
 var varLMcolor = ""
@@ -73,22 +96,46 @@ var varLMshape = ""
 var varLMsize = ""
 var varLcolor = ""
 var varLshape = ""
+var varLline = ""
+var varLpattern = ""
 var varLsize = ""
 var varCcolor = ""
 var varCshape = ""
+var varCline = ""
+var varCpattern = ""
 var varCsize = ""
 var varRcolor = ""
 var varRshape = ""
+var varRline = ""
+var varRpattern = ""
 var varRsize = ""
 var varRMcolor = ""
 var varRMshape = ""
 var varRMsize = ""
 var varCupshift = ""
 
-var allTextures = ["res://big_blue_diamond-removebg-preview.png", "res://big_blue_triangle-removebg-preview.png", "res://big_red_circle-removebg-preview.png", "res://big_red_diamond-removebg-preview.png", "res://Big_red_triangle-removebg-preview.png", "res://big_yellow_circle-removebg-preview.png", "res://Big_Yellow_diamond-removebg-preview.png", "res://big_yellow_triangle-removebg-preview.png", "res://Big_Blue_Circle-removebg.png"]
-var allColors = ["blue", "blue", "red", "red", "red", "yellow", "yellow", "yellow", "blue"]
-var allShapes = ["diamond", "triangle", "circle", "diamond", "triangle", "circle", "diamond", "triangle", "circle"]
+# read these settings from json per team feedback
+var allVariations = "color,shape,line,pattern"
+var moreMatch = 3
+var lessMatch = 2
 
+#var allVariations = "color,shape"
+#var moreMatch = 1
+#var lessMatch = 0
+
+var defaultColor = "blue"
+var defaultShape = "circle"
+var defaultLine = "none"
+var defaultPattern = "none"
+
+var allTextures = ["res://shape-circle.png", "res://shape-diamond.png", "res://shape-triangle.png"]
+var allSingleB = ["res://singleB-circle.png", "res://singleB-diamond.png", "res://singleB-triangle.png"]
+var allDoubleB = ["res://doubleB-circle.png", "res://doubleB_diamond.png", "res://doubleB-triangle.png"]
+var allDots = ["res://dots-circle.png", "res://dots-diamond.png", "res://dots-triangle.png"]
+var allGrids = ["res://grid-circle.png", "res://grid-diamond.png", "res://grid-triangle.png"]
+var allShapes = ["circle", "diamond", "triangle"]
+
+var allColors = ["blue", "red", "green"]
 
 ############################################################
 # Input
@@ -191,12 +238,18 @@ func resetJSON():
 	varLMsize = ""
 	varLcolor = ""
 	varLshape = ""
+	varLline = ""
+	varLpattern = ""
 	varLsize = ""
 	varCcolor = ""
 	varCshape = ""
+	varCline = ""
+	varCpattern = ""
 	varCsize = ""
 	varRcolor = ""
 	varRshape = ""
+	varRline = ""
+	varRpattern = ""
 	varRsize = ""
 	varRMcolor = ""
 	varRMshape = ""
@@ -219,13 +272,19 @@ func logData(title, desc):
 		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.rightMost.shapeDesc = varRMshape
 		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.rightMost.size = varRMsize
 		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.left.color = varLcolor
+		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.left.line = varLline
+		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.left.pattern = varLpattern
 		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.left.shapeDesc = varLshape
 		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.left.size = varLsize
 		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.right.color = varRcolor
+		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.right.line = varRline
+		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.right.pattern = varRpattern
 		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.right.shapeDesc = varRshape
 		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.right.size = varRsize
 		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.centre.upShift = varCupshift
 		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.centre.color = varCcolor
+		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.centre.line = varCline
+		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.centre.pattern = varCpattern
 		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.centre.shapeDesc = varCshape
 		global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].eventDesc.centre.size = varCsize
 	global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].totalTimeElapsed = totalTime
@@ -485,56 +544,324 @@ func _physics_process(delta):
 					$"../../Sprite12".scale.x = 0.035
 			currentTrialTime = 0
 			if int(countSet)%int(setN) == 0:
-				rngN2.randomize()
-				numRandCentral = rngN2.randi_range(0, 8)
+				$"../../Sprite6".texture = load(allTextures[0])
+				$"../../Sprite6".modulate = Color(0,0,1,1)
+				$"../../Sprite17".visible = false
+				$"../../Sprite23".visible = false
+
+				numRandCentral = 0
+				numRandCentralColor = 0
+				numRandCentralLine = 0
+				numRandCentralPattern = 0
+
+				rngN11.randomize()
+				numRandCentral = rngN11.randi_range(0, 2)
+				rngN12.randomize()
+				numRandCentralColor = rngN12.randi_range(0, 2)
+				rngN13.randomize()
+				numRandCentralLine = rngN13.randi_range(0, 2) #none, single, double
+				rngN14.randomize()
+				numRandCentralPattern = rngN14.randi_range(0, 2) #none, dots, grid
 				$"../../Sprite6".texture = load(allTextures[numRandCentral])
+				if numRandCentralLine == 1 and "line" in allVariations:
+					$"../../Sprite23".texture = load(allSingleB[numRandCentral])
+				if numRandCentralLine == 2 and "line" in allVariations:
+					$"../../Sprite23".texture = load(allDoubleB[numRandCentral])
+				if numRandCentralPattern == 1 and "pattern" in allVariations:
+					$"../../Sprite17".texture = load(allDots[numRandCentral])
+				if numRandCentralPattern == 2 and "pattern" in allVariations:
+					$"../../Sprite17".texture = load(allGrids[numRandCentral])
+				if numRandCentralColor == 1 and "color" in allVariations:
+					$"../../Sprite6".modulate = Color(1,0,0,1)
+				if numRandCentralColor == 2 and "color" in allVariations:
+					$"../../Sprite6".modulate = Color(0,1,0,1)
 				rngN8.randomize()
 				setN = setNOrig + rngN8.randi_range(int(-1 * 0.5 * setNOrig), int(1 * 0.5 * setNOrig))
-			varCcolor = allColors[numRandCentral]
 			varCshape = allShapes[numRandCentral]
+			if !("color" in allVariations):
+				varCcolor = allColors[0]
+			if ("color" in allVariations):
+				varCcolor = allColors[numRandCentralColor]
+			if numRandCentralLine == 0 or !("line" in allVariations):
+				varCline = "none"
+			if numRandCentralLine == 1 and "line" in allVariations:
+				varCline = "singleb"
+			if numRandCentralLine == 2 and "line" in allVariations:
+				varCline = "doubleb"
+			if numRandCentralPattern == 0 or !("pattern" in allVariations):
+				varCpattern = "none"
+			if numRandCentralPattern == 1 and "pattern" in allVariations:
+				varCpattern = "dots"
+			if numRandCentralPattern == 2 and "pattern" in allVariations:
+				varCpattern = "grids"
 			rngN3.randomize()
-			var numLeft = rngN3.randi_range(0, 8)
+			var numRandLeft = rngN3.randi_range(0, 2)
 			rngN4.randomize()
-			var numRight = rngN4.randi_range(0, 8)
+			var numRandRight = rngN4.randi_range(0, 2)
 			if int(countSet)%int(setNExtra) == 0:
 				setToggle += 1
+				
+				matchArr = []
+				unmatchArr = []
+				lessmatchArr = []
+				lessunmatchArr = []
+				
+				variationsArr = Array(allVariations.split(","))
+				variationsArr.shuffle()
+				for kk in moreMatch:
+					matchArr.append(variationsArr.pop_back())
+				matchArr.sort()
+				while (prevMoreMatchArr == matchArr):
+					matchArr = []
+					variationsArr = Array(allVariations.split(","))
+					variationsArr.shuffle()
+					for ii in moreMatch:
+						matchArr.append(variationsArr.pop_back())
+					matchArr.sort()
+				unmatchArr = variationsArr
+				print(matchArr)
+				print(unmatchArr)
+				
+				prevMoreMatchArr = matchArr
+				prevMoreMatchArr.sort()
+
+				variationsArr = Array(allVariations.split(","))
+				variationsArr.shuffle()
+				for jj in lessMatch:
+					lessmatchArr.append(variationsArr.pop_back())
+				lessunmatchArr = variationsArr
+				print(lessmatchArr)
+				print(lessunmatchArr)
+				
 				rngN9.randomize()
 				setNExtra = setNExtraOrig + rngN9.randi_range(int(-1 * 0.5 * setNExtraOrig), int(1 * 0.5 * setNExtraOrig))
-			if int(setToggle) % 2 == 0:
-				varTarget = "Shape"
-				while (allShapes[numRandCentral] != allShapes[numLeft] || allColors[numRandCentral] == allColors[numLeft]):
-					rngN3.randomize()
-					numLeft = rngN3.randi_range(0, 8)
-			else:
-				varTarget = "Color"
-				while (allShapes[numRandCentral] == allShapes[numLeft] || allColors[numRandCentral] != allColors[numLeft]):
-					rngN3.randomize()
-					numLeft = rngN3.randi_range(0, 8)
-			while (allShapes[numRandCentral] == allShapes[numRight] || allColors[numRandCentral] == allColors[numRight]):
-				rngN4.randomize()
-				numRight = rngN4.randi_range(0, 8)
+			if int(setToggle) % 2 == 0 or int(setToggle) % 2 == 1:
+
+				$"../../Sprite5".texture = load(allTextures[0])
+				$"../../Sprite5".modulate = Color(0,0,1,1)
+				$"../../Sprite16".visible = false
+				$"../../Sprite22".visible = false
+				$"../../Sprite7".texture = load(allTextures[0])
+				$"../../Sprite7".modulate = Color(0,0,1,1)
+				$"../../Sprite18".visible = false
+				$"../../Sprite24".visible = false
+				numRandLeft = 0
+				numRandLeftColor = 0
+				numRandLeftLine = 0
+				numRandLeftPattern = 0
+				numRandRight = 0
+				numRandRightColor = 0
+				numRandRightLine = 0
+				numRandRightPattern = 0
+				
+				varTarget = PoolStringArray(matchArr).join("-")
+				if "shape" in matchArr:
+					numRandLeft = numRandCentral
+				if "shape" in unmatchArr:
+					numRandLeft = (randi() % 3)
+					while (numRandLeft == numRandCentral):
+						numRandLeft = (randi() % 3)
+				if "color" in matchArr:
+					numRandLeftColor = numRandCentralColor
+				if "color" in unmatchArr:
+					numRandLeftColor = (randi() % 3)
+					while (numRandLeftColor == numRandCentralColor):
+						numRandLeftColor = (randi() % 3)
+				if "line" in matchArr:
+					numRandLeftLine = numRandCentralLine
+				if "line" in unmatchArr:
+					numRandLeftLine = (randi() % 3)
+					while (numRandLeftLine == numRandCentralLine):
+						numRandLeftLine = (randi() % 3)
+				if "pattern" in matchArr:
+					numRandLeftPattern = numRandCentralPattern
+				if "pattern" in unmatchArr:
+					numRandLeftPattern = (randi() % 3)
+					while (numRandLeftPattern == numRandCentralPattern):
+						numRandLeftPattern = (randi() % 3)
+
+				if "shape" in lessmatchArr:
+					numRandRight = numRandCentral
+				if "shape" in lessunmatchArr:
+					numRandRight = (randi() % 3)
+					while (numRandRight == numRandCentral):
+						numRandRight = (randi() % 3)
+				if "color" in lessmatchArr:
+					numRandRightColor = numRandCentralColor
+				if "color" in lessunmatchArr:
+					numRandRightColor = (randi() % 3)
+					while (numRandRightColor == numRandCentralColor):
+						numRandRightColor = (randi() % 3)
+				if "line" in lessmatchArr:
+					numRandRightLine = numRandCentralLine
+				if "line" in lessunmatchArr:
+					numRandRightLine = (randi() % 3)
+					while (numRandRightLine == numRandCentralLine):
+						numRandRightLine = (randi() % 3)
+				if "pattern" in lessmatchArr:
+					numRandRightPattern = numRandCentralPattern
+				if "pattern" in lessunmatchArr:
+					numRandRightPattern = (randi() % 3)
+					while (numRandRightPattern == numRandCentralPattern):
+						numRandRightPattern = (randi() % 3)
+				print(matchArr)
+				print(unmatchArr)
+				print(lessmatchArr)
+				print(lessunmatchArr)
+				print("numRandCentral")
+				print(numRandCentral)
+				print("numRandCentralColor")
+				print(numRandCentralColor)
+				print("numRandCentralLine")
+				print(numRandCentralLine)
+				print("numRandCentralPattern")
+				print(numRandCentralPattern)
+				print("numRandLeft")
+				print(numRandLeft)
+				print("numRandLeftColor")
+				print(numRandLeftColor)
+				print("numRandLeftLine")
+				print(numRandLeftLine)
+				print("numRandLeftPattern")
+				print(numRandLeftPattern)
+				print("numRandRight")
+				print(numRandRight)
+				print("numRandRightColor")
+				print(numRandRightColor)
+				print("numRandRightLine")
+				print(numRandRightLine)
+				print("numRandRightPattern")
+				print(numRandRightPattern)
 			rngN5.randomize()
 			if (rngN5.randi_range(0, 1) == 0):
-				$"../../Sprite5".texture = load(allTextures[numLeft])
-				$"../../Sprite7".texture = load(allTextures[numRight])
-				varLcolor = allColors[numLeft]
-				varLshape = allShapes[numLeft]
-				varRcolor = allColors[numRight]
-				varRshape = allShapes[numRight]
+				$"../../Sprite5".texture = load(allTextures[numRandLeft])
+				$"../../Sprite7".texture = load(allTextures[numRandRight])
+				if numRandLeftLine == 1:
+					$"../../Sprite22".texture = load(allSingleB[numRandLeft])
+				if numRandLeftLine == 2:
+					$"../../Sprite22".texture = load(allDoubleB[numRandLeft])
+				if numRandLeftPattern == 1:
+					$"../../Sprite16".texture = load(allDots[numRandLeft])
+				if numRandLeftPattern == 2:
+					$"../../Sprite16".texture = load(allGrids[numRandLeft])
+				if numRandLeftColor == 1:
+					$"../../Sprite5".modulate = Color(1,0,0,1)
+				if numRandLeftColor == 2:
+					$"../../Sprite5".modulate = Color(0,1,0,1)
+				if numRandRightLine == 1:
+					$"../../Sprite24".texture = load(allSingleB[numRandRight])
+				if numRandRightLine == 2:
+					$"../../Sprite24".texture = load(allDoubleB[numRandRight])
+				if numRandRightPattern == 1:
+					$"../../Sprite18".texture = load(allDots[numRandRight])
+				if numRandRightPattern == 2:
+					$"../../Sprite18".texture = load(allGrids[numRandRight])
+				if numRandRightColor == 1:
+					$"../../Sprite7".modulate = Color(1,0,0,1)
+				if numRandRightColor == 2:
+					$"../../Sprite7".modulate = Color(0,1,0,1)
+				varLshape = allShapes[numRandLeft]
+				varLcolor = allColors[numRandLeftColor]
+				if numRandLeftLine == 0:
+					varLline = "none"
+				if numRandLeftLine == 1:
+					varLline = "singleb"
+				if numRandLeftLine == 2:
+					varLline = "doubleb"
+				if numRandLeftPattern == 0:
+					varLpattern = "none"
+				if numRandLeftPattern == 1:
+					varLpattern = "dots"
+				if numRandLeftPattern == 2:
+					varLpattern = "grids"
+				varRshape = allShapes[numRandRight]
+				varRcolor = allColors[numRandRightColor]
+				if numRandRightLine == 0:
+					varRline = "none"
+				if numRandRightLine == 1:
+					varRline = "singleb"
+				if numRandRightLine == 2:
+					varRline = "doubleb"
+				if numRandRightPattern == 0:
+					varRpattern = "none"
+				if numRandRightPattern == 1:
+					varRpattern = "dots"
+				if numRandRightPattern == 2:
+					varRpattern = "grids"
 				correectAnswerSet = "left"
-				stimStr = allTextures[numLeft] + " " + allTextures[numRandCentral] + " " + allTextures[numRight]
+				stimStr = ""
 			else:
-				$"../../Sprite5".texture = load(allTextures[numRight])
-				$"../../Sprite7".texture = load(allTextures[numLeft])
-				varLcolor = allColors[numRight]
-				varLshape = allShapes[numRight]
-				varRcolor = allColors[numLeft]
-				varRshape = allShapes[numLeft]
+				$"../../Sprite7".texture = load(allTextures[numRandLeft])
+				$"../../Sprite5".texture = load(allTextures[numRandRight])
+				if numRandLeftLine == 1:
+					$"../../Sprite24".texture = load(allSingleB[numRandLeft])
+				if numRandLeftLine == 2:
+					$"../../Sprite24".texture = load(allDoubleB[numRandLeft])
+				if numRandLeftPattern == 1:
+					$"../../Sprite18".texture = load(allDots[numRandLeft])
+				if numRandLeftPattern == 2:
+					$"../../Sprite18".texture = load(allGrids[numRandLeft])
+				if numRandLeftColor == 1:
+					$"../../Sprite7".modulate = Color(1,0,0,1)
+				if numRandLeftColor == 2:
+					$"../../Sprite7".modulate = Color(0,1,0,1)
+				if numRandRightLine == 1:
+					$"../../Sprite22".texture = load(allSingleB[numRandRight])
+				if numRandRightLine == 2:
+					$"../../Sprite22".texture = load(allDoubleB[numRandRight])
+				if numRandRightPattern == 1:
+					$"../../Sprite16".texture = load(allDots[numRandRight])
+				if numRandRightPattern == 2:
+					$"../../Sprite16".texture = load(allGrids[numRandRight])
+				if numRandRightColor == 1:
+					$"../../Sprite5".modulate = Color(1,0,0,1)
+				if numRandRightColor == 2:
+					$"../../Sprite5".modulate = Color(0,1,0,1)
+				varRshape = allShapes[numRandLeft]
+				varRcolor = allColors[numRandLeftColor]
+				if numRandLeftLine == 0:
+					varRline = "none"
+				if numRandLeftLine == 1:
+					varRline = "singleb"
+				if numRandLeftLine == 2:
+					varRline = "doubleb"
+				if numRandLeftPattern == 0:
+					varRpattern = "none"
+				if numRandLeftPattern == 1:
+					varRpattern = "dots"
+				if numRandLeftPattern == 2:
+					varRpattern = "grids"
+				varLshape = allShapes[numRandRight]
+				varLcolor = allColors[numRandRightColor]
+				if numRandRightLine == 0:
+					varLline = "none"
+				if numRandRightLine == 1:
+					varLline = "singleb"
+				if numRandRightLine == 2:
+					varLline = "doubleb"
+				if numRandRightPattern == 0:
+					varLpattern = "none"
+				if numRandRightPattern == 1:
+					varLpattern = "dots"
+				if numRandRightPattern == 2:
+					varLpattern = "grids"
 				correectAnswerSet = "right"
-				stimStr = allTextures[numRight] + " " + allTextures[numRandCentral] + " " + allTextures[numLeft]
+				stimStr = ""
 			$"../../Sprite5".visible = true
 			$"../../Sprite6".visible = true
 			$"../../Sprite7".visible = true
+			if varLpattern != "none":
+				$"../../Sprite16".visible = true
+			if varCpattern != "none":
+				$"../../Sprite17".visible = true
+			if varRpattern != "none":
+				$"../../Sprite18".visible = true
+			if varLline != "none":
+				$"../../Sprite22".visible = true
+			if varCline != "none":
+				$"../../Sprite23".visible = true
+			if varRline != "none":
+				$"../../Sprite24".visible = true
 			executedSet = 1
 			countSet += 1
 			logData("Stimulus Displayed", "")
@@ -565,6 +892,12 @@ func _physics_process(delta):
 			$"../../Sprite5".visible = false
 			$"../../Sprite6".visible = false
 			$"../../Sprite7".visible = false
+			$"../../Sprite22".visible = false
+			$"../../Sprite23".visible = false
+			$"../../Sprite24".visible = false
+			$"../../Sprite16".visible = false
+			$"../../Sprite17".visible = false
+			$"../../Sprite18".visible = false
 			logData("Stimulus Hidden", "NA")
 			resetJSON()
 		if Input.is_action_pressed("fKey") and hitExec == 0:

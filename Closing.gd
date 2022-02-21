@@ -90,21 +90,28 @@ func _ready():
 		$"Button".visible = true
 		var travelcut = global.threshold * global.json_result[global.task][global.levelSet[global.task]]["maxdistance"]
 		if global.travelled >= travelcut:
-			if global.levelSet[global.task] == "0a":
-				global.levelSet[global.task] = "0b"
-			elif global.levelSet[global.task] == "0b":
-				global.levelSet[global.task] = "1"
-			elif global.levelSet[global.task] == "1":
-				global.levelSet[global.task] = "2"
-			elif global.levelSet[global.task] == "2":
-				$"RichTextLabel".visible = true
-				$"Button".visible = false
-			elif global.levelSet[global.task] == "3a":
-				global.levelSet[global.task] = "3c"
-			elif global.levelSet[global.task] == "3b":
-				global.levelSet[global.task] = "3c"
-			elif global.levelSet[global.task] == "3c":
-				global.levelSet[global.task] = "4"
+			if global.task == "nback":
+				if global.levelSet[global.task] == "0a":
+					global.levelSet[global.task] = "0b"
+				elif global.levelSet[global.task] == "0b":
+					global.levelSet[global.task] = "1"
+				elif global.levelSet[global.task] == "1":
+					global.levelSet[global.task] = "2"
+				elif global.levelSet[global.task] == "2":
+					$"RichTextLabel".visible = true
+					$"Button".visible = false
+				elif global.levelSet[global.task] == "3a":
+					global.levelSet[global.task] = "3c"
+				elif global.levelSet[global.task] == "3b":
+					global.levelSet[global.task] = "3c"
+				elif global.levelSet[global.task] == "3c":
+					global.levelSet[global.task] = "4"
+			if global.task == "setshift":
+				if global.levelSet[global.task] == "0a":
+					global.levelSet[global.task] = "0b"
+				elif global.levelSet[global.task] == "0b":
+					global.levelSet[global.task] = "1"
+
 
 func _input(ev):
 	if $"RichTextLabel".visible == true and ev is InputEventKey and ev.scancode == KEY_G and not ev.echo:
