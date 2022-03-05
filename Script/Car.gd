@@ -12,6 +12,7 @@ export var MAX_STEER_ANGLE = 0.20
 #export var steer_speed = 1.0
 export var steer_speed = 0.2
 
+var multiplier_divideSec = 16
 var arrayNBACK = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 var steer_target = 0.0
 var steer_angle = 0.0
@@ -84,6 +85,7 @@ var brake_val = 0
 var leftBtn = false
 var rightBtn = false
 var variationsArr = []
+var variationsArrSize
 var matchArr = []
 var unmatchArr = []
 var prevMoreMatchArr = []
@@ -114,14 +116,9 @@ var varRMshape = ""
 var varRMsize = ""
 var varCupshift = ""
 
-# read these settings from json per team feedback
-var allVariations = "color,shape,line,pattern"
-var moreMatch = 3
-var lessMatch = 2
-
-#var allVariations = "color,shape"
-#var moreMatch = 1
-#var lessMatch = 0
+var allVariations
+var moreMatch
+var lessMatch
 
 var defaultColor = "blue"
 var defaultShape = "circle"
@@ -153,6 +150,9 @@ export var brake_mult = 1.0
 func _ready():
 	trialNum = 0
 	#nBackIntervalIP is stimulus interval | setIntervalIP is stimulus duration
+	allVariations = global.allVariationsGlobal
+	moreMatch = global.moreMatchGlobal
+	lessMatch = global.lessMatchGlobal
 	fuel = global.strtFuelIP
 	speedToMaintain = global.maxSpeedIP
 	accToMaintain = global.accelerationIP
@@ -170,6 +170,7 @@ func _ready():
 	responseLimit = global.respLimitIP
 	upcentre = global.centreShift
 	sizeComplexity = global.sizeIP
+	print("TASK6 "+str(global.taskIP))
 	print(global.taskIP)
 	if global.taskIP == -2:
 		$"../../Sprite".position.y = -400
@@ -367,7 +368,7 @@ func _physics_process(delta):
 	$"../../RichTextLabel4".text = "Time Elapsed: "+str(int(totalTime))
 	$"../../RichTextLabel5".text = "Distance Covered: "+str(int(displacement))
 	if global.taskIP == 0:
-		if ((int(totalTime+stDuration) % int(nBackInterval+stDuration)) == 0 and executed == 0 and totalTime > 2.0):
+		if ((int((totalTime+stDuration)*multiplier_divideSec) % int((nBackInterval+stDuration)*multiplier_divideSec)) == 0 and executed == 0 and totalTime > 2.0):
 			trialNum += 1
 			if sizeComplexity == 1:
 				rngN7.randomize()
@@ -441,7 +442,7 @@ func _physics_process(delta):
 			varTarget = "Charge"
 			logData("Stimulus Displayed", "")
 			executed = 1
-		if ((int(totalTime) % int(nBackInterval+stDuration)) == 0 and executed == 1):
+		if ((int(totalTime*multiplier_divideSec) % int((nBackInterval+stDuration)*multiplier_divideSec)) == 0 and executed == 1):
 			executed = 0
 			$"../../Sprite".scale.y = 0.1*2
 			$"../../Sprite".scale.x = 0.1*2
@@ -471,7 +472,7 @@ func _physics_process(delta):
 			logData("Stimulus Hidden", "NA")
 			resetJSON()
 		if (Input.is_action_pressed("fKey") or Input.is_action_pressed("jKey")) and hitExec == 0:
-			if currentTrialTime <= responseLimit * stDuration / 100:
+			if (currentTrialTime*multiplier_divideSec) <= (responseLimit * stDuration * multiplier_divideSec / 100):
 				if (arrayNBACK[nOfBack] == 1 and ($"../../Sprite".visible == true or $"../../Sprite2".visible == true or $"../../Sprite3".visible == true)):
 					fuel = fuel + fuelIncrement
 					$"../../Sprite4".modulate = Color(0,1,0,1)
@@ -491,7 +492,7 @@ func _physics_process(delta):
 			hitExec = 0
 			$"../../Sprite4".modulate = Color(0,0,0,1)
 	if global.taskIP == 1:
-		if ((int(totalTime+stDuration) % int(nBackInterval+stDuration)) == 0 and executedSet == 0 and totalTime > 2.0):
+		if ((int((totalTime+stDuration)*multiplier_divideSec) % int((nBackInterval+stDuration)*multiplier_divideSec)) == 0 and executedSet == 0 and totalTime > 2.0):
 			var stimStr = ""
 			trialNum += 1
 			if sizeComplexity == 1:
@@ -607,17 +608,20 @@ func _physics_process(delta):
 				lessunmatchArr = []
 				
 				variationsArr = Array(allVariations.split(","))
+				variationsArrSize = variationsArr.size()
 				variationsArr.shuffle()
 				for kk in moreMatch:
 					matchArr.append(variationsArr.pop_back())
 				matchArr.sort()
-				while (prevMoreMatchArr == matchArr):
-					matchArr = []
-					variationsArr = Array(allVariations.split(","))
-					variationsArr.shuffle()
-					for ii in moreMatch:
-						matchArr.append(variationsArr.pop_back())
-					matchArr.sort()
+				if moreMatch < variationsArrSize:
+					while (prevMoreMatchArr == matchArr):
+						print("while loop")
+						matchArr = []
+						variationsArr = Array(allVariations.split(","))
+						variationsArr.shuffle()
+						for ii in moreMatch:
+							matchArr.append(variationsArr.pop_back())
+						matchArr.sort()
 				unmatchArr = variationsArr
 				print(matchArr)
 				print(unmatchArr)
@@ -732,6 +736,7 @@ func _physics_process(delta):
 				print(numRandRightLine)
 				print("numRandRightPattern")
 				print(numRandRightPattern)
+			print("to decide left right")
 			rngN5.randomize()
 			if (rngN5.randi_range(0, 1) == 0):
 				$"../../Sprite5".texture = load(allTextures[numRandLeft])
@@ -847,6 +852,7 @@ func _physics_process(delta):
 					varLpattern = "grids"
 				correectAnswerSet = "right"
 				stimStr = ""
+			print("decided left right")
 			$"../../Sprite5".visible = true
 			$"../../Sprite6".visible = true
 			$"../../Sprite7".visible = true
@@ -862,10 +868,11 @@ func _physics_process(delta):
 				$"../../Sprite23".visible = true
 			if varRline != "none":
 				$"../../Sprite24".visible = true
+			print("stim visiblle")
 			executedSet = 1
 			countSet += 1
 			logData("Stimulus Displayed", "")
-		if ((int(totalTime) % int(nBackInterval+stDuration)) == 0 and executedSet == 1):
+		if ((int(totalTime*multiplier_divideSec) % int((nBackInterval+stDuration)*multiplier_divideSec)) == 0 and executedSet == 1):
 			executedSet = 0
 			$"../../Sprite".scale.y = 0.1*2
 			$"../../Sprite".scale.x = 0.1*2
@@ -901,7 +908,7 @@ func _physics_process(delta):
 			logData("Stimulus Hidden", "NA")
 			resetJSON()
 		if Input.is_action_pressed("fKey") and hitExec == 0:
-			if currentTrialTime <= responseLimit * stDuration / 100:
+			if (currentTrialTime*multiplier_divideSec) <= (responseLimit * stDuration * multiplier_divideSec / 100):
 				if (correectAnswerSet == "left" and ($"../../Sprite5".visible == true and $"../../Sprite6".visible == true and $"../../Sprite7".visible == true)):
 					fuel = fuel + fuelIncrement
 					$"../../Sprite4".modulate = Color(0,1,0,1)
@@ -918,7 +925,7 @@ func _physics_process(delta):
 				logData("Left Response key pressed", "Late")
 			hitExec = 1
 		if Input.is_action_pressed("jKey") and hitExec == 0:
-			if currentTrialTime <= responseLimit * stDuration / 100:
+			if (currentTrialTime*multiplier_divideSec) <= (responseLimit * stDuration * multiplier_divideSec / 100):
 				if (correectAnswerSet == "right" and ($"../../Sprite5".visible == true and $"../../Sprite6".visible == true and $"../../Sprite7".visible == true)):
 					fuel = fuel + fuelIncrement
 					$"../../Sprite4".modulate = Color(0,1,0,1)
@@ -938,7 +945,7 @@ func _physics_process(delta):
 			hitExec = 0
 			$"../../Sprite4".modulate = Color(0,0,0,1)
 	if global.taskIP == 2:
-		if ((int(totalTime+stDuration) % int(nBackInterval+stDuration)) == 0 and executed == 0 and totalTime > 2.0):
+		if ((int((totalTime+stDuration)*multiplier_divideSec) % int((nBackInterval+stDuration)*multiplier_divideSec)) == 0 and executed == 0 and totalTime > 2.0):
 			var stimStr = ""
 			trialNum += 1
 			if sizeComplexity == 1:
@@ -1034,7 +1041,7 @@ func _physics_process(delta):
 				$"../../Sprite8".visible = true
 			executed = 1
 			logData("Stimulus Displayed", "")
-		if ((int(totalTime) % int(nBackInterval+stDuration)) == 0 and executed == 1):
+		if ((int(totalTime*multiplier_divideSec) % int((nBackInterval+stDuration)*multiplier_divideSec)) == 0 and executed == 1):
 			executed = 0
 			$"../../Sprite".scale.y = 0.1*2
 			$"../../Sprite".scale.x = 0.1*2
@@ -1066,7 +1073,7 @@ func _physics_process(delta):
 			logData("Stimulus Hidden", "NA")
 			resetJSON()
 		if Input.is_action_pressed("fKey") and hitExec == 0:
-			if currentTrialTime <= responseLimit * stDuration / 100:
+			if (currentTrialTime*multiplier_divideSec) <= (responseLimit * stDuration * multiplier_divideSec / 100):
 				if (correectAnswerSet == "left" and ($"../../Sprite11".visible == true)):
 					fuel = fuel + fuelIncrement
 					$"../../Sprite4".modulate = Color(0,1,0,1)
@@ -1083,7 +1090,7 @@ func _physics_process(delta):
 				logData("Left Response key pressed", "Late")
 			hitExec = 1
 		if Input.is_action_pressed("jKey") and hitExec == 0:
-			if currentTrialTime <= responseLimit * stDuration / 100:
+			if (currentTrialTime*multiplier_divideSec) <= (responseLimit * stDuration * multiplier_divideSec / 100):
 				if (correectAnswerSet == "right" and ($"../../Sprite11".visible == true)):
 					fuel = fuel + fuelIncrement
 					$"../../Sprite4".modulate = Color(0,1,0,1)
@@ -1162,7 +1169,7 @@ func _on_Button3_button_up():
 
 func _on_Button4_button_down():
 	if global.taskIP == 0 and hitExec == 0:
-		if currentTrialTime <= responseLimit * stDuration / 100:
+		if (currentTrialTime*multiplier_divideSec) <= (responseLimit * stDuration * multiplier_divideSec / 100):
 			if (arrayNBACK[nOfBack] == 1 and ($"../../Sprite".visible == true or $"../../Sprite2".visible == true or $"../../Sprite3".visible == true)):
 				fuel = fuel + fuelIncrement
 				$"../../Sprite4".modulate = Color(0,1,0,1)
@@ -1179,7 +1186,7 @@ func _on_Button4_button_down():
 			logData("Left Screen Response key pressed", "Late")
 		hitExec = 1
 	if global.taskIP == 1 and hitExec == 0:
-		if currentTrialTime <= responseLimit * stDuration / 100:
+		if (currentTrialTime*multiplier_divideSec) <= (responseLimit * stDuration * multiplier_divideSec / 100):
 			if (correectAnswerSet == "left" and ($"../../Sprite5".visible == true and $"../../Sprite6".visible == true and $"../../Sprite7".visible == true)):
 				fuel = fuel + fuelIncrement
 				$"../../Sprite4".modulate = Color(0,1,0,1)
@@ -1196,7 +1203,7 @@ func _on_Button4_button_down():
 			logData("Left Screen Response key pressed", "Late")
 		hitExec = 1
 	if global.taskIP == 2 and hitExec == 0:
-		if currentTrialTime <= responseLimit * stDuration / 100:
+		if (currentTrialTime*multiplier_divideSec) <= (responseLimit * stDuration * multiplier_divideSec / 100):
 			if (correectAnswerSet == "left" and ($"../../Sprite11".visible == true)):
 				fuel = fuel + fuelIncrement
 				$"../../Sprite4".modulate = Color(0,1,0,1)
@@ -1215,7 +1222,7 @@ func _on_Button4_button_down():
 
 func _on_Button5_button_down():
 	if global.taskIP == 0 and hitExec == 0:
-		if currentTrialTime <= responseLimit * stDuration / 100:
+		if (currentTrialTime*multiplier_divideSec) <= (responseLimit * stDuration * multiplier_divideSec / 100):
 			if (arrayNBACK[nOfBack] == 1 and ($"../../Sprite".visible == true or $"../../Sprite2".visible == true or $"../../Sprite3".visible == true)):
 				fuel = fuel + fuelIncrement
 				$"../../Sprite4".modulate = Color(0,1,0,1)
@@ -1232,7 +1239,7 @@ func _on_Button5_button_down():
 			logData("Right Screen Response key pressed", "Late")
 		hitExec = 1
 	if global.taskIP == 1 and hitExec == 0:
-		if currentTrialTime <= responseLimit * stDuration / 100:
+		if (currentTrialTime*multiplier_divideSec) <= (responseLimit * stDuration * multiplier_divideSec / 100):
 			if (correectAnswerSet == "right" and ($"../../Sprite5".visible == true and $"../../Sprite6".visible == true and $"../../Sprite7".visible == true)):
 				fuel = fuel + fuelIncrement
 				$"../../Sprite4".modulate = Color(0,1,0,1)
@@ -1249,7 +1256,7 @@ func _on_Button5_button_down():
 			logData("Right Screen Response key pressed", "Late")
 		hitExec = 1
 	if global.taskIP == 2 and hitExec == 0:
-		if currentTrialTime <= responseLimit * stDuration / 100:
+		if (currentTrialTime*multiplier_divideSec) <= (responseLimit * stDuration * multiplier_divideSec / 100):
 			if (correectAnswerSet == "right" and ($"../../Sprite11".visible == true)):
 				fuel = fuel + fuelIncrement
 				$"../../Sprite4".modulate = Color(0,1,0,1)

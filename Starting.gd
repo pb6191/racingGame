@@ -38,6 +38,9 @@ func assignVals():
 	global.dict.thisSession[global.dict.thisSession.size()-1].flankerN = global.nFlankIP
 	global.dict.thisSession[global.dict.thisSession.size()-1].centreUp = global.centreShift
 	global.dict.thisSession[global.dict.thisSession.size()-1].symComplexity = global.sizeIP
+	global.dict.thisSession[global.dict.thisSession.size()-1].variationStr = global.allVariationsGlobal
+	global.dict.thisSession[global.dict.thisSession.size()-1].moreMatch = global.moreMatchGlobal
+	global.dict.thisSession[global.dict.thisSession.size()-1].lessMatch = global.lessMatchGlobal
 
 func getLevelMapping():
 	global.maxSpeedIP = global.json_result[global.task][global.levelSet[global.task]]["speed"]
@@ -56,6 +59,9 @@ func getLevelMapping():
 	global.respLimitIP = global.json_result[global.task][global.levelSet[global.task]]["respLimit"]
 	global.centreShift = global.json_result[global.task][global.levelSet[global.task]]["centreUp"]
 	global.sizeIP = global.json_result[global.task][global.levelSet[global.task]]["symComplexity"]
+	global.allVariationsGlobal = global.json_result[global.task][global.levelSet[global.task]]["variations"]
+	global.moreMatchGlobal = global.json_result[global.task][global.levelSet[global.task]]["moreMatches"]
+	global.lessMatchGlobal = global.json_result[global.task][global.levelSet[global.task]]["lessMatches"]
 	global.url = ""
 	global.endpt = ""
 	global.startScrn = global.json_result[global.task][global.levelSet[global.task]]["startScreen"]
@@ -71,7 +77,7 @@ func getDefaults():
 			global.nBackIntervalIP = 3 + 2
 			global.tLimit = 30
 			global.taskIP = 0
-			global.setIntervalIP = 3 + 2
+			global.setIntervalIP = 5.0
 			global.setNIP = 2 + 2
 			global.setNExtraIP = 4 + 4
 			global.penaltyIP = 5*0
@@ -79,6 +85,9 @@ func getDefaults():
 			global.respLimitIP = 100 - (25*0)
 			global.centreShift = 1
 			global.sizeIP = 0
+			global.allVariationsGlobal = "color,shape"
+			global.moreMatchGlobal = 1
+			global.lessMatchGlobal = 0
 			global.url = ""
 			global.endpt = ""
 			global.startScrn = 0
@@ -100,7 +109,7 @@ func getDefaults():
 			print(global.tLimit)
 			global.taskIP = int(jsonSett["task"])
 			print(global.taskIP)
-			global.setIntervalIP = int(jsonSett["stimDuration"])
+			global.setIntervalIP = float(jsonSett["stimDuration"])
 			print(global.setIntervalIP)
 			global.setNIP = int(jsonSett["intraN"])
 			print(global.setNIP)
@@ -116,6 +125,12 @@ func getDefaults():
 			print(global.centreShift)
 			global.sizeIP = int(jsonSett["symComplexity"])
 			print(global.sizeIP)
+			global.allVariationsGlobal = int(jsonSett["variationStr"])
+			print(global.allVariationsGlobal)
+			global.moreMatchGlobal = int(jsonSett["moreMatch"])
+			print(global.moreMatchGlobal)
+			global.lessMatchGlobal = int(jsonSett["lessMatch"])
+			print(global.lessMatchGlobal)
 			global.url = ""
 			global.endpt = ""
 			global.startScrn = int(jsonSett["startScreen"])
@@ -187,15 +202,19 @@ func _ready():
 						maxID = element["Id"]
 						nonDefSett = element["Value"]
 						print(maxID)
-		if global.reset == 1 and global.current_round == 0:
-			maxID = -1
 		http_client2.close()
 		getDefaults()
+		print("TASK1 "+str(global.taskIP))
+		print(global.taskIP)
 		if global.startScrn == 0:
 			$"RichTextLabel".visible = true
 			#global.changStartScrn = 1
+			print("TASK2 "+str(global.taskIP))
+			print(global.taskIP)
 		else:
 			assignVals()
+			print("TASK3 "+str(global.taskIP))
+			print(global.taskIP)
 			get_tree().change_scene("res://Instr.tscn")
 	else:
 		get_tree().change_scene("res://Menu.tscn")
@@ -210,6 +229,8 @@ func _ready():
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_select") and $"RichTextLabel".visible == true:
 		assignVals()
+		print("TASK4 "+str(global.taskIP))
+		print(global.taskIP)
 		get_tree().change_scene("res://Instr.tscn")
 
 

@@ -17,4 +17,6 @@ func _ready():
 
 
 func _on_Button_pressed():
+	print("TASK5 "+str(global.taskIP))
+	print(global.taskIP)
 	get_tree().change_scene("res://Main.tscn")

@@ -90,7 +90,7 @@ func _ready():
 		$"Button".visible = true
 		var travelcut = global.threshold * global.json_result[global.task][global.levelSet[global.task]]["maxdistance"]
 		if global.travelled >= travelcut:
-			if global.task == "nback":
+			if global.task == "nback"or global.task == "setshift":
 				if global.levelSet[global.task] == "0a":
 					global.levelSet[global.task] = "0b"
 				elif global.levelSet[global.task] == "0b":
@@ -106,11 +106,43 @@ func _ready():
 					global.levelSet[global.task] = "3c"
 				elif global.levelSet[global.task] == "3c":
 					global.levelSet[global.task] = "4"
-			if global.task == "setshift":
-				if global.levelSet[global.task] == "0a":
-					global.levelSet[global.task] = "0b"
-				elif global.levelSet[global.task] == "0b":
-					global.levelSet[global.task] = "1"
+				elif global.levelSet[global.task] == "4":
+					global.levelSet[global.task] = "5"
+				elif global.levelSet[global.task] == "5":
+					$"RichTextLabel2".visible = true
+					$"Button".visible = false
+				elif global.levelSet[global.task] == "6a":
+					global.levelSet[global.task] = "6c"
+				elif global.levelSet[global.task] == "6b":
+					global.levelSet[global.task] = "6c"
+				elif global.levelSet[global.task] == "6c":
+					global.levelSet[global.task] = "7"
+				elif global.levelSet[global.task] == "7":
+					global.levelSet[global.task] = "8"
+				elif global.levelSet[global.task] == "8":
+					$"RichTextLabel3".visible = true
+					$"Button".visible = false
+				elif global.levelSet[global.task] == "9a":
+					global.levelSet[global.task] = "9c"
+				elif global.levelSet[global.task] == "9b":
+					global.levelSet[global.task] = "9c"
+				elif global.levelSet[global.task] == "9c":
+					global.levelSet[global.task] = "10"
+				elif global.levelSet[global.task] == "10":
+					global.levelSet[global.task] = "11"
+				elif global.levelSet[global.task] == "11":
+					global.levelSet[global.task] = "12"
+				elif global.levelSet[global.task] == "12":
+					global.levelSet[global.task] = "13"
+				elif global.levelSet[global.task] == "13":
+					global.levelSet[global.task] = "14"
+				elif global.levelSet[global.task] == "14":
+					global.levelSet[global.task] = "15"
+				elif global.levelSet[global.task] == "15":
+					global.levelSet[global.task] = "16"
+				elif global.levelSet[global.task] == "16":
+					global.levelSet[global.task] = "17"
+
 
 
 func _input(ev):
@@ -122,8 +154,22 @@ func _input(ev):
 		global.levelSet[global.task] = "3b"
 		$"RichTextLabel".visible = false
 		$"Button".visible = true
-
-
+	if $"RichTextLabel2".visible == true and ev is InputEventKey and ev.scancode == KEY_G and not ev.echo:
+		global.levelSet[global.task] = "6a"
+		$"RichTextLabel2".visible = false
+		$"Button".visible = true
+	if $"RichTextLabel2".visible == true and ev is InputEventKey and ev.scancode == KEY_H and not ev.echo:
+		global.levelSet[global.task] = "6b"
+		$"RichTextLabel2".visible = false
+		$"Button".visible = true
+	if $"RichTextLabel3".visible == true and ev is InputEventKey and ev.scancode == KEY_G and not ev.echo:
+		global.levelSet[global.task] = "9a"
+		$"RichTextLabel3".visible = false
+		$"Button".visible = true
+	if $"RichTextLabel3".visible == true and ev is InputEventKey and ev.scancode == KEY_H and not ev.echo:
+		global.levelSet[global.task] = "9b"
+		$"RichTextLabel3".visible = false
+		$"Button".visible = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

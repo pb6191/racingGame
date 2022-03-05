@@ -69,7 +69,7 @@ func _on_Button3_pressed():
 	global.nBackIntervalIP = $"../OptionButton6".selected + 2
 	global.tLimit = 30 * ($"../OptionButton7".selected + 1)
 	global.taskIP = $"../OptionButton8".selected
-	global.setIntervalIP = $"../OptionButton9".selected + 2
+	global.setIntervalIP = (0.5 * $"../OptionButton9".selected) + 0.5
 	global.setNIP = 2 + 2*$"../OptionButton10".selected
 	global.setNExtraIP = 4 + 4*$"../OptionButton11".selected
 	global.penaltyIP = 5*$"../OptionButton12".selected
@@ -77,6 +77,9 @@ func _on_Button3_pressed():
 	global.respLimitIP = 100 - (25*$"../OptionButton14".selected)
 	global.centreShift = $"../OptionButton15".selected
 	global.sizeIP = $"../OptionButton16".selected
+	global.allVariationsGlobal = "color,shape"
+	global.moreMatchGlobal = 1
+	global.lessMatchGlobal = 0
 	#global.url = $"../OptionButton17".text
 	#global.endpt = $"../OptionButton18".text
 	global.measrTypeID = $"../LineEdit".text
@@ -103,6 +106,9 @@ func _on_Button3_pressed():
 	global.dictSet.centreUp = global.centreShift
 	global.dictSet.symComplexity = global.sizeIP
 	global.dictSet.startScreen = global.startScrn
+	global.dictSet.variationStr = global.allVariationsGlobal
+	global.dictSet.moreMatch = global.moreMatchGlobal
+	global.dictSet.lessMatch = global.lessMatchGlobal
 	var sendDict = {"key": "0e89336b-27bc-466b-bebc-03b84ed7cc7b", "measureTypeId": global.measrTypeID, "populationId": global.poplnID, "userId": global.partcnID, "value": JSON.print(global.dictSet)}
 	if global.autoDifficulty == 0:
 		http_client2.request(HTTPClient.METHOD_POST, "/api/v1.0/populations/"+global.poplnID+"/participants/"+global.partcnID+"/configurationproperties", headers, JSON.print(sendDict))

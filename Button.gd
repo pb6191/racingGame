@@ -25,7 +25,7 @@ func _on_Button_pressed():
 	global.nBackIntervalIP = $"../OptionButton6".selected + 1
 	global.tLimit = 30 * ($"../OptionButton7".selected + 1)
 	global.taskIP = $"../OptionButton8".selected
-	global.setIntervalIP = $"../OptionButton9".selected + 2
+	global.setIntervalIP = (0.5 * $"../OptionButton9".selected) + 0.5
 	global.setNIP = 2 + 2*$"../OptionButton10".selected
 	global.setNExtraIP = 4 + 4*$"../OptionButton11".selected
 	global.penaltyIP = 5*$"../OptionButton12".selected
@@ -35,6 +35,9 @@ func _on_Button_pressed():
 	global.sizeIP = $"../OptionButton16".selected
 	global.url = $"../OptionButton17".text
 	global.endpt = $"../OptionButton18".text
+	global.allVariationsGlobal = "color,shape"
+	global.moreMatchGlobal = 1
+	global.lessMatchGlobal = 0
 	global.dict.thisSession.append(global.dict.duplicate(true).thisSession[0])
 	global.dict.thisSession[global.dict.thisSession.size()-1].speed = global.maxSpeedIP
 	global.dict.thisSession[global.dict.thisSession.size()-1].acc = global.accelerationIP
@@ -52,4 +55,7 @@ func _on_Button_pressed():
 	global.dict.thisSession[global.dict.thisSession.size()-1].flankerN = global.nFlankIP
 	global.dict.thisSession[global.dict.thisSession.size()-1].centreUp = global.centreShift
 	global.dict.thisSession[global.dict.thisSession.size()-1].symComplexity = global.sizeIP
+	global.dict.thisSession[global.dict.thisSession.size()-1].variationStr = global.allVariationsGlobal
+	global.dict.thisSession[global.dict.thisSession.size()-1].moreMatch = global.moreMatchGlobal
+	global.dict.thisSession[global.dict.thisSession.size()-1].lessMatch = global.lessMatchGlobal
 	get_tree().change_scene("res://Instr.tscn")

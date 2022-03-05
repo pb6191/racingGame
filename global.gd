@@ -23,6 +23,9 @@ var centreShift
 var sizeIP
 var url
 var endpt
+var allVariationsGlobal
+var moreMatchGlobal
+var lessMatchGlobal
 
 var poplnID
 var partcnID
@@ -44,11 +47,10 @@ var rounds
 var json_result
 var threshold
 var travelled
-var reset
 var current_round = 0
 
-var dict = {"thisSession": [{"speed": "", "acc": "", "nback": "", "respLimit": "", "startFuel": "", "bonusFuel": "", "stimInterval": "", "timeLimit": "", "task": "", "stimDuration": "", "intraN": "", "extraN": "", "penalty": "", "flankerN": "", "centreUp": "", "symComplexity": "", "trials": [{"timeStamp": "", "totalTimeElapsed": "", "trialTimeElapsed": "", "event":"", "eventDesc": {"target":"", "leftMost":{"color": "", "shapeDesc": "", "size": ""}, "left":{"color": "", "shapeDesc": "", "size": "", "line": "", "pattern": ""}, "right":{"color": "", "shapeDesc": "", "size": "", "line": "", "pattern": ""}, "rightMost":{"color": "", "shapeDesc": "", "size": ""}, "centre":{"color": "", "shapeDesc": "", "size": "", "upShift": "", "line": "", "pattern": ""}}, "distFrmCentre": "", "distanceCovered": "", "fuelStatus": "", "timeDriven": "", "currentTrial": ""}]}]}
-var dictSet = {"speed": "", "acc": "", "nback": "", "respLimit": "", "startFuel": "", "bonusFuel": "", "stimInterval": "", "timeLimit": "", "task": "", "stimDuration": "", "intraN": "", "extraN": "", "penalty": "", "flankerN": "", "centreUp": "", "symComplexity": "", "startScreen": ""}
+var dict = {"thisSession": [{"speed": "", "acc": "", "variationStr": "", "moreMatch": "", "lessMatch": "", "nback": "", "respLimit": "", "startFuel": "", "bonusFuel": "", "stimInterval": "", "timeLimit": "", "task": "", "stimDuration": "", "intraN": "", "extraN": "", "penalty": "", "flankerN": "", "centreUp": "", "symComplexity": "", "trials": [{"timeStamp": "", "totalTimeElapsed": "", "trialTimeElapsed": "", "event":"", "eventDesc": {"target":"", "leftMost":{"color": "", "shapeDesc": "", "size": ""}, "left":{"color": "", "shapeDesc": "", "size": "", "line": "", "pattern": ""}, "right":{"color": "", "shapeDesc": "", "size": "", "line": "", "pattern": ""}, "rightMost":{"color": "", "shapeDesc": "", "size": ""}, "centre":{"color": "", "shapeDesc": "", "size": "", "upShift": "", "line": "", "pattern": ""}}, "distFrmCentre": "", "distanceCovered": "", "fuelStatus": "", "timeDriven": "", "currentTrial": ""}]}]}
+var dictSet = {"speed": "", "acc": "", "variationStr": "", "moreMatch": "", "lessMatch": "", "nback": "", "respLimit": "", "startFuel": "", "bonusFuel": "", "stimInterval": "", "timeLimit": "", "task": "", "stimDuration": "", "intraN": "", "extraN": "", "penalty": "", "flankerN": "", "centreUp": "", "symComplexity": "", "startScreen": ""}
 var levelSet = {"GUID": "", "nback": "", "flanker": "", "setshift": ""}
 
 
@@ -66,7 +68,6 @@ func _ready():
 	task = json_result["task"]
 	rounds = json_result["rounds"]
 	threshold = json_result["threshold"]
-	reset = json_result["reset"]
 	levelSet["GUID"] = racingGUID
 
 

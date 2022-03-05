@@ -22,6 +22,30 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+visible = false
+margin_left = 100.0
+margin_top = 100.0
+margin_right = 500.0
+margin_bottom = 300.0
+rect_scale = Vector2( 2, 2 )
+text = "You get to choose the next difficulty level. Press 'g' to increase penalty to 10 fuel on incorrect responses OR press 'h' to reduce stimulus duration to 1.5 seconds."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="."]
+visible = false
+margin_left = 100.0
+margin_top = 100.0
+margin_right = 500.0
+margin_bottom = 300.0
+rect_scale = Vector2( 2, 2 )
+text = "You get to choose the next difficulty level. Press 'g' to increase penalty to 15 fuel on incorrect responses OR press 'h' to reduce stimulus duration to 1 second."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Button" type="Button" parent="."]
 visible = false
 margin_left = 442.232
