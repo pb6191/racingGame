@@ -141,12 +141,14 @@ func getDefaults():
 			global.levelSet["nback"] = "0a"
 			global.levelSet["setshift"] = "0a"
 			global.levelSet["flanker"] = "0a"
+			global.levelSet["realnback"] = "0a"
 			getLevelMapping()
 		else:
 			jsonSett = parse_json(nonDefSett)
 			global.levelSet["nback"] = str(jsonSett["nback"])
 			global.levelSet["setshift"] = str(jsonSett["setshift"])
 			global.levelSet["flanker"] = str(jsonSett["flanker"])
+			global.levelSet["realnback"] = str(jsonSett["realnback"])
 			getLevelMapping()
 		if global.changStartScrn == 1:
 			global.startScrn = 1

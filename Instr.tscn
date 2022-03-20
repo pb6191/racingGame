@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Instr.gd" type="Script" id=1]
+[ext_resource path="res://charge-circle-electric-fast-lightning-power-icon-symbol-number-text-recycling-symbol-transparent-png-1724406.png" type="Texture" id=2]
+[ext_resource path="res://sampleset.png" type="Texture" id=3]
 
 [node name="ControlInstr" type="Control"]
 anchor_right = 1.0
@@ -14,17 +16,9 @@ __meta__ = {
 margin_right = 500.0
 margin_bottom = 250.0
 rect_scale = Vector2( 2, 2 )
-text = "Car left: 'D' key or '<-button' at bottom of GUI
-Car right: 'K' key or '->button' at bottom of GUI
-Car back: DOWN ARROW key
-
-GET FUEL:
-
--nBack: -press F-key / J-key / any 'N-button' at bottom of GUI on charge icon stim
-
--setShift: -press F-key / left 'N-button' at bottom on color/shape match between left & centre stims AND -press J-key / right 'N-button' at bottom on color/shape match between right & centre stims
-
--flanker: -press F-key / left 'N-button' at bottom if central arrow points left AND -press J-key / right 'N-button' at bottom if central arrow points right"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Button" type="Button" parent="."]
 margin_left = 320.02
@@ -33,4 +27,19 @@ margin_right = 520.02
 margin_bottom = 540.268
 rect_scale = Vector2( 2, 2 )
 text = "START GAME"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( 500, 400 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 2 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+visible = false
+position = Vector2( 500, 465 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 3 )
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

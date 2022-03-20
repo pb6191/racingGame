@@ -115,6 +115,11 @@ var varRMcolor = ""
 var varRMshape = ""
 var varRMsize = ""
 var varCupshift = ""
+var realnbackArrSize
+var realnbackSuperset = ["../../Sprite", "../../Sprite25", "../../Sprite26", "../../Sprite27", "../../Sprite28", "../../Sprite29", "../../Sprite30", "../../Sprite31", "../../Sprite2", "../../Sprite3"]
+var realnbackSubset
+var realnbackArr = []
+var realnbackArrAnswers = []
 
 var allVariations
 var moreMatch
@@ -145,6 +150,13 @@ export var throttle_mult = 1.0
 export var joy_brake = JOY_ANALOG_L2
 export var brake_mult = 1.0
 
+func sample(list,amt):
+	var shuffled = list.duplicate()
+	shuffled.shuffle()
+	var sampled = []
+	for i in range(amt):
+		sampled.append( shuffled.pop_front() )
+	return sampled
 
 	
 func _ready():
@@ -185,6 +197,13 @@ func _ready():
 		$"../../Sprite10".position.y = -400
 		$"../../Sprite11".position.y = -400
 		$"../../Sprite12".position.y = -400
+		$"../../Sprite25".position.y = -400
+		$"../../Sprite26".position.y = -400
+		$"../../Sprite27".position.y = -400
+		$"../../Sprite28".position.y = -400
+		$"../../Sprite29".position.y = -400
+		$"../../Sprite30".position.y = -400
+		$"../../Sprite31".position.y = -400
 	if accToMaintain == -1:
 		$"../../Ground".visible = false
 		$"../../Sun".visible = false
@@ -215,10 +234,40 @@ func _ready():
 		$"../../Sprite3".position.y -= 15
 		$"../../Sprite6".position.y -= 15
 		$"../../Sprite11".position.y -= 15
+		$"../../Sprite25".position.y -= 15
+		$"../../Sprite26".position.y -= 15
+		$"../../Sprite27".position.y -= 15
+		$"../../Sprite28".position.y -= 15
+		$"../../Sprite29".position.y -= 15
+		$"../../Sprite30".position.y -= 15
+		$"../../Sprite31".position.y -= 15
 		varCupshift = "Yes"
 	$"../../RichTextLabel".text = "Fuel: "+str(int(fuel))
 	$"../../Sprite4".modulate = Color(0,0,0,1)
-
+	if global.taskIP == 3:
+		realnbackArrSize = 10 + int((global.tLimit) / (stDuration+nBackInterval) )
+		realnbackSubset = sample(realnbackSuperset, nOfBack+3)
+		for ijk in int(realnbackArrSize/3):
+			realnbackArrAnswers.append(1)
+		for ijk in (realnbackArrSize-int(realnbackArrSize/3)):
+			realnbackArrAnswers.append(0)
+		realnbackArrAnswers = sample(realnbackArrAnswers, realnbackArrSize)
+		for ijk in (nOfBack):
+			realnbackArrAnswers[ijk] = 0
+		if nOfBack == 0:
+			for ijk in (realnbackArrSize):
+				realnbackArrAnswers[ijk] = 1
+		for ijk in (realnbackArrSize):
+			realnbackArr.append(realnbackSubset[randi() % realnbackSubset.size()])
+		for ijk in (realnbackArrSize):
+			if realnbackArrAnswers[ijk] == 1:
+				realnbackArr[ijk] = realnbackArr[ijk-nOfBack]
+		for ijk in (realnbackArrSize):
+			if ijk >= nOfBack:
+				if realnbackArr[ijk] == realnbackArr[ijk-nOfBack]:
+					realnbackArrAnswers[ijk] = 1
+				else:
+					realnbackArrAnswers[ijk] = 0
 
 func _on_Button2_button_down():
 	leftBtn = true
@@ -359,6 +408,13 @@ func _physics_process(delta):
 		#$"../../Sprite".visible = false
 		#$"../../Sprite2".visible = false
 		#$"../../Sprite3".visible = false
+		#$"../../Sprite25".visible = false
+		#$"../../Sprite26".visible = false
+		#$"../../Sprite27".visible = false
+		#$"../../Sprite28".visible = false
+		#$"../../Sprite29".visible = false
+		#$"../../Sprite30".visible = false
+		#$"../../Sprite31".visible = false
 		#$"../../RichTextLabel".visible = false
 		#$"../../RichTextLabel2".visible = true
 	totalTime = totalTime + delta
@@ -489,6 +545,116 @@ func _physics_process(delta):
 				logData("Left or Right Response key pressed", "Late")
 			hitExec = 1
 		if ($"../../Sprite".visible != true and $"../../Sprite2".visible != true and $"../../Sprite3".visible != true):
+			hitExec = 0
+			$"../../Sprite4".modulate = Color(0,0,0,1)
+	if global.taskIP == 3:
+		if ((int((totalTime+stDuration)*multiplier_divideSec) % int((nBackInterval+stDuration)*multiplier_divideSec)) == 0 and executed == 0 and totalTime > 2.0):
+			trialNum += 1
+			if sizeComplexity == 1:
+				rngN7.randomize()
+				if (rngN7.randi_range(0,1) == 1):
+					$"../../Sprite".scale.y = 0.1
+					$"../../Sprite".scale.x = 0.1
+				rngN7.randomize()
+				if (rngN7.randi_range(0,1) == 1):
+					$"../../Sprite2".scale.y = 0.075
+					$"../../Sprite2".scale.x = 0.075
+				rngN7.randomize()
+				if (rngN7.randi_range(0,1) == 1):
+					$"../../Sprite3".scale.y = 0.075
+					$"../../Sprite3".scale.x = 0.075
+				rngN7.randomize()
+				if (rngN7.randi_range(0,1) == 1):
+					$"../../Sprite5".scale.y = 0.075
+					$"../../Sprite5".scale.x = 0.075
+				rngN7.randomize()
+				if (rngN7.randi_range(0,1) == 1):
+					$"../../Sprite6".scale.y = 0.075
+					$"../../Sprite6".scale.x = 0.075
+				rngN7.randomize()
+				if (rngN7.randi_range(0,1) == 1):
+					$"../../Sprite7".scale.y = 0.075
+					$"../../Sprite7".scale.x = 0.075
+				rngN7.randomize()
+				if (rngN7.randi_range(0,1) == 1):
+					$"../../Sprite8".scale.y = 0.035
+					$"../../Sprite8".scale.x = 0.035
+				rngN7.randomize()
+				if (rngN7.randi_range(0,1) == 1):
+					$"../../Sprite9".scale.y = 0.035
+					$"../../Sprite9".scale.x = 0.035
+				rngN7.randomize()
+				if (rngN7.randi_range(0,1) == 1):
+					$"../../Sprite10".scale.y = 0.035
+					$"../../Sprite10".scale.x = 0.035
+				rngN7.randomize()
+				if (rngN7.randi_range(0,1) == 1):
+					$"../../Sprite11".scale.y = 0.035
+					$"../../Sprite11".scale.x = 0.035
+				rngN7.randomize()
+				if (rngN7.randi_range(0,1) == 1):
+					$"../../Sprite12".scale.y = 0.035
+					$"../../Sprite12".scale.x = 0.035
+			currentTrialTime = 0
+			get_node(realnbackArr[trialNum-1]).visible = true
+			varCshape = "CircularShape"
+			varTarget = "checkWetherSameAsNthBack"
+			logData("Stimulus Displayed", "")
+			executed = 1
+		if ((int(totalTime*multiplier_divideSec) % int((nBackInterval+stDuration)*multiplier_divideSec)) == 0 and executed == 1):
+			executed = 0
+			$"../../Sprite".scale.y = 0.1*2
+			$"../../Sprite".scale.x = 0.1*2
+			$"../../Sprite2".scale.y = 0.075*2
+			$"../../Sprite2".scale.x = 0.075*2
+			$"../../Sprite3".scale.y = 0.075*2
+			$"../../Sprite3".scale.x = 0.075*2
+			$"../../Sprite5".scale.y = 0.075*2
+			$"../../Sprite5".scale.x = 0.075*2
+			$"../../Sprite6".scale.y = 0.075*2
+			$"../../Sprite6".scale.x = 0.075*2
+			$"../../Sprite7".scale.y = 0.075*2
+			$"../../Sprite7".scale.x = 0.075*2
+			$"../../Sprite8".scale.y = 0.035*2
+			$"../../Sprite8".scale.x = 0.035*2
+			$"../../Sprite9".scale.y = 0.035*2
+			$"../../Sprite9".scale.x = 0.035*2
+			$"../../Sprite10".scale.y = 0.035*2
+			$"../../Sprite10".scale.x = 0.035*2
+			$"../../Sprite11".scale.y = 0.035*2
+			$"../../Sprite11".scale.x = 0.035*2
+			$"../../Sprite12".scale.y = 0.035*2
+			$"../../Sprite12".scale.x = 0.035*2
+			$"../../Sprite".visible = false
+			$"../../Sprite2".visible = false
+			$"../../Sprite3".visible = false
+			$"../../Sprite25".visible = false
+			$"../../Sprite26".visible = false
+			$"../../Sprite27".visible = false
+			$"../../Sprite28".visible = false
+			$"../../Sprite29".visible = false
+			$"../../Sprite30".visible = false
+			$"../../Sprite31".visible = false
+			logData("Stimulus Hidden", "NA")
+			resetJSON()
+		if (Input.is_action_pressed("fKey") or Input.is_action_pressed("jKey")) and hitExec == 0:
+			if (currentTrialTime*multiplier_divideSec) <= (responseLimit * stDuration * multiplier_divideSec / 100):
+				if (realnbackArrAnswers[trialNum-1] == 1 and ($"../../Sprite".visible == true or $"../../Sprite2".visible == true or $"../../Sprite3".visible == true or $"../../Sprite25".visible == true or $"../../Sprite26".visible == true or $"../../Sprite27".visible == true or $"../../Sprite28".visible == true or $"../../Sprite29".visible == true or $"../../Sprite30".visible == true or $"../../Sprite31".visible == true)):
+					fuel = fuel + fuelIncrement
+					$"../../Sprite4".modulate = Color(0,1,0,1)
+					logData("Left or Right Response key pressed", "Correct")
+				else:
+					if fuel <= fuelDecrement:
+						fuel = 0
+					else:
+						fuel = fuel - fuelDecrement
+					logData("Left or Right Response key pressed", "Incorrect")
+					$"../../Sprite4".modulate = Color(1,0,0,1)
+			else:
+				$"../../Sprite4".modulate = Color(1,1,1,1)
+				logData("Left or Right Response key pressed", "Late")
+			hitExec = 1
+		if ($"../../Sprite".visible != true and $"../../Sprite2".visible != true and $"../../Sprite3".visible != true and $"../../Sprite25".visible != true and $"../../Sprite26".visible != true and $"../../Sprite27".visible != true and $"../../Sprite28".visible != true and $"../../Sprite29".visible != true and $"../../Sprite30".visible != true and $"../../Sprite31".visible != true):
 			hitExec = 0
 			$"../../Sprite4".modulate = Color(0,0,0,1)
 	if global.taskIP == 1:
@@ -1185,6 +1351,23 @@ func _on_Button4_button_down():
 			$"../../Sprite4".modulate = Color(1,1,1,1)
 			logData("Left Screen Response key pressed", "Late")
 		hitExec = 1
+	if global.taskIP == 3 and hitExec == 0:
+		if (currentTrialTime*multiplier_divideSec) <= (responseLimit * stDuration * multiplier_divideSec / 100):
+			if (realnbackArrAnswers[trialNum-1] == 1 and ($"../../Sprite".visible == true or $"../../Sprite2".visible == true or $"../../Sprite3".visible == true or $"../../Sprite25".visible == true or $"../../Sprite26".visible == true or $"../../Sprite27".visible == true or $"../../Sprite28".visible == true or $"../../Sprite29".visible == true or $"../../Sprite30".visible == true or $"../../Sprite31".visible == true)):
+				fuel = fuel + fuelIncrement
+				$"../../Sprite4".modulate = Color(0,1,0,1)
+				logData("Left Screen Response key pressed", "Correct")
+			else:
+				if fuel <= fuelDecrement:
+					fuel = 0
+				else:
+					fuel = fuel - fuelDecrement
+				$"../../Sprite4".modulate = Color(1,0,0,1)
+				logData("Left Screen Response key pressed", "Incorrect")
+		else:
+			$"../../Sprite4".modulate = Color(1,1,1,1)
+			logData("Left Screen Response key pressed", "Late")
+		hitExec = 1
 	if global.taskIP == 1 and hitExec == 0:
 		if (currentTrialTime*multiplier_divideSec) <= (responseLimit * stDuration * multiplier_divideSec / 100):
 			if (correectAnswerSet == "left" and ($"../../Sprite5".visible == true and $"../../Sprite6".visible == true and $"../../Sprite7".visible == true)):
@@ -1224,6 +1407,23 @@ func _on_Button5_button_down():
 	if global.taskIP == 0 and hitExec == 0:
 		if (currentTrialTime*multiplier_divideSec) <= (responseLimit * stDuration * multiplier_divideSec / 100):
 			if (arrayNBACK[nOfBack] == 1 and ($"../../Sprite".visible == true or $"../../Sprite2".visible == true or $"../../Sprite3".visible == true)):
+				fuel = fuel + fuelIncrement
+				$"../../Sprite4".modulate = Color(0,1,0,1)
+				logData("Right Screen Response key pressed", "Correct")
+			else:
+				if fuel <= fuelDecrement:
+					fuel = 0
+				else:
+					fuel = fuel - fuelDecrement
+				$"../../Sprite4".modulate = Color(1,0,0,1)
+				logData("Right Screen Response key pressed", "Incorrect")
+		else:
+			$"../../Sprite4".modulate = Color(1,1,1,1)
+			logData("Right Screen Response key pressed", "Late")
+		hitExec = 1
+	if global.taskIP == 3 and hitExec == 0:
+		if (currentTrialTime*multiplier_divideSec) <= (responseLimit * stDuration * multiplier_divideSec / 100):
+			if (realnbackArrAnswers[trialNum-1] == 1 and ($"../../Sprite".visible == true or $"../../Sprite2".visible == true or $"../../Sprite3".visible == true or $"../../Sprite25".visible == true or $"../../Sprite26".visible == true or $"../../Sprite27".visible == true or $"../../Sprite28".visible == true or $"../../Sprite29".visible == true or $"../../Sprite30".visible == true or $"../../Sprite31".visible == true)):
 				fuel = fuel + fuelIncrement
 				$"../../Sprite4".modulate = Color(0,1,0,1)
 				logData("Right Screen Response key pressed", "Correct")
