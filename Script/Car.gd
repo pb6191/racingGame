@@ -182,8 +182,8 @@ func _ready():
 	responseLimit = global.respLimitIP
 	upcentre = global.centreShift
 	sizeComplexity = global.sizeIP
-	print("TASK6 "+str(global.taskIP))
-	print(global.taskIP)
+	#print("TASK6 "+str(global.taskIP))
+	#print(global.taskIP)
 	if global.taskIP == -2:
 		$"../../Sprite".position.y = -400
 		$"../../Sprite2".position.y = -400
@@ -213,21 +213,21 @@ func _ready():
 		$"../../RichTextLabel".visible = false
 		$"../../RichTextLabel3".visible = false
 		$"../../RichTextLabel5".visible = false
-	print(fuel)
-	print(speedToMaintain)
-	print(accToMaintain)
-	print(nOfBack)
-	print(fuelIncrement)
-	print(nBackInterval)
-	print(setInterval)
-	print(setN)
-	print(setNExtra)
-	print(stDuration)
-	print(fuelDecrement)
-	print(nFlanks)
-	print(responseLimit)
-	print(upcentre)
-	print(sizeComplexity)
+	#print(fuel)
+	#print(speedToMaintain)
+	#print(accToMaintain)
+	#print(nOfBack)
+	#print(fuelIncrement)
+	#print(nBackInterval)
+	#print(setInterval)
+	#print(setN)
+	#print(setNExtra)
+	#print(stDuration)
+	#print(fuelDecrement)
+	#print(nFlanks)
+	#print(responseLimit)
+	#print(upcentre)
+	#print(sizeComplexity)
 	if upcentre == 1:
 		$"../../Sprite".position.y -= 15
 		$"../../Sprite2".position.y -= 15
@@ -254,9 +254,6 @@ func _ready():
 		realnbackArrAnswers = sample(realnbackArrAnswers, realnbackArrSize)
 		for ijk in (nOfBack):
 			realnbackArrAnswers[ijk] = 0
-		if nOfBack == 0:
-			for ijk in (realnbackArrSize):
-				realnbackArrAnswers[ijk] = 1
 		for ijk in (realnbackArrSize):
 			realnbackArr.append(realnbackSubset[randi() % realnbackSubset.size()])
 		for ijk in (realnbackArrSize):
@@ -265,6 +262,17 @@ func _ready():
 		for ijk in (realnbackArrSize):
 			if ijk >= nOfBack:
 				if realnbackArr[ijk] == realnbackArr[ijk-nOfBack]:
+					realnbackArrAnswers[ijk] = 1
+				else:
+					realnbackArrAnswers[ijk] = 0
+		if nOfBack == 0:
+			if !("../../Sprite" in realnbackArr):
+				var firstStim = realnbackArr[0]
+				for ijk in (realnbackArrSize):
+					if realnbackArr[ijk] == firstStim:
+						realnbackArr[ijk] = "../../Sprite"
+			for ijk in (realnbackArrSize):
+				if realnbackArr[ijk] == "../../Sprite":
 					realnbackArrAnswers[ijk] = 1
 				else:
 					realnbackArrAnswers[ijk] = 0
@@ -781,7 +789,7 @@ func _physics_process(delta):
 				matchArr.sort()
 				if moreMatch < variationsArrSize:
 					while (prevMoreMatchArr == matchArr):
-						print("while loop")
+						#print("while loop")
 						matchArr = []
 						variationsArr = Array(allVariations.split(","))
 						variationsArr.shuffle()
@@ -789,8 +797,8 @@ func _physics_process(delta):
 							matchArr.append(variationsArr.pop_back())
 						matchArr.sort()
 				unmatchArr = variationsArr
-				print(matchArr)
-				print(unmatchArr)
+				#print(matchArr)
+				#print(unmatchArr)
 				
 				prevMoreMatchArr = matchArr
 				prevMoreMatchArr.sort()
@@ -800,8 +808,8 @@ func _physics_process(delta):
 				for jj in lessMatch:
 					lessmatchArr.append(variationsArr.pop_back())
 				lessunmatchArr = variationsArr
-				print(lessmatchArr)
-				print(lessunmatchArr)
+				#print(lessmatchArr)
+				#print(lessunmatchArr)
 				
 				rngN9.randomize()
 				setNExtra = setNExtraOrig + rngN9.randi_range(int(-1 * 0.5 * setNExtraOrig), int(1 * 0.5 * setNExtraOrig))
@@ -874,35 +882,35 @@ func _physics_process(delta):
 					numRandRightPattern = (randi() % 3)
 					while (numRandRightPattern == numRandCentralPattern):
 						numRandRightPattern = (randi() % 3)
-				print(matchArr)
-				print(unmatchArr)
-				print(lessmatchArr)
-				print(lessunmatchArr)
-				print("numRandCentral")
-				print(numRandCentral)
-				print("numRandCentralColor")
-				print(numRandCentralColor)
-				print("numRandCentralLine")
-				print(numRandCentralLine)
-				print("numRandCentralPattern")
-				print(numRandCentralPattern)
-				print("numRandLeft")
-				print(numRandLeft)
-				print("numRandLeftColor")
-				print(numRandLeftColor)
-				print("numRandLeftLine")
-				print(numRandLeftLine)
-				print("numRandLeftPattern")
-				print(numRandLeftPattern)
-				print("numRandRight")
-				print(numRandRight)
-				print("numRandRightColor")
-				print(numRandRightColor)
-				print("numRandRightLine")
-				print(numRandRightLine)
-				print("numRandRightPattern")
-				print(numRandRightPattern)
-			print("to decide left right")
+				#print(matchArr)
+				#print(unmatchArr)
+				#print(lessmatchArr)
+				#print(lessunmatchArr)
+				#print("numRandCentral")
+				#print(numRandCentral)
+				#print("numRandCentralColor")
+				#print(numRandCentralColor)
+				#print("numRandCentralLine")
+				#print(numRandCentralLine)
+				#print("numRandCentralPattern")
+				#print(numRandCentralPattern)
+				#print("numRandLeft")
+				#print(numRandLeft)
+				#print("numRandLeftColor")
+				#print(numRandLeftColor)
+				#print("numRandLeftLine")
+				#print(numRandLeftLine)
+				#print("numRandLeftPattern")
+				#print(numRandLeftPattern)
+				#print("numRandRight")
+				#print(numRandRight)
+				#print("numRandRightColor")
+				#print(numRandRightColor)
+				#print("numRandRightLine")
+				#print(numRandRightLine)
+				#print("numRandRightPattern")
+				#print(numRandRightPattern)
+			#print("to decide left right")
 			rngN5.randomize()
 			if (rngN5.randi_range(0, 1) == 0):
 				$"../../Sprite5".texture = load(allTextures[numRandLeft])
@@ -1018,7 +1026,7 @@ func _physics_process(delta):
 					varLpattern = "grids"
 				correectAnswerSet = "right"
 				stimStr = ""
-			print("decided left right")
+			#print("decided left right")
 			$"../../Sprite5".visible = true
 			$"../../Sprite6".visible = true
 			$"../../Sprite7".visible = true
@@ -1034,7 +1042,7 @@ func _physics_process(delta):
 				$"../../Sprite23".visible = true
 			if varRline != "none":
 				$"../../Sprite24".visible = true
-			print("stim visiblle")
+			#print("stim visiblle")
 			executedSet = 1
 			countSet += 1
 			logData("Stimulus Displayed", "")

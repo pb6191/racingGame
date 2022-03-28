@@ -27,13 +27,13 @@ func get_parameter(param1, param2):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if global.taskflowDeploy == 2:
-		print(get_parameter("Populations/", "/Participants"))
+		#print(get_parameter("Populations/", "/Participants"))
 		global.poplnID = get_parameter("Populations/", "/Participants")
-		print(get_parameter("/Participants/", "/Sessions/"))
+		#print(get_parameter("/Participants/", "/Sessions/"))
 		global.partcnID = get_parameter("/Participants/", "/Sessions/")
-		print(get_parameter("/Sessions/", "/Run/"))
+		#print(get_parameter("/Sessions/", "/Run/"))
 		global.sessID = get_parameter("/Sessions/", "/Run/")
-		print(get_parameter("/Measures/", "/"))
+		#print(get_parameter("/Measures/", "/"))
 		global.measrID = get_parameter("/Measures/", "/")
 		http_client2 = HTTPClient.new()
 		http_client2.read_chunk_size = 40960
@@ -45,11 +45,11 @@ func _ready():
 		http_client2.request(HTTPClient.METHOD_GET, "/api/v1.0/populations/"+global.poplnID+"/measuretypes", headers)
 		while(http_client2.get_status() != 7):
 			http_client2.poll()
-			print("Waiting..body")
+			#print("Waiting..body")
 			yield(Engine.get_main_loop(), "idle_frame")
 		while(http_client2.get_status() == 7):
 			http_client2.poll()
-			print("Requesting..body")
+			#print("Requesting..body")
 			yield(Engine.get_main_loop(), "idle_frame")
 			rb += http_client2.read_response_body_chunk()
 		#response = parse_json(rb.get_string_from_ascii())
@@ -114,7 +114,7 @@ func _on_Button3_pressed():
 		http_client2.request(HTTPClient.METHOD_POST, "/api/v1.0/populations/"+global.poplnID+"/participants/"+global.partcnID+"/configurationproperties", headers, JSON.print(sendDict))
 		while(http_client2.get_status() != 7):
 			http_client2.poll()
-			print("Waiting..body")
+			#print("Waiting..body")
 			yield(Engine.get_main_loop(), "idle_frame")
 	http_client2.close()
 	if OS.has_feature('JavaScript'):

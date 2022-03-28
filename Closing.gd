@@ -45,11 +45,11 @@ func _make_post_request(url, data_to_send):
 		#http_client.request(HTTPClient.METHOD_GET, "/api/v1.0/sessions/3897/measures/6795", headers)
 		while(http_client.get_status() != 7):
 			http_client.poll()
-			print("Waiting..body")
+			#print("Waiting..body")
 			yield(Engine.get_main_loop(), "idle_frame")
 		while(http_client.get_status() == 7):
 			http_client.poll()
-			print("Requesting..body")
+			#print("Requesting..body")
 			yield(Engine.get_main_loop(), "idle_frame")
 			rb += http_client.read_response_body_chunk()
 		response = parse_json(rb.get_string_from_ascii())
@@ -59,7 +59,7 @@ func _make_post_request(url, data_to_send):
 		http_client.request(HTTPClient.METHOD_PUT, "/api/v1.0/sessions/"+global.sessID+"/measures/"+global.measrID, headers, resp1)
 		while(http_client.get_status() != 7):
 			http_client.poll()
-			print("Waiting..body")
+			#print("Waiting..body")
 			yield(Engine.get_main_loop(), "idle_frame")
 		#send a configProperties post/put? request here (for updated settings-if auto setting/difficulty change)
 		if global.autoDifficulty != 1:
@@ -231,11 +231,11 @@ func _on_Button_pressed():
 	http_client2.request(HTTPClient.METHOD_GET, "/api/v1.0/populations/"+global.poplnID+"/measuretypes", headers)
 	while(http_client2.get_status() != 7):
 		http_client2.poll()
-		print("Waiting..body")
+		#print("Waiting..body")
 		yield(Engine.get_main_loop(), "idle_frame")
 	while(http_client2.get_status() == 7):
 		http_client2.poll()
-		print("Requesting..body")
+		#print("Requesting..body")
 		yield(Engine.get_main_loop(), "idle_frame")
 		rb2 += http_client2.read_response_body_chunk()
 	response2 = parse_json(rb2.get_string_from_ascii())
@@ -247,7 +247,7 @@ func _on_Button_pressed():
 	http_client2.request(HTTPClient.METHOD_POST, "/api/v1.0/populations/"+global.poplnID+"/participants/"+global.partcnID+"/configurationproperties", headers, JSON.print(sendDict))
 	while(http_client2.get_status() != 7):
 		http_client2.poll()
-		print("Waiting..body")
+		#print("Waiting..body")
 		yield(Engine.get_main_loop(), "idle_frame")
 	http_client2.close()
 	global.current_round +=1

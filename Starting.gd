@@ -94,43 +94,43 @@ func getDefaults():
 		else:
 			jsonSett = parse_json(nonDefSett)
 			global.maxSpeedIP = int(jsonSett["speed"])
-			print(global.maxSpeedIP)
+			#print(global.maxSpeedIP)
 			global.accelerationIP = int(jsonSett["acc"])
-			print(global.accelerationIP)
+			#print(global.accelerationIP)
 			global.nBackIP = int(jsonSett["nback"])
-			print(global.nBackIP)
+			#print(global.nBackIP)
 			global.strtFuelIP = int(jsonSett["startFuel"])
-			print(global.strtFuelIP)
+			#print(global.strtFuelIP)
 			global.bonusFuelIP = int(jsonSett["bonusFuel"])
-			print(global.bonusFuelIP)
+			#print(global.bonusFuelIP)
 			global.nBackIntervalIP = int(jsonSett["stimInterval"])
-			print(global.nBackIntervalIP)
+			#print(global.nBackIntervalIP)
 			global.tLimit = int(jsonSett["timeLimit"])
-			print(global.tLimit)
+			#print(global.tLimit)
 			global.taskIP = int(jsonSett["task"])
-			print(global.taskIP)
+			#print(global.taskIP)
 			global.setIntervalIP = float(jsonSett["stimDuration"])
-			print(global.setIntervalIP)
+			#print(global.setIntervalIP)
 			global.setNIP = int(jsonSett["intraN"])
-			print(global.setNIP)
+			#print(global.setNIP)
 			global.setNExtraIP = int(jsonSett["extraN"])
-			print(global.setNExtraIP)
+			#print(global.setNExtraIP)
 			global.penaltyIP = int(jsonSett["penalty"])
-			print(global.penaltyIP)
+			#print(global.penaltyIP)
 			global.nFlankIP = int(jsonSett["flankerN"])
-			print(global.nFlankIP)
+			#print(global.nFlankIP)
 			global.respLimitIP = int(jsonSett["respLimit"])
-			print(global.respLimitIP)
+			#print(global.respLimitIP)
 			global.centreShift = int(jsonSett["centreUp"])
-			print(global.centreShift)
+			#print(global.centreShift)
 			global.sizeIP = int(jsonSett["symComplexity"])
-			print(global.sizeIP)
+			#print(global.sizeIP)
 			global.allVariationsGlobal = int(jsonSett["variationStr"])
-			print(global.allVariationsGlobal)
+			#print(global.allVariationsGlobal)
 			global.moreMatchGlobal = int(jsonSett["moreMatch"])
-			print(global.moreMatchGlobal)
+			#print(global.moreMatchGlobal)
 			global.lessMatchGlobal = int(jsonSett["lessMatch"])
-			print(global.lessMatchGlobal)
+			#print(global.lessMatchGlobal)
 			global.url = ""
 			global.endpt = ""
 			global.startScrn = int(jsonSett["startScreen"])
@@ -165,13 +165,13 @@ func get_parameter(param1, param2):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if global.taskflowDeploy == 1:
-		print(get_parameter("Populations/", "/Participants"))
+		#print(get_parameter("Populations/", "/Participants"))
 		global.poplnID = get_parameter("Populations/", "/Participants")
-		print(get_parameter("/Participants/", "/Sessions/"))
+		#print(get_parameter("/Participants/", "/Sessions/"))
 		global.partcnID = get_parameter("/Participants/", "/Sessions/")
-		print(get_parameter("/Sessions/", "/Run/"))
+		#print(get_parameter("/Sessions/", "/Run/"))
 		global.sessID = get_parameter("/Sessions/", "/Run/")
-		print(get_parameter("/Measures/", "/"))
+		#print(get_parameter("/Measures/", "/"))
 		global.measrID = get_parameter("/Measures/", "/")
 		http_client2 = HTTPClient.new()
 		http_client2.read_chunk_size = 40960
@@ -183,11 +183,11 @@ func _ready():
 		http_client2.request(HTTPClient.METHOD_GET, "/api/v1.0/populations/"+global.poplnID+"/participants/"+global.partcnID+"/configurationproperties", headers)
 		while(http_client2.get_status() != 7):
 			http_client2.poll()
-			print("Waiting..body")
+			#print("Waiting..body")
 			yield(Engine.get_main_loop(), "idle_frame")
 		while(http_client2.get_status() == 7):
 			http_client2.poll()
-			print("Requesting..body")
+			#print("Requesting..body")
 			yield(Engine.get_main_loop(), "idle_frame")
 			rb += http_client2.read_response_body_chunk()
 		response = parse_json(rb.get_string_from_ascii())
@@ -197,26 +197,26 @@ func _ready():
 					if element["Id"] > maxID:
 						maxID = element["Id"]
 						nonDefSett = element["Value"]
-						print(maxID)
+						#print(maxID)
 			if global.autoDifficulty == 1:
 				if (global.racingGUID in element["Value"]) and ("GUID" in element["Value"]) and !("VALUE" in element["Value"]):
 					if element["Id"] > maxID:
 						maxID = element["Id"]
 						nonDefSett = element["Value"]
-						print(maxID)
+						#print(maxID)
 		http_client2.close()
 		getDefaults()
-		print("TASK1 "+str(global.taskIP))
-		print(global.taskIP)
+		#print("TASK1 "+str(global.taskIP))
+		#print(global.taskIP)
 		if global.startScrn == 0:
 			$"RichTextLabel".visible = true
 			#global.changStartScrn = 1
-			print("TASK2 "+str(global.taskIP))
-			print(global.taskIP)
+			#print("TASK2 "+str(global.taskIP))
+			#print(global.taskIP)
 		else:
 			assignVals()
-			print("TASK3 "+str(global.taskIP))
-			print(global.taskIP)
+			#print("TASK3 "+str(global.taskIP))
+			#print(global.taskIP)
 			get_tree().change_scene("res://Instr.tscn")
 	else:
 		get_tree().change_scene("res://Menu.tscn")
@@ -231,8 +231,8 @@ func _ready():
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_select") and $"RichTextLabel".visible == true:
 		assignVals()
-		print("TASK4 "+str(global.taskIP))
-		print(global.taskIP)
+		#print("TASK4 "+str(global.taskIP))
+		#print(global.taskIP)
 		get_tree().change_scene("res://Instr.tscn")
 
 

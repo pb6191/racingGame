@@ -61,7 +61,7 @@ Car back: DOWN ARROW key
 
 var realnback_0b = """
 To get the fuel, look at the heads-up display and:
-Press F-key / J-key / any 'N-button' at the bottom of the screen on seeing any icon
+Press F-key / J-key / any 'N-button' at the bottom of the screen on seeing this charge icon: 
 """
 
 var realnback_1 = """
@@ -71,7 +71,7 @@ Car right: 'K' key or '->button' at the bottom of the screen
 Car back: DOWN ARROW key
 
 To get the fuel, look at the heads-up display and:
-Press F-key / J-key / any 'N-button' at the bottom of the screen on seeing any icon
+Press F-key / J-key / any 'N-button' at the bottom of the screen on seeing this charge icon: 
 """
 
 var realnback_2plus = """
@@ -168,11 +168,11 @@ func _ready():
 			$"Sprite2".visible = false
 		elif global.levelSet[global.task] == "0b":
 			$"RichTextLabel".text = realnback_0b
-			$"Sprite".visible = false
+			$"Sprite".visible = true
 			$"Sprite2".visible = false
 		elif global.levelSet[global.task] == "1":
 			$"RichTextLabel".text = realnback_1
-			$"Sprite".visible = false
+			$"Sprite".visible = true
 			$"Sprite2".visible = false
 		else:
 			$"RichTextLabel".text = realnback_2plus + str(global.nBackIP) + realnback_2plus_extra
@@ -212,6 +212,6 @@ func _ready():
 
 
 func _on_Button_pressed():
-	print("TASK5 "+str(global.taskIP))
-	print(global.taskIP)
+	#print("TASK5 "+str(global.taskIP))
+	#print(global.taskIP)
 	get_tree().change_scene("res://Main.tscn")

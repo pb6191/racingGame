@@ -97,8 +97,6 @@ material/0 = null
 
 [node name="Sun" type="DirectionalLight" parent="ViewportContainer/Viewport/Main"]
 transform = Transform( 0.353542, 0.746557, -0.563615, -0.565523, 0.650531, 0.506945, 0.745112, 0.139511, 0.652185, 0, 4.1408, 0 )
-shadow_enabled = true
-directional_shadow_max_distance = 200.0
 
 [node name="Car" type="Spatial" parent="ViewportContainer/Viewport/Main"]
 transform = Transform( 0.56717, 0, -0.823601, 0, 1, 0, 0.823601, 0, 0.56717, 220, 1, 0 )
@@ -108,6 +106,7 @@ transform = Transform( 0.51946, 0, 0.854495, 0, 1, 0, -0.854495, 0, 0.51946, 0, 
 
 [node name="Camera" type="Camera" parent="ViewportContainer/Viewport/Main"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.38516, 3.59774 )
+far = 50.0
 script = ExtResource( 3 )
 follow_this_path = NodePath("../../Viewport/Main/Car/Car")
 
