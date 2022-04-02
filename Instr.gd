@@ -61,7 +61,7 @@ Car back: DOWN ARROW key
 
 var realnback_0b = """
 To get the fuel, look at the heads-up display and:
-Press F-key / J-key / any 'N-button' at the bottom of the screen on seeing this charge icon: 
+Press F-key / J-key / any 'N-button' at the bottom of the screen when you see this charge icon: 
 """
 
 var realnback_1 = """
@@ -71,7 +71,7 @@ Car right: 'K' key or '->button' at the bottom of the screen
 Car back: DOWN ARROW key
 
 To get the fuel, look at the heads-up display and:
-Press F-key / J-key / any 'N-button' at the bottom of the screen on seeing this charge icon: 
+Press F-key / J-key / any 'N-button' at the bottom of the screen when you see this charge icon: 
 """
 
 var realnback_2plus = """
@@ -81,7 +81,7 @@ Car right: 'K' key or '->button' at the bottom of the screen
 Car back: DOWN ARROW key
 
 To get the fuel, look at the heads-up display and:
-Press F-key / J-key / any 'N-button' at the bottom of the screen if the icon on the screen is same as the icon """
+Press F-key / J-key / any 'N-button' at the bottom of the screen if the icon matches the icon """
 
 var realnback_2plus_extra = """ icons back
 """
