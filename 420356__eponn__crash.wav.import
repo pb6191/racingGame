@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/420356__eponn__crash.wav-e0fdfd48874cc4c7518a2b9f8c79be65.sample"
+
+[deps]
+
+source_file="res://420356__eponn__crash.wav"
+dest_files=[ "res://.import/420356__eponn__crash.wav-e0fdfd48874cc4c7518a2b9f8c79be65.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

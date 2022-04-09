@@ -138,6 +138,7 @@ var allGrids = ["res://grid-circle.png", "res://grid-diamond.png", "res://grid-t
 var allShapes = ["circle", "diamond", "triangle"]
 
 var allColors = ["blue", "red", "green"]
+var playsound = 0
 
 ############################################################
 # Input
@@ -354,6 +355,13 @@ func logData(title, desc):
 	global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].currentTrial = trialNum
 
 func _physics_process(delta):
+	if global.sound == "on":
+		if fuel > 1 and playsound==0:
+			$"../../AudioStreamPlayer".play()
+			playsound = 1
+		if fuel <= 1 and playsound==1:
+			$"../../AudioStreamPlayer".stop()
+			playsound = 0
 	$"../../Track/Path/Position3D".global_transform.origin = $".".global_transform.origin
 	closestPtPath = ($"../../Track/Path".curve.get_closest_point($"../../Track/Path/Position3D".translation))
 	distToPath = closestPtPath.distance_to($"../../Track/Path/Position3D".translation)
@@ -1480,3 +1488,8 @@ func _on_Button5_button_down():
 			$"../../Sprite4".modulate = Color(1,1,1,1)
 			logData("Right Screen Response key pressed", "Late")
 		hitExec = 1
+
+
+func _on_Car_body_entered(body):
+	if global.sound == "on":
+		$"../../AudioStreamPlayer2".play()

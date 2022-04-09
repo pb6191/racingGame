@@ -48,6 +48,7 @@ var json_result
 var threshold
 var travelled
 var current_round = 0
+var sound
 
 var dict = {"thisSession": [{"speed": "", "acc": "", "variationStr": "", "moreMatch": "", "lessMatch": "", "nback": "", "respLimit": "", "startFuel": "", "bonusFuel": "", "stimInterval": "", "timeLimit": "", "task": "", "stimDuration": "", "intraN": "", "extraN": "", "penalty": "", "flankerN": "", "centreUp": "", "symComplexity": "", "trials": [{"timeStamp": "", "totalTimeElapsed": "", "trialTimeElapsed": "", "event":"", "eventDesc": {"target":"", "leftMost":{"color": "", "shapeDesc": "", "size": ""}, "left":{"color": "", "shapeDesc": "", "size": "", "line": "", "pattern": ""}, "right":{"color": "", "shapeDesc": "", "size": "", "line": "", "pattern": ""}, "rightMost":{"color": "", "shapeDesc": "", "size": ""}, "centre":{"color": "", "shapeDesc": "", "size": "", "upShift": "", "line": "", "pattern": ""}}, "distFrmCentre": "", "distanceCovered": "", "fuelStatus": "", "timeDriven": "", "currentTrial": ""}]}]}
 var dictSet = {"speed": "", "acc": "", "variationStr": "", "moreMatch": "", "lessMatch": "", "nback": "", "respLimit": "", "startFuel": "", "bonusFuel": "", "stimInterval": "", "timeLimit": "", "task": "", "stimDuration": "", "intraN": "", "extraN": "", "penalty": "", "flankerN": "", "centreUp": "", "symComplexity": "", "startScreen": ""}
@@ -69,6 +70,7 @@ func _ready():
 	rounds = json_result["rounds"]
 	threshold = json_result["threshold"]
 	levelSet["GUID"] = racingGUID
+	sound = json_result["sound"]
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
