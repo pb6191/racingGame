@@ -355,7 +355,7 @@ func logData(title, desc):
 	global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].currentTrial = trialNum
 
 func _physics_process(delta):
-	if global.sound == "on":
+	if global.sound == "on" and $"..".visible == true:
 		if fuel > 1 and playsound==0:
 			$"../../AudioStreamPlayer".play()
 			playsound = 1
@@ -1491,5 +1491,5 @@ func _on_Button5_button_down():
 
 
 func _on_Car_body_entered(body):
-	if global.sound == "on":
+	if global.sound == "on" and $"..".visible == true:
 		$"../../AudioStreamPlayer2".play()
