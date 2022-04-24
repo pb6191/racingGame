@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Assets/Textures/TexturesCom_MetalFloorsBare0063_2_seamless_S.jpg" type="Texture" id=1]
 [ext_resource path="res://Assets/Cars/Caterham/Car.tscn" type="PackedScene" id=2]
@@ -33,6 +33,10 @@
 [ext_resource path="res://circDesign9.png" type="Texture" id=31]
 [ext_resource path="res://242740__marlonhj__engine.wav" type="AudioStream" id=32]
 [ext_resource path="res://420356__eponn__crash.wav" type="AudioStream" id=33]
+[ext_resource path="res://wrong_key_sound.wav" type="AudioStream" id=34]
+[ext_resource path="res://slow_sound.wav" type="AudioStream" id=35]
+[ext_resource path="res://correct_sound.wav" type="AudioStream" id=36]
+[ext_resource path="res://incorrect_sound.wav" type="AudioStream" id=37]
 
 [sub_resource type="PlaneShape" id=1]
 
@@ -455,6 +459,22 @@ stream = ExtResource( 32 )
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="ViewportContainer/Viewport/Main"]
 stream = ExtResource( 33 )
+
+[node name="correctSound" type="AudioStreamPlayer" parent="ViewportContainer/Viewport/Main"]
+stream = ExtResource( 36 )
+volume_db = 10.0
+
+[node name="incorrectSound" type="AudioStreamPlayer" parent="ViewportContainer/Viewport/Main"]
+stream = ExtResource( 37 )
+volume_db = 10.0
+
+[node name="slowSound" type="AudioStreamPlayer" parent="ViewportContainer/Viewport/Main"]
+stream = ExtResource( 35 )
+volume_db = 10.0
+
+[node name="wrongKeySound" type="AudioStreamPlayer" parent="ViewportContainer/Viewport/Main"]
+stream = ExtResource( 34 )
+volume_db = 10.0
 [connection signal="body_entered" from="ViewportContainer/Viewport/Main/Car/Car" to="ViewportContainer/Viewport/Main/Car/Car" method="_on_Car_body_entered"]
 [connection signal="pressed" from="ViewportContainer/Viewport/Main/Button" to="ViewportContainer/Viewport/Main/Car/Car" method="_on_Button_pressed"]
 [connection signal="button_down" from="ViewportContainer/Viewport/Main/Button2" to="ViewportContainer/Viewport/Main/Car/Car" method="_on_Button2_button_down"]

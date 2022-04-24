@@ -139,6 +139,7 @@ var allShapes = ["circle", "diamond", "triangle"]
 
 var allColors = ["blue", "red", "green"]
 var playsound = 0
+var canPlayResponseSound = 1
 
 ############################################################
 # Input
@@ -161,6 +162,7 @@ func sample(list,amt):
 
 	
 func _ready():
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), -45)
 	trialNum = 0
 	#nBackIntervalIP is stimulus interval | setIntervalIP is stimulus duration
 	allVariations = global.allVariationsGlobal
@@ -282,13 +284,15 @@ func _on_Button2_button_down():
 	leftBtn = true
 	steer_val = 1.0
 	if int(totalTime*1000) % 2000 == 0:
-		logData("Key Pressed", "leftArrowOnScreen")
+		pass
+		#logData("Key Pressed", "leftArrowOnScreen")
 
 func _on_Button3_button_down():
 	rightBtn = true
 	steer_val = -1.0
 	if int(totalTime*1000) % 2000 == 0:
-		logData("Key Pressed", "rightArrowOnScreen")
+		pass
+		#logData("Key Pressed", "rightArrowOnScreen")
 		
 func resetJSON():
 	varTarget = ""
@@ -316,8 +320,8 @@ func resetJSON():
 
 func logData(title, desc):
 	global.dict.thisSession[global.dict.thisSession.size()-1].trials.append(global.dict.thisSession[global.dict.thisSession.size()-1].duplicate(true).trials[0])
-	var time2 = OS.get_time()
-	var time_return2 = String(time2.hour) +":"+String(time2.minute)+":"+String(time2.second)
+	var time2 = OS.get_datetime()
+	var time_return2 = String(time2.year) +"-"+String(time2.month)+"-"+String(time2.day)+" "+String(time2.hour) +":"+String(time2.minute)+":"+String(time2.second)
 	global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].timeStamp = time_return2
 	global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].event = title
 	if title != "Stimulus Displayed":
@@ -354,7 +358,25 @@ func logData(title, desc):
 	global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].timeDriven = points
 	global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].currentTrial = trialNum
 
+func _input(ev):
+	if global.sound == "on":
+		if ev is InputEventKey and ev.pressed == true and (ev.scancode != KEY_K and ev.scancode != KEY_J and ev.scancode != KEY_F and ev.scancode != KEY_D and ev.scancode != KEY_DOWN) and not ev.echo:
+			$"../../wrongKeySound".play()
+			
+
 func _physics_process(delta):
+	if global.sound == "on":
+		if $"../../Sprite4".modulate == Color(1,1,1,1) and canPlayResponseSound == 1:
+			$"../../slowSound".play()
+			canPlayResponseSound = 0
+		if $"../../Sprite4".modulate == Color(0,1,0,1) and canPlayResponseSound == 1:
+			$"../../correctSound".play()
+			canPlayResponseSound = 0
+		if $"../../Sprite4".modulate == Color(1,0,0,1) and canPlayResponseSound == 1:
+			$"../../incorrectSound".play()
+			canPlayResponseSound = 0
+		if $"../../Sprite4".modulate == Color(0,0,0,1) and canPlayResponseSound == 0:
+			canPlayResponseSound = 1
 	if global.sound == "on" and $"..".visible == true:
 		if fuel > 1 and playsound==0:
 			$"../../AudioStreamPlayer".play()
@@ -396,7 +418,8 @@ func _physics_process(delta):
 			if speed<speedToMaintain:
 				throttle_val = -accToMaintain
 			if int(totalTime*1000) % 2000 == 0:
-				logData("Key Pressed", "BackArrow")
+				pass
+				#logData("Key Pressed", "BackArrow")
 		else:
 			displacement = displacement + (currentPosition - prevPosition).length()
 			if speed>speedToMaintain:
@@ -404,7 +427,8 @@ func _physics_process(delta):
 			if speed<speedToMaintain:
 				throttle_val = accToMaintain
 			if int(totalTime*1000) % 2000 == 0:
-				logData("No Key Pressed", "CarMovingForward")
+				pass
+				#logData("No Key Pressed", "CarMovingForward")
 	if (fuel <= 0.2 and speed < speedToMaintain):
 		if speed > 0.2 and direction == "forward":
 			throttle_val = -accToMaintain
@@ -613,8 +637,30 @@ func _physics_process(delta):
 					$"../../Sprite12".scale.x = 0.035
 			currentTrialTime = 0
 			get_node(realnbackArr[trialNum-1]).visible = true
-			varCshape = "CircularShape"
-			varTarget = "checkWetherSameAsNthBack"
+			if $"../../Sprite".visible == true:
+				varCshape = "CircularChargeShape"
+			elif $"../../Sprite2".visible == true:
+				varCshape = "CircularOutArrowsShape"
+			elif $"../../Sprite3".visible == true:
+				varCshape = "CircularStopSignShape"
+			elif $"../../Sprite25".visible == true:
+				varCshape = "CircularConcentricShape"
+			elif $"../../Sprite26".visible == true:
+				varCshape = "CircularDragonShape"
+			elif $"../../Sprite27".visible == true:
+				varCshape = "CircularLongSpikesShape"
+			elif $"../../Sprite28".visible == true:
+				varCshape = "CircularShortSpikesShape"
+			elif $"../../Sprite29".visible == true:
+				varCshape = "CircularIntersectionsShape"
+			elif $"../../Sprite30".visible == true:
+				varCshape = "CircularCartwheelShape"
+			elif $"../../Sprite31".visible == true:
+				varCshape = "CircularDiamondShape"
+			if nOfBack == 0:
+				varTarget = "CircularChargeShape"
+			else:
+				varTarget = "checkWetherSameAsNthBack"
 			logData("Stimulus Displayed", "")
 			executed = 1
 		if ((int(totalTime*multiplier_divideSec) % int((nBackInterval+stDuration)*multiplier_divideSec)) == 0 and executed == 1):
@@ -1302,11 +1348,13 @@ func _physics_process(delta):
 	if Input.is_action_pressed("ui_left"):
 		steer_val = 1.0
 		if int(totalTime*1000) % 2000 == 0:
-			logData("Key Pressed", "leftArrow")
+			pass
+			#logData("Key Pressed", "leftArrow")
 	elif Input.is_action_pressed("ui_right"):
 		steer_val = -1.0
 		if int(totalTime*1000) % 2000 == 0:
-			logData("Key Pressed", "rightArrow")
+			pass
+			#logData("Key Pressed", "rightArrow")
 
 	engine_force = throttle_val * MAX_ENGINE_FORCE
 	brake = brake_val * MAX_BRAKE_FORCE
@@ -1334,7 +1382,7 @@ func _physics_process(delta):
 
 # this button would never be visible
 func _on_Button_pressed():
-	logData("Button Pressed", "BackButton")
+	#logData("Button Pressed", "BackButton")
 	if global.taskflowDeploy == 1:
 		get_tree().change_scene("res://Closing.tscn")
 	else:

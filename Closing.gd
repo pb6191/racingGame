@@ -83,7 +83,7 @@ func _ready():
 	http_client.read_chunk_size = 40960
 	global.url = ""
 	global.endpt = ""
-	dataString.filename = "dataFile_"+makeid(16)+".json"
+	dataString.filename = "dataFile_subject_"+str(global.partcnID)+"_session_"+str(global.sessID)+".json"
 	dataString.filedata = (global.dict)
 	_make_post_request(global.endpt, dataString)
 	if global.autoDifficulty == 1:
