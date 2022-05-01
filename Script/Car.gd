@@ -140,6 +140,7 @@ var allShapes = ["circle", "diamond", "triangle"]
 var allColors = ["blue", "red", "green"]
 var playsound = 0
 var canPlayResponseSound = 1
+var hitsToEdge = 0
 
 ############################################################
 # Input
@@ -353,6 +354,8 @@ func logData(title, desc):
 	global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].totalTimeElapsed = totalTime
 	global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].trialTimeElapsed = currentTrialTime
 	global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].distanceCovered = displacement
+	global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].numHitsEdge = hitsToEdge
+	global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].currentSpeed = speed
 	global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].distFrmCentre = distToPath
 	global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].fuelStatus = fuel
 	global.dict.thisSession[global.dict.thisSession.size()-1].trials[global.dict.thisSession[global.dict.thisSession.size()-1].trials.size()-1].timeDriven = points
@@ -1541,3 +1544,4 @@ func _on_Button5_button_down():
 func _on_Car_body_entered(body):
 	if global.sound == "on" and $"..".visible == true:
 		$"../../AudioStreamPlayer2".play()
+		hitsToEdge = hitsToEdge + 1
