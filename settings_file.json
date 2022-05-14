@@ -1,8 +1,8 @@
 {
     "taskflowDeploy": 1,
     "autoDifficulty": 1,
-    "racingGUID": "c29c7c8f-238f-42c7-995e-fc3c06866894",
-    "task": "realnback",
+    "racingGUID": "bcd96eb1-a103-4ae5-b5dd-3fdbd1688ab1",
+    "task": "setshift",
     "rounds": 2,
     "threshold": 0.8,
     "sound": "on",

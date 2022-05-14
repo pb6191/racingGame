@@ -12,10 +12,10 @@ __meta__ = {
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 visible = false
-margin_left = 100.0
-margin_top = 100.0
-margin_right = 500.0
-margin_bottom = 300.0
+margin_left = 40.0
+margin_top = 23.0
+margin_right = 237.0
+margin_bottom = 123.0
 rect_scale = Vector2( 2, 2 )
 text = "You get to choose the next difficulty level. Press 'g' to add penalty of 5 fuel on incorrect responses OR press 'h' to reduce stimulus duration to 2 seconds."
 __meta__ = {
@@ -24,10 +24,10 @@ __meta__ = {
 
 [node name="RichTextLabel4" type="RichTextLabel" parent="."]
 visible = false
-margin_left = 100.0
-margin_top = 100.0
-margin_right = 500.0
-margin_bottom = 300.0
+margin_left = 39.0
+margin_top = 23.0
+margin_right = 234.0
+margin_bottom = 152.0
 rect_scale = Vector2( 2, 2 )
 text = "You get to choose the next difficulty level. Press 'g' to add penalty of 5 fuel on incorrect responses OR press 'h' to reduce stimulus duration to 1.5 seconds and interstimulus interval to 0.5 seconds."
 __meta__ = {
@@ -36,10 +36,10 @@ __meta__ = {
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
 visible = false
-margin_left = 100.0
-margin_top = 100.0
-margin_right = 500.0
-margin_bottom = 300.0
+margin_left = 40.0
+margin_top = 24.0
+margin_right = 237.0
+margin_bottom = 122.0
 rect_scale = Vector2( 2, 2 )
 text = "You get to choose the next difficulty level. Press 'g' to increase penalty to 10 fuel on incorrect responses OR press 'h' to reduce stimulus duration to 1.5 seconds."
 __meta__ = {
@@ -48,10 +48,10 @@ __meta__ = {
 
 [node name="RichTextLabel5" type="RichTextLabel" parent="."]
 visible = false
-margin_left = 100.0
-margin_top = 100.0
-margin_right = 500.0
-margin_bottom = 300.0
+margin_left = 40.0
+margin_top = 24.0
+margin_right = 235.0
+margin_bottom = 131.0
 rect_scale = Vector2( 2, 2 )
 text = "You get to choose the next difficulty level. Press 'g' to increase penalty to 10 fuel on incorrect responses OR press 'h' to reduce response limit to 50% of the stimulus duration."
 __meta__ = {
@@ -60,10 +60,10 @@ __meta__ = {
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="."]
 visible = false
-margin_left = 100.0
-margin_top = 100.0
-margin_right = 500.0
-margin_bottom = 300.0
+margin_left = 39.0
+margin_top = 24.0
+margin_right = 237.0
+margin_bottom = 139.0
 rect_scale = Vector2( 2, 2 )
 text = "You get to choose the next difficulty level. Press 'g' to increase penalty to 15 fuel on incorrect responses OR press 'h' to reduce stimulus duration to 1 second."
 __meta__ = {
@@ -72,10 +72,10 @@ __meta__ = {
 
 [node name="Button" type="Button" parent="."]
 visible = false
-margin_left = 442.232
-margin_top = 326.319
-margin_right = 515.232
-margin_bottom = 346.319
+margin_left = 119.201
+margin_top = 335.663
+margin_right = 192.201
+margin_bottom = 355.663
 rect_scale = Vector2( 2, 2 )
 text = "End Level"
 __meta__ = {

@@ -12,11 +12,11 @@ __meta__ = {
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 visible = false
-margin_left = 189.434
-margin_top = 263.959
-margin_right = 439.434
-margin_bottom = 303.959
-rect_scale = Vector2( 3, 3 )
+margin_left = 33.2579
+margin_top = 38.3712
+margin_right = 283.258
+margin_bottom = 78.3712
+rect_scale = Vector2( 2, 2 )
 text = "Press Space Bar to start the game"
 __meta__ = {
 "_edit_use_anchors_": false

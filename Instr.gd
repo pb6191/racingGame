@@ -26,6 +26,8 @@ Car back: DOWN ARROW key
 """
 
 var nback_0b = """
+Please note that the upcoming level does not have any driving/car component.
+
 To get the fuel, look at the heads-up display and:
 Press F-key / J-key / any 'N-button' at the bottom of the screen on seeing this charge icon: 
 """
@@ -60,6 +62,8 @@ Car back: DOWN ARROW key
 """
 
 var realnback_0b = """
+Please note that the upcoming level does not have any driving/car component.
+
 To get the fuel, look at the heads-up display and:
 Press F-key / J-key / any 'N-button' at the bottom of the screen when you see this charge icon: 
 """
@@ -99,6 +103,8 @@ Press F-key / left 'N-button' at the bottom of the screen if symbol of the left 
 
 Press J-key / right 'N-button' at the bottom of the screen if symbol of the right has more dimensions in common with the symbol in the centre.
 
+Please note that the upcoming level does not have any driving/car component.
+
 Correct answers for some such scenarios are underlined below:
 """
 
@@ -128,6 +134,8 @@ To get the fuel, look at the heads-up display and:
 Press F-key / left 'N-button' at bottom if central arrow points left
 
 Press J-key / right 'N-button' at bottom if central arrow points right
+
+Please note that the upcoming level does not have any driving/car component.
 """
 
 var flanker_1plus = """
