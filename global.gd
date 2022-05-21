@@ -49,6 +49,7 @@ var threshold
 var travelled
 var current_round = 0
 var sound
+var keepTouchButtons = 0
 
 var dict = {"thisSession": [{"speed": "", "acc": "", "variationStr": "", "moreMatch": "", "lessMatch": "", "nback": "", "respLimit": "", "startFuel": "", "bonusFuel": "", "stimInterval": "", "timeLimit": "", "task": "", "stimDuration": "", "intraN": "", "extraN": "", "penalty": "", "flankerN": "", "centreUp": "", "symComplexity": "", "trials": [{"timeStamp": "", "totalTimeElapsed": "", "trialTimeElapsed": "", "event":"", "eventDesc": {"target":"", "leftMost":{"color": "", "shapeDesc": "", "size": ""}, "left":{"color": "", "shapeDesc": "", "size": "", "line": "", "pattern": ""}, "right":{"color": "", "shapeDesc": "", "size": "", "line": "", "pattern": ""}, "rightMost":{"color": "", "shapeDesc": "", "size": ""}, "centre":{"color": "", "shapeDesc": "", "size": "", "upShift": "", "line": "", "pattern": ""}}, "numHitsEdge":"", "currentSpeed": "", "distFrmCentre": "", "distanceCovered": "", "fuelStatus": "", "timeDriven": "", "currentTrial": ""}]}]}
 var dictSet = {"speed": "", "acc": "", "variationStr": "", "moreMatch": "", "lessMatch": "", "nback": "", "respLimit": "", "startFuel": "", "bonusFuel": "", "stimInterval": "", "timeLimit": "", "task": "", "stimDuration": "", "intraN": "", "extraN": "", "penalty": "", "flankerN": "", "centreUp": "", "symComplexity": "", "startScreen": ""}

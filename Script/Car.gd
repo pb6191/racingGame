@@ -163,6 +163,11 @@ func sample(list,amt):
 
 	
 func _ready():
+	if global.keepTouchButtons == 0:
+		$"../../Button2".visible = false
+		$"../../Button3".visible = false
+		$"../../Button4".visible = false
+		$"../../Button5".visible = false
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), -45)
 	trialNum = 0
 	#nBackIntervalIP is stimulus interval | setIntervalIP is stimulus duration
