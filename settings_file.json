@@ -1,8 +1,8 @@
 {
     "taskflowDeploy": 1,
     "autoDifficulty": 1,
-    "racingGUID": "5f3dc3af-06ea-4fec-82fc-0c6a2f83bb64",
-    "task": "realnback",
+    "racingGUID": "a9cbd7ef-80dc-4e36-9318-41bdd70a640d",
+    "task": "flanker",
     "rounds": 2,
     "threshold": 0.8,
     "sound": "on",
