@@ -98,8 +98,11 @@ func _ready():
 				elif global.levelSet[global.task] == "1":
 					global.levelSet[global.task] = "2"
 				elif global.levelSet[global.task] == "2":
-					$"RichTextLabel4".visible = true
-					$"Button".visible = false
+					if global.fourMinuteVersion == "yes":
+						global.levelSet[global.task] = "3a"
+					else:
+						$"RichTextLabel4".visible = true
+						$"Button".visible = false
 				elif global.levelSet[global.task] == "3a":
 					global.levelSet[global.task] = "3c"
 				elif global.levelSet[global.task] == "3b":
@@ -109,8 +112,11 @@ func _ready():
 				elif global.levelSet[global.task] == "4":
 					global.levelSet[global.task] = "5"
 				elif global.levelSet[global.task] == "5":
-					$"RichTextLabel5".visible = true
-					$"Button".visible = false
+					if global.fourMinuteVersion == "yes":
+						global.levelSet[global.task] = "6a"
+					else:
+						$"RichTextLabel5".visible = true
+						$"Button".visible = false
 				elif global.levelSet[global.task] == "6a":
 					global.levelSet[global.task] = "6c"
 				elif global.levelSet[global.task] == "6b":
@@ -125,8 +131,11 @@ func _ready():
 				elif global.levelSet[global.task] == "1":
 					global.levelSet[global.task] = "2"
 				elif global.levelSet[global.task] == "2":
-					$"RichTextLabel".visible = true
-					$"Button".visible = false
+					if global.fourMinuteVersion == "yes":
+						global.levelSet[global.task] = "3a"
+					else:
+						$"RichTextLabel".visible = true
+						$"Button".visible = false
 				elif global.levelSet[global.task] == "3a":
 					global.levelSet[global.task] = "3c"
 				elif global.levelSet[global.task] == "3b":
@@ -136,8 +145,11 @@ func _ready():
 				elif global.levelSet[global.task] == "4":
 					global.levelSet[global.task] = "5"
 				elif global.levelSet[global.task] == "5":
-					$"RichTextLabel2".visible = true
-					$"Button".visible = false
+					if global.fourMinuteVersion == "yes":
+						global.levelSet[global.task] = "6a"
+					else:
+						$"RichTextLabel2".visible = true
+						$"Button".visible = false
 				elif global.levelSet[global.task] == "6a":
 					global.levelSet[global.task] = "6c"
 				elif global.levelSet[global.task] == "6b":
@@ -147,8 +159,11 @@ func _ready():
 				elif global.levelSet[global.task] == "7":
 					global.levelSet[global.task] = "8"
 				elif global.levelSet[global.task] == "8":
-					$"RichTextLabel3".visible = true
-					$"Button".visible = false
+					if global.fourMinuteVersion == "yes":
+						global.levelSet[global.task] = "9a"
+					else:
+						$"RichTextLabel3".visible = true
+						$"Button".visible = false
 				elif global.levelSet[global.task] == "9a":
 					global.levelSet[global.task] = "9c"
 				elif global.levelSet[global.task] == "9b":

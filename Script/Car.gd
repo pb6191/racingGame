@@ -142,6 +142,8 @@ var playsound = 0
 var canPlayResponseSound = 1
 var hitsToEdge = 0
 
+
+
 ############################################################
 # Input
 
@@ -450,6 +452,11 @@ func _physics_process(delta):
 				displacement = displacement + (currentPosition - prevPosition).length()
 			if direction == "backward":
 				displacement = displacement - (currentPosition - prevPosition).length()
+		if global.fourMinuteVersion == "yes":
+			fuel = global.strtFuelIP
+			$"../../RichTextLabel6".visible = true
+	if global.fourMinuteVersion == "yes" and fuel < global.strtFuelIP - 2:
+		$"../../RichTextLabel6".visible = false
 		#$"../../Ground".visible = false
 		#$"..".visible = false
 		#$"../../Track".visible = false

@@ -276,6 +276,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="RichTextLabel6" type="RichTextLabel" parent="WindowDialog/ViewportContainer/Viewport/Main"]
+visible = false
+margin_left = 400.0
+margin_top = 200.0
+margin_right = 480.0
+margin_bottom = 250.0
+rect_scale = Vector2( 2, 2 )
+text = "CAR REFUELED!!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="RichTextLabel5" type="RichTextLabel" parent="WindowDialog/ViewportContainer/Viewport/Main"]
 margin_left = 400.0
 margin_top = 320.0
