@@ -16,7 +16,7 @@ __meta__ = {
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_right = 500.0
+margin_right = 559.0
 margin_bottom = 147.0
 rect_scale = Vector2( 1.5, 1.5 )
 __meta__ = {
@@ -26,7 +26,7 @@ __meta__ = {
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
 margin_left = 4.0
 margin_top = 334.0
-margin_right = 504.0
+margin_right = 563.0
 margin_bottom = 422.0
 rect_scale = Vector2( 1.5, 1.5 )
 __meta__ = {

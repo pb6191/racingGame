@@ -29,73 +29,57 @@ func _ready():
 Press the D key to steer the car left.
 Press the K key to steer the car right.
 Press the DOWN ARROW key (↓) to reverse the car.
-
 """
 	driving_0a = """In this task, you will be driving a racecar.
 Press the D key to steer the car left.
 Press the K key to steer the car right.
 Press the Down Arrow key (↓) to reverse the car.
-
 """
 	pressStartGame = """Press 'START GAME' when you are ready.
-
 """
 	respondQuickAcc = """Try to respond as quickly and accurately as you can.
-
 """
 	noDrivingComponent = """In this task, you will not drive. You will practice adding fuel to the racecar. 
 At the top of your screen, you will have a series of symbols presented on the screen one at a time.
 Here are a few symbols you may see:
-
 """
 	nBackDrivingComponent = """You will also need to add fuel to the racecar.
 At the top of your screen, you will have a series of symbols presented on the screen one at a time.
 Here are a few symbols you may see:
-
 """
 	chargeIconPress="""Press the F key or the J key when you see the 'Charge' symbol.
-
 """
 	nback_2plus_extra = """ trials after seeing this 'Charge' symbol. 
 """
 	chargeIconDelayedPress="""You will also need to add fuel to the car.
 At the top of your screen, you will have a series of symbols presented on the screen one at a time.
-
 Press the F key or the J key """
 	realnback_2plus_extra = """ SYMBOLS BACK.
 """
 	anyIconDelayedPress="""You will also need to add fuel to the car.
 At the top of your screen, you will have a series of symbols presented on the screen one at a time.
-
 Press the F key or the J key if the symbol on screen matches the symbol that was presented """
 	noDrivingComponentSetShift = """In this task, you will not drive. You will practice adding fuel to the racecar. 
 At the top of your screen, you will have a row of three symbols. The symbols have different characteristics. They may have different shapes, lines, color, or texture. Here are a few symbols you may see.
-
 """
 	drivingComponentSetShift = """You will also need to add fuel to the racecar.
 At the top of your screen, you will have a row of three symbols. The symbols have different characteristics. They may have different shapes, lines, color, or texture. Here are a few symbols you may see.
-
 """
 	setShiftingInstr = """To add fuel to your car, you must choose the symbol that has more characteristics in common with the middle symbol.
 Press the F key if the symbol on the LEFT has more characteristics in common with the middle symbol.
 Press the J key if the symbol on the RIGHT has more characteristics in common with the middle symbol.
-
 Here are some examples of correct answers.
-
 """
 	flankerInstr = """In this task, you will not drive. You will practice adding fuel to the racecar. 
 At the top of your screen, you will see an arrow.
 Press the F key if the arrow points LEFT.
 Press the J key if the arrow points RIGHT.
-
 """
 	flankerInstr2 = """You will also need to add fuel to the racecar.
 At the top of your screen, you will see a row of arrows.
-
 """
 	flankerInstr3 = """Press the F key if the arrow in the middle points LEFT.
 Press the J key if the arrow in the middle points RIGHT.
-
 """
 	if global.task == "nback":
 		if global.levelSet[global.task] == "0a":
