@@ -88,6 +88,7 @@ func _ready():
 	_make_post_request(global.endpt, dataString)
 	if global.autoDifficulty == 1:
 		$"Button".visible = true
+		$"RichTextLabel6".visible = true
 		var travelcut = global.threshold * global.json_result[global.task][global.levelSet[global.task]]["maxdistance"]
 		if global.travelled >= travelcut:
 			if global.task == "flanker":
@@ -103,6 +104,7 @@ func _ready():
 					else:
 						$"RichTextLabel4".visible = true
 						$"Button".visible = false
+						$"RichTextLabel6".visible = false
 				elif global.levelSet[global.task] == "3a":
 					global.levelSet[global.task] = "3c"
 				elif global.levelSet[global.task] == "3b":
@@ -117,6 +119,7 @@ func _ready():
 					else:
 						$"RichTextLabel5".visible = true
 						$"Button".visible = false
+						$"RichTextLabel6".visible = false
 				elif global.levelSet[global.task] == "6a":
 					global.levelSet[global.task] = "6c"
 				elif global.levelSet[global.task] == "6b":
@@ -136,6 +139,7 @@ func _ready():
 					else:
 						$"RichTextLabel".visible = true
 						$"Button".visible = false
+						$"RichTextLabel6".visible = false
 				elif global.levelSet[global.task] == "3a":
 					global.levelSet[global.task] = "3c"
 				elif global.levelSet[global.task] == "3b":
@@ -150,6 +154,7 @@ func _ready():
 					else:
 						$"RichTextLabel2".visible = true
 						$"Button".visible = false
+						$"RichTextLabel6".visible = false
 				elif global.levelSet[global.task] == "6a":
 					global.levelSet[global.task] = "6c"
 				elif global.levelSet[global.task] == "6b":
@@ -164,6 +169,7 @@ func _ready():
 					else:
 						$"RichTextLabel3".visible = true
 						$"Button".visible = false
+						$"RichTextLabel6".visible = false
 				elif global.levelSet[global.task] == "9a":
 					global.levelSet[global.task] = "9c"
 				elif global.levelSet[global.task] == "9b":
@@ -192,42 +198,52 @@ func _input(ev):
 		global.levelSet[global.task] = "3a"
 		$"RichTextLabel".visible = false
 		$"Button".visible = true
+		$"RichTextLabel6".visible = true
 	if $"RichTextLabel".visible == true and ev is InputEventKey and ev.scancode == KEY_H and not ev.echo:
 		global.levelSet[global.task] = "3b"
 		$"RichTextLabel".visible = false
 		$"Button".visible = true
+		$"RichTextLabel6".visible = true
 	if $"RichTextLabel2".visible == true and ev is InputEventKey and ev.scancode == KEY_G and not ev.echo:
 		global.levelSet[global.task] = "6a"
 		$"RichTextLabel2".visible = false
 		$"Button".visible = true
+		$"RichTextLabel6".visible = true
 	if $"RichTextLabel2".visible == true and ev is InputEventKey and ev.scancode == KEY_H and not ev.echo:
 		global.levelSet[global.task] = "6b"
 		$"RichTextLabel2".visible = false
 		$"Button".visible = true
+		$"RichTextLabel6".visible = true
 	if $"RichTextLabel3".visible == true and ev is InputEventKey and ev.scancode == KEY_G and not ev.echo:
 		global.levelSet[global.task] = "9a"
 		$"RichTextLabel3".visible = false
 		$"Button".visible = true
+		$"RichTextLabel6".visible = true
 	if $"RichTextLabel3".visible == true and ev is InputEventKey and ev.scancode == KEY_H and not ev.echo:
 		global.levelSet[global.task] = "9b"
 		$"RichTextLabel3".visible = false
 		$"Button".visible = true
+		$"RichTextLabel6".visible = true
 	if $"RichTextLabel4".visible == true and ev is InputEventKey and ev.scancode == KEY_G and not ev.echo:
 		global.levelSet[global.task] = "3a"
 		$"RichTextLabel4".visible = false
 		$"Button".visible = true
+		$"RichTextLabel6".visible = true
 	if $"RichTextLabel4".visible == true and ev is InputEventKey and ev.scancode == KEY_H and not ev.echo:
 		global.levelSet[global.task] = "3b"
 		$"RichTextLabel4".visible = false
 		$"Button".visible = true
+		$"RichTextLabel6".visible = true
 	if $"RichTextLabel5".visible == true and ev is InputEventKey and ev.scancode == KEY_G and not ev.echo:
 		global.levelSet[global.task] = "6a"
 		$"RichTextLabel5".visible = false
 		$"Button".visible = true
+		$"RichTextLabel6".visible = true
 	if $"RichTextLabel5".visible == true and ev is InputEventKey and ev.scancode == KEY_H and not ev.echo:
 		global.levelSet[global.task] = "6b"
 		$"RichTextLabel5".visible = false
 		$"Button".visible = true
+		$"RichTextLabel6".visible = true
 		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

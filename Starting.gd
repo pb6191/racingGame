@@ -217,7 +217,10 @@ func _ready():
 			assignVals()
 			#print("TASK3 "+str(global.taskIP))
 			#print(global.taskIP)
-			get_tree().change_scene("res://Instr.tscn")
+			if global.fourMinuteVersion == "yes":
+				get_tree().change_scene("res://Instr4MIN.tscn")
+			else:
+				get_tree().change_scene("res://Instr.tscn")
 	else:
 		get_tree().change_scene("res://Menu.tscn")
 
@@ -233,6 +236,9 @@ func _unhandled_input(event):
 		assignVals()
 		#print("TASK4 "+str(global.taskIP))
 		#print(global.taskIP)
-		get_tree().change_scene("res://Instr.tscn")
+		if global.fourMinuteVersion == "yes":
+			get_tree().change_scene("res://Instr4MIN.tscn")
+		else:
+			get_tree().change_scene("res://Instr.tscn")
 
 

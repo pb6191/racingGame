@@ -70,6 +70,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="RichTextLabel6" type="RichTextLabel" parent="."]
+visible = false
+margin_left = 39.0
+margin_top = 260.0
+margin_right = 237.0
+margin_bottom = 290.0
+rect_scale = Vector2( 2, 2 )
+text = "Press “END LEVEL” to go to the next task."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Button" type="Button" parent="."]
 visible = false
 margin_left = 119.201
@@ -77,7 +89,7 @@ margin_top = 335.663
 margin_right = 192.201
 margin_bottom = 355.663
 rect_scale = Vector2( 2, 2 )
-text = "End Level"
+text = "END LEVEL"
 __meta__ = {
 "_edit_use_anchors_": false
 }

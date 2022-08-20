@@ -58,4 +58,7 @@ func _on_Button_pressed():
 	global.dict.thisSession[global.dict.thisSession.size()-1].variationStr = global.allVariationsGlobal
 	global.dict.thisSession[global.dict.thisSession.size()-1].moreMatch = global.moreMatchGlobal
 	global.dict.thisSession[global.dict.thisSession.size()-1].lessMatch = global.lessMatchGlobal
-	get_tree().change_scene("res://Instr.tscn")
+	if global.fourMinuteVersion == "yes":
+		get_tree().change_scene("res://Instr4MIN.tscn")
+	else:
+		get_tree().change_scene("res://Instr.tscn")
