@@ -552,6 +552,8 @@ func _physics_process(delta):
 					varCsize = "half"
 			varTarget = "Charge"
 			logData("Stimulus Displayed", "")
+			$"../../Sprite4".modulate = Color(0,0,0,1)
+			hitExec = 0
 			executed = 1
 		if ((int(totalTime*multiplier_divideSec) % int((nBackInterval+stDuration)*multiplier_divideSec)) == 0 and executed == 1):
 			executed = 0
@@ -581,6 +583,8 @@ func _physics_process(delta):
 			$"../../Sprite2".visible = false
 			$"../../Sprite3".visible = false
 			logData("Stimulus Hidden", "NA")
+			hitExec = 0
+			$"../../Sprite4".modulate = Color(0,0,0,1)
 			resetJSON()
 		if (Input.is_action_pressed("fKey") or Input.is_action_pressed("jKey")) and hitExec == 0:
 			if (currentTrialTime*multiplier_divideSec) <= (responseLimit * stDuration * multiplier_divideSec / 100):
@@ -600,8 +604,9 @@ func _physics_process(delta):
 				logData("Left or Right Response key pressed", "Late")
 			hitExec = 1
 		if ($"../../Sprite".visible != true and $"../../Sprite2".visible != true and $"../../Sprite3".visible != true):
-			hitExec = 0
-			$"../../Sprite4".modulate = Color(0,0,0,1)
+			#hitExec = 0
+			#$"../../Sprite4".modulate = Color(0,0,0,1)
+			pass
 	if global.taskIP == 3:
 		if ((int((totalTime+stDuration)*multiplier_divideSec) % int((nBackInterval+stDuration)*multiplier_divideSec)) == 0 and executed == 0 and totalTime > 2.0):
 			trialNum += 1
@@ -677,6 +682,8 @@ func _physics_process(delta):
 			else:
 				varTarget = "checkWetherSameAsNthBack"
 			logData("Stimulus Displayed", "")
+			$"../../Sprite4".modulate = Color(0,0,0,1)
+			hitExec = 0
 			executed = 1
 		if ((int(totalTime*multiplier_divideSec) % int((nBackInterval+stDuration)*multiplier_divideSec)) == 0 and executed == 1):
 			executed = 0
@@ -713,6 +720,8 @@ func _physics_process(delta):
 			$"../../Sprite30".visible = false
 			$"../../Sprite31".visible = false
 			logData("Stimulus Hidden", "NA")
+			hitExec = 0
+			$"../../Sprite4".modulate = Color(0,0,0,1)
 			resetJSON()
 		if (Input.is_action_pressed("fKey") or Input.is_action_pressed("jKey")) and hitExec == 0:
 			if (currentTrialTime*multiplier_divideSec) <= (responseLimit * stDuration * multiplier_divideSec / 100):
@@ -732,8 +741,9 @@ func _physics_process(delta):
 				logData("Left or Right Response key pressed", "Late")
 			hitExec = 1
 		if ($"../../Sprite".visible != true and $"../../Sprite2".visible != true and $"../../Sprite3".visible != true and $"../../Sprite25".visible != true and $"../../Sprite26".visible != true and $"../../Sprite27".visible != true and $"../../Sprite28".visible != true and $"../../Sprite29".visible != true and $"../../Sprite30".visible != true and $"../../Sprite31".visible != true):
-			hitExec = 0
-			$"../../Sprite4".modulate = Color(0,0,0,1)
+			#hitExec = 0
+			#$"../../Sprite4".modulate = Color(0,0,0,1)
+			pass
 	if global.taskIP == 1:
 		if ((int((totalTime+stDuration)*multiplier_divideSec) % int((nBackInterval+stDuration)*multiplier_divideSec)) == 0 and executedSet == 0 and totalTime > 2.0):
 			var stimStr = ""
@@ -1115,6 +1125,8 @@ func _physics_process(delta):
 			executedSet = 1
 			countSet += 1
 			logData("Stimulus Displayed", "")
+			hitExec = 0
+			$"../../Sprite4".modulate = Color(0,0,0,1)
 		if ((int(totalTime*multiplier_divideSec) % int((nBackInterval+stDuration)*multiplier_divideSec)) == 0 and executedSet == 1):
 			executedSet = 0
 			$"../../Sprite".scale.y = 0.1*2
@@ -1149,6 +1161,8 @@ func _physics_process(delta):
 			$"../../Sprite17".visible = false
 			$"../../Sprite18".visible = false
 			logData("Stimulus Hidden", "NA")
+			hitExec = 0
+			$"../../Sprite4".modulate = Color(0,0,0,1)
 			resetJSON()
 		if Input.is_action_pressed("fKey") and hitExec == 0:
 			if (currentTrialTime*multiplier_divideSec) <= (responseLimit * stDuration * multiplier_divideSec / 100):
@@ -1185,8 +1199,9 @@ func _physics_process(delta):
 				logData("Right Response key pressed", "Late")
 			hitExec = 1
 		if ($"../../Sprite5".visible != true and $"../../Sprite6".visible != true and $"../../Sprite7".visible != true):
-			hitExec = 0
-			$"../../Sprite4".modulate = Color(0,0,0,1)
+			#hitExec = 0
+			#$"../../Sprite4".modulate = Color(0,0,0,1)
+			pass
 	if global.taskIP == 2:
 		if ((int((totalTime+stDuration)*multiplier_divideSec) % int((nBackInterval+stDuration)*multiplier_divideSec)) == 0 and executed == 0 and totalTime > 2.0):
 			var stimStr = ""
@@ -1284,6 +1299,8 @@ func _physics_process(delta):
 				$"../../Sprite8".visible = true
 			executed = 1
 			logData("Stimulus Displayed", "")
+			hitExec = 0
+			$"../../Sprite4".modulate = Color(0,0,0,1)
 		if ((int(totalTime*multiplier_divideSec) % int((nBackInterval+stDuration)*multiplier_divideSec)) == 0 and executed == 1):
 			executed = 0
 			$"../../Sprite".scale.y = 0.1*2
@@ -1314,6 +1331,8 @@ func _physics_process(delta):
 			$"../../Sprite12".visible = false
 			$"../../Sprite8".visible = false
 			logData("Stimulus Hidden", "NA")
+			hitExec = 0
+			$"../../Sprite4".modulate = Color(0,0,0,1)
 			resetJSON()
 		if Input.is_action_pressed("fKey") and hitExec == 0:
 			if (currentTrialTime*multiplier_divideSec) <= (responseLimit * stDuration * multiplier_divideSec / 100):
@@ -1350,8 +1369,9 @@ func _physics_process(delta):
 				logData("Right Response key pressed", "Late")
 			hitExec = 1
 		if ($"../../Sprite11".visible != true):
-			hitExec = 0
-			$"../../Sprite4".modulate = Color(0,0,0,1)
+			#hitExec = 0
+			#$"../../Sprite4".modulate = Color(0,0,0,1)
+			pass
 
 	#var steer_val = steering_mult * Input.get_joy_axis(0, joy_steering)
 	#var throttle_val = throttle_mult * Input.get_joy_axis(0, joy_throttle)
