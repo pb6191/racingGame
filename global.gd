@@ -5,7 +5,7 @@ extends Node
 # var a = 2
 # var b = "text"
 
-var fourMinuteVersion = "no" # possible values are "yes" "no"
+var fourMinuteVersion = "yes" # possible values are "yes" "no"
 
 var maxSpeedIP
 var accelerationIP

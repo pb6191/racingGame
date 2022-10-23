@@ -54,7 +54,10 @@ func _make_post_request(url, data_to_send):
 			rb += http_client.read_response_body_chunk()
 		response = parse_json(rb.get_string_from_ascii())
 		extracted_measrTypeID = response["measureTypeId"]
-		response["json"]=query
+		if response["json"] == null:
+			response["json"]=query
+		else:
+			response["json"]=response["json"]+";"+query # instead of just query which overrides existing data
 		var resp1 = JSON.print(response)
 		http_client.request(HTTPClient.METHOD_PUT, "/api/v1.0/sessions/"+global.sessID+"/measures/"+global.measrID, headers, resp1)
 		while(http_client.get_status() != 7):
