@@ -1,8 +1,8 @@
 {
     "taskflowDeploy": 1,
     "autoDifficulty": 1,
-    "racingGUID": "d67527b0-18b5-4dff-938e-ce8cc512ecb9",
-    "task": "setshift",
+    "racingGUID": "2ebd5df3-719f-492c-a943-4837c7097745",
+    "task": "realnback",
     "rounds": 1,
     "threshold": 0.8,
     "sound": "on",
@@ -100,7 +100,7 @@
             "maxdistance": 2400
         },
         "3a": {
-            "speed": 10,
+            "speed": 11,
             "acc": 1,
             "nback": 1,
             "respLimit": 100,
@@ -120,10 +120,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 2400
+            "maxdistance": 2640
         },
         "3b": {
-            "speed": 10,
+            "speed": 11,
             "acc": 1,
             "nback": 1,
             "respLimit": 100,
@@ -143,10 +143,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 2400
+            "maxdistance": 2640
         },
         "3c": {
-            "speed": 10,
+            "speed": 12,
             "acc": 1,
             "nback": 1,
             "respLimit": 100,
@@ -166,10 +166,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 2400
+            "maxdistance": 2880
         },
         "4": {
-            "speed": 20,
+            "speed": 12,
             "acc": 1,
             "nback": 1,
             "respLimit": 100,
@@ -189,10 +189,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 2880
         },
         "5": {
-            "speed": 20,
+            "speed": 13,
             "acc": 1,
             "nback": 2,
             "respLimit": 100,
@@ -212,10 +212,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3120
         },
         "6a": {
-            "speed": 20,
+            "speed": 13,
             "acc": 1,
             "nback": 2,
             "respLimit": 100,
@@ -235,10 +235,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3120
         },
         "6b": {
-            "speed": 20,
+            "speed": 13,
             "acc": 1,
             "nback": 2,
             "respLimit": 100,
@@ -258,10 +258,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3120
         },
         "6c": {
-            "speed": 20,
+            "speed": 14,
             "acc": 1,
             "nback": 2,
             "respLimit": 100,
@@ -281,10 +281,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3360
         },
         "7": {
-            "speed": 20,
+            "speed": 14,
             "acc": 2,
             "nback": 2,
             "respLimit": 100,
@@ -304,10 +304,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3360
         },
         "8": {
-            "speed": 20,
+            "speed": 15,
             "acc": 2,
             "nback": 3,
             "respLimit": 100,
@@ -327,10 +327,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3600
         },
         "9a": {
-            "speed": 20,
+            "speed": 15,
             "acc": 2,
             "nback": 3,
             "respLimit": 100,
@@ -350,10 +350,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3600
         },
         "9b": {
-            "speed": 20,
+            "speed": 15,
             "acc": 2,
             "nback": 3,
             "respLimit": 100,
@@ -373,10 +373,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3600
         },
         "9c": {
-            "speed": 20,
+            "speed": 16,
             "acc": 2,
             "nback": 3,
             "respLimit": 100,
@@ -396,10 +396,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3840
         },
         "10": {
-            "speed": 30,
+            "speed": 16,
             "acc": 2,
             "nback": 3,
             "respLimit": 100,
@@ -419,10 +419,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 7200
+            "maxdistance": 3840
         },
         "11": {
-            "speed": 30,
+            "speed": 17,
             "acc": 2,
             "nback": 4,
             "respLimit": 100,
@@ -442,10 +442,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 7200
+            "maxdistance": 4080
         },
         "12": {
-            "speed": 35,
+            "speed": 17,
             "acc": 2,
             "nback": 4,
             "respLimit": 100,
@@ -465,10 +465,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 8400
+            "maxdistance": 4080
         },
         "13": {
-            "speed": 35,
+            "speed": 18,
             "acc": 2,
             "nback": 5,
             "respLimit": 100,
@@ -488,10 +488,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 8400
+            "maxdistance": 4320
         },
         "14": {
-            "speed": 40,
+            "speed": 18,
             "acc": 2,
             "nback": 5,
             "respLimit": 100,
@@ -511,10 +511,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 9600
+            "maxdistance": 4320
         },
         "15": {
-            "speed": 40,
+            "speed": 19,
             "acc": 2,
             "nback": 6,
             "respLimit": 100,
@@ -534,10 +534,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 9600
+            "maxdistance": 4560
         },
         "16": {
-            "speed": 40,
+            "speed": 19,
             "acc": 3,
             "nback": 6,
             "respLimit": 100,
@@ -557,10 +557,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 9600
+            "maxdistance": 4560
         },
         "17": {
-            "speed": 40,
+            "speed": 20,
             "acc": 3,
             "nback": 7,
             "respLimit": 100,
@@ -580,7 +580,7 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 9600
+            "maxdistance": 4800
         }
     },
     "realnback": {
@@ -677,7 +677,7 @@
             "maxdistance": 2400
         },
         "3a": {
-            "speed": 10,
+            "speed": 11,
             "acc": 1,
             "nback": 1,
             "respLimit": 100,
@@ -697,10 +697,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 2400
+            "maxdistance": 2640
         },
         "3b": {
-            "speed": 10,
+            "speed": 11,
             "acc": 1,
             "nback": 1,
             "respLimit": 100,
@@ -720,10 +720,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 2400
+            "maxdistance": 2640
         },
         "3c": {
-            "speed": 10,
+            "speed": 12,
             "acc": 1,
             "nback": 1,
             "respLimit": 100,
@@ -743,10 +743,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 2400
+            "maxdistance": 2880
         },
         "4": {
-            "speed": 20,
+            "speed": 12,
             "acc": 1,
             "nback": 1,
             "respLimit": 100,
@@ -766,10 +766,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 2880
         },
         "5": {
-            "speed": 20,
+            "speed": 13,
             "acc": 1,
             "nback": 2,
             "respLimit": 100,
@@ -789,10 +789,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3120
         },
         "6a": {
-            "speed": 20,
+            "speed": 13,
             "acc": 1,
             "nback": 2,
             "respLimit": 100,
@@ -812,10 +812,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3120
         },
         "6b": {
-            "speed": 20,
+            "speed": 13,
             "acc": 1,
             "nback": 2,
             "respLimit": 100,
@@ -835,10 +835,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3120
         },
         "6c": {
-            "speed": 20,
+            "speed": 14,
             "acc": 1,
             "nback": 2,
             "respLimit": 100,
@@ -858,10 +858,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3360
         },
         "7": {
-            "speed": 20,
+            "speed": 14,
             "acc": 2,
             "nback": 2,
             "respLimit": 100,
@@ -881,10 +881,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3360
         },
         "8": {
-            "speed": 20,
+            "speed": 15,
             "acc": 2,
             "nback": 3,
             "respLimit": 100,
@@ -904,10 +904,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3600
         },
         "9a": {
-            "speed": 20,
+            "speed": 15,
             "acc": 2,
             "nback": 3,
             "respLimit": 100,
@@ -927,10 +927,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3600
         },
         "9b": {
-            "speed": 20,
+            "speed": 15,
             "acc": 2,
             "nback": 3,
             "respLimit": 100,
@@ -950,10 +950,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3600
         },
         "9c": {
-            "speed": 20,
+            "speed": 16,
             "acc": 2,
             "nback": 3,
             "respLimit": 100,
@@ -973,10 +973,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3840
         },
         "10": {
-            "speed": 30,
+            "speed": 16,
             "acc": 2,
             "nback": 3,
             "respLimit": 100,
@@ -996,10 +996,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 7200
+            "maxdistance": 3840
         },
         "11": {
-            "speed": 30,
+            "speed": 17,
             "acc": 2,
             "nback": 4,
             "respLimit": 100,
@@ -1019,10 +1019,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 7200
+            "maxdistance": 4080
         },
         "12": {
-            "speed": 35,
+            "speed": 17,
             "acc": 2,
             "nback": 4,
             "respLimit": 100,
@@ -1042,10 +1042,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 8400
+            "maxdistance": 4080
         },
         "13": {
-            "speed": 35,
+            "speed": 18,
             "acc": 2,
             "nback": 5,
             "respLimit": 100,
@@ -1065,10 +1065,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 8400
+            "maxdistance": 4320
         },
         "14": {
-            "speed": 40,
+            "speed": 18,
             "acc": 2,
             "nback": 5,
             "respLimit": 100,
@@ -1088,10 +1088,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 9600
+            "maxdistance": 4320
         },
         "15": {
-            "speed": 40,
+            "speed": 19,
             "acc": 2,
             "nback": 6,
             "respLimit": 100,
@@ -1111,10 +1111,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 9600
+            "maxdistance": 4560
         },
         "16": {
-            "speed": 40,
+            "speed": 19,
             "acc": 3,
             "nback": 6,
             "respLimit": 100,
@@ -1134,10 +1134,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 9600
+            "maxdistance": 4560
         },
         "17": {
-            "speed": 40,
+            "speed": 20,
             "acc": 3,
             "nback": 7,
             "respLimit": 100,
@@ -1157,7 +1157,7 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 9600
+            "maxdistance": 4800
         }
     },
     "flanker": {
@@ -1254,7 +1254,7 @@
             "maxdistance": 2400
         },
         "3a": {
-            "speed": 10,
+            "speed": 11,
             "acc": 1,
             "nback": 0,
             "respLimit": 100,
@@ -1274,10 +1274,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 2400
+            "maxdistance": 2640
         },
         "3b": {
-            "speed": 10,
+            "speed": 11,
             "acc": 1,
             "nback": 0,
             "respLimit": 100,
@@ -1297,10 +1297,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 2400
+            "maxdistance": 2640
         },
         "3c": {
-            "speed": 10,
+            "speed": 12,
             "acc": 1,
             "nback": 0,
             "respLimit": 100,
@@ -1320,10 +1320,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 2400
+            "maxdistance": 2880
         },
         "4": {
-            "speed": 20,
+            "speed": 12,
             "acc": 1,
             "nback": 0,
             "respLimit": 100,
@@ -1343,10 +1343,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 2880
         },
         "5": {
-            "speed": 20,
+            "speed": 13,
             "acc": 1,
             "nback": 0,
             "respLimit": 75,
@@ -1366,10 +1366,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3120
         },
         "6a": {
-            "speed": 20,
+            "speed": 13,
             "acc": 1,
             "nback": 0,
             "respLimit": 75,
@@ -1389,10 +1389,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3120
         },
         "6b": {
-            "speed": 20,
+            "speed": 13,
             "acc": 1,
             "nback": 0,
             "respLimit": 50,
@@ -1412,10 +1412,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3120
         },
         "6c": {
-            "speed": 20,
+            "speed": 14,
             "acc": 1,
             "nback": 0,
             "respLimit": 50,
@@ -1435,10 +1435,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3360
         },
         "7": {
-            "speed": 20,
+            "speed": 14,
             "acc": 2,
             "nback": 0,
             "respLimit": 50,
@@ -1458,7 +1458,7 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3360
         }
     },
     "setshift": {
@@ -1555,7 +1555,7 @@
             "maxdistance": 2400
         },
         "3a": {
-            "speed": 10,
+            "speed": 11,
             "acc": 1,
             "nback": 0,
             "respLimit": 100,
@@ -1575,10 +1575,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 2400
+            "maxdistance": 2640
         },
         "3b": {
-            "speed": 10,
+            "speed": 11,
             "acc": 1,
             "nback": 0,
             "respLimit": 100,
@@ -1598,10 +1598,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 2400
+            "maxdistance": 2640
         },
         "3c": {
-            "speed": 10,
+            "speed": 12,
             "acc": 1,
             "nback": 0,
             "respLimit": 100,
@@ -1621,10 +1621,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 2400
+            "maxdistance": 2880
         },
         "4": {
-            "speed": 20,
+            "speed": 12,
             "acc": 1,
             "nback": 0,
             "respLimit": 100,
@@ -1644,10 +1644,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 2880
         },
         "5": {
-            "speed": 20,
+            "speed": 13,
             "acc": 1,
             "nback": 0,
             "respLimit": 100,
@@ -1667,10 +1667,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3120
         },
         "6a": {
-            "speed": 20,
+            "speed": 13,
             "acc": 1,
             "nback": 0,
             "respLimit": 100,
@@ -1690,10 +1690,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3120
         },
         "6b": {
-            "speed": 20,
+            "speed": 13,
             "acc": 1,
             "nback": 0,
             "respLimit": 100,
@@ -1713,10 +1713,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3120
         },
         "6c": {
-            "speed": 20,
+            "speed": 14,
             "acc": 1,
             "nback": 0,
             "respLimit": 100,
@@ -1736,10 +1736,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3360
         },
         "7": {
-            "speed": 20,
+            "speed": 14,
             "acc": 2,
             "nback": 0,
             "respLimit": 100,
@@ -1759,10 +1759,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3360
         },
         "8": {
-            "speed": 20,
+            "speed": 15,
             "acc": 2,
             "nback": 0,
             "respLimit": 100,
@@ -1782,10 +1782,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3600
         },
         "9a": {
-            "speed": 20,
+            "speed": 15,
             "acc": 2,
             "nback": 0,
             "respLimit": 100,
@@ -1805,10 +1805,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3600
         },
         "9b": {
-            "speed": 20,
+            "speed": 15,
             "acc": 2,
             "nback": 0,
             "respLimit": 100,
@@ -1828,10 +1828,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3600
         },
         "9c": {
-            "speed": 20,
+            "speed": 16,
             "acc": 2,
             "nback": 0,
             "respLimit": 100,
@@ -1851,10 +1851,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 4800
+            "maxdistance": 3840
         },
         "10": {
-            "speed": 30,
+            "speed": 16,
             "acc": 2,
             "nback": 0,
             "respLimit": 100,
@@ -1874,10 +1874,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 7200
+            "maxdistance": 3840
         },
         "11": {
-            "speed": 30,
+            "speed": 17,
             "acc": 2,
             "nback": 0,
             "respLimit": 100,
@@ -1897,10 +1897,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 7200
+            "maxdistance": 4080
         },
         "12": {
-            "speed": 35,
+            "speed": 17,
             "acc": 2,
             "nback": 0,
             "respLimit": 100,
@@ -1920,10 +1920,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 8400
+            "maxdistance": 4080
         },
         "13": {
-            "speed": 35,
+            "speed": 18,
             "acc": 2,
             "nback": 0,
             "respLimit": 100,
@@ -1943,10 +1943,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 8400
+            "maxdistance": 4320
         },
         "14": {
-            "speed": 40,
+            "speed": 18,
             "acc": 2,
             "nback": 0,
             "respLimit": 100,
@@ -1966,10 +1966,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 9600
+            "maxdistance": 4320
         },
         "15": {
-            "speed": 40,
+            "speed": 19,
             "acc": 2,
             "nback": 0,
             "respLimit": 100,
@@ -1989,10 +1989,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 9600
+            "maxdistance": 4560
         },
         "16": {
-            "speed": 40,
+            "speed": 19,
             "acc": 3,
             "nback": 0,
             "respLimit": 100,
@@ -2012,10 +2012,10 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 9600
+            "maxdistance": 4560
         },
         "17": {
-            "speed": 40,
+            "speed": 20,
             "acc": 3,
             "nback": 0,
             "respLimit": 100,
@@ -2035,7 +2035,7 @@
             "centreUp": 0,
             "symComplexity": 0,
             "startScreen": 1,
-            "maxdistance": 9600
+            "maxdistance": 4800
         }
     }
 }
