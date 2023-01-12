@@ -61,6 +61,7 @@ func _ready():
 
 
 func _on_Button3_pressed():
+	global.currLevel = "manualConfig"
 	global.maxSpeedIP = 10 * ($"../OptionButton".selected + 1)
 	global.accelerationIP = $"../OptionButton2".selected + 1
 	global.nBackIP = $"../OptionButton3".selected
@@ -89,6 +90,7 @@ func _on_Button3_pressed():
 		global.measrTypeID = int(global.measrTypeID)
 	global.startScrn = $"../OptionButton19".selected
 	#global.dict.thisSession.append(global.dict.duplicate(true).thisSession[0])
+	global.dictSet.currLevel = global.currLevel
 	global.dictSet.speed = global.maxSpeedIP
 	global.dictSet.acc = global.accelerationIP
 	global.dictSet.nback = global.nBackIP

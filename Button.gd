@@ -17,6 +17,7 @@ func _ready():
 
 
 func _on_Button_pressed():
+	global.currLevel = "manualConfig"
 	global.maxSpeedIP = 10 * ($"../OptionButton".selected + 1)
 	global.accelerationIP = $"../OptionButton2".selected + 1
 	global.nBackIP = $"../OptionButton3".selected
@@ -39,6 +40,7 @@ func _on_Button_pressed():
 	global.moreMatchGlobal = 1
 	global.lessMatchGlobal = 0
 	global.dict.thisSession.append(global.dict.duplicate(true).thisSession[0])
+	global.dict.thisSession[global.dict.thisSession.size()-1].currLevel = global.currLevel
 	global.dict.thisSession[global.dict.thisSession.size()-1].speed = global.maxSpeedIP
 	global.dict.thisSession[global.dict.thisSession.size()-1].acc = global.accelerationIP
 	global.dict.thisSession[global.dict.thisSession.size()-1].nback = global.nBackIP

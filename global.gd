@@ -5,8 +5,9 @@ extends Node
 # var a = 2
 # var b = "text"
 
-var fourMinuteVersion = "yes" # possible values are "yes" "no"
+var fourMinuteVersion = "no" # possible values are "yes" "no"
 
+var currLevel
 var maxSpeedIP
 var accelerationIP
 var nBackIP
@@ -53,8 +54,8 @@ var current_round = 0
 var sound
 var keepTouchButtons = 0
 
-var dict = {"thisSession": [{"speed": "", "acc": "", "variationStr": "", "moreMatch": "", "lessMatch": "", "nback": "", "respLimit": "", "startFuel": "", "bonusFuel": "", "stimInterval": "", "timeLimit": "", "task": "", "stimDuration": "", "intraN": "", "extraN": "", "penalty": "", "flankerN": "", "centreUp": "", "symComplexity": "", "trials": [{"timeStamp": "", "totalTimeElapsed": "", "trialTimeElapsed": "", "event":"", "eventDesc": {"target":"", "leftMost":{"color": "", "shapeDesc": "", "size": ""}, "left":{"color": "", "shapeDesc": "", "size": "", "line": "", "pattern": ""}, "right":{"color": "", "shapeDesc": "", "size": "", "line": "", "pattern": ""}, "rightMost":{"color": "", "shapeDesc": "", "size": ""}, "centre":{"color": "", "shapeDesc": "", "size": "", "upShift": "", "line": "", "pattern": ""}}, "numHitsEdge":"", "currentSpeed": "", "distFrmCentre": "", "distanceCovered": "", "fuelStatus": "", "timeDriven": "", "currentTrial": ""}]}]}
-var dictSet = {"speed": "", "acc": "", "variationStr": "", "moreMatch": "", "lessMatch": "", "nback": "", "respLimit": "", "startFuel": "", "bonusFuel": "", "stimInterval": "", "timeLimit": "", "task": "", "stimDuration": "", "intraN": "", "extraN": "", "penalty": "", "flankerN": "", "centreUp": "", "symComplexity": "", "startScreen": ""}
+var dict = {"thisSession": [{"currLevel": "", "speed": "", "acc": "", "variationStr": "", "moreMatch": "", "lessMatch": "", "nback": "", "respLimit": "", "startFuel": "", "bonusFuel": "", "stimInterval": "", "timeLimit": "", "task": "", "stimDuration": "", "intraN": "", "extraN": "", "penalty": "", "flankerN": "", "centreUp": "", "symComplexity": "", "trials": [{"timeStamp": "", "totalTimeElapsed": "", "trialTimeElapsed": "", "event":"", "eventDesc": {"target":"", "leftMost":{"color": "", "shapeDesc": "", "size": ""}, "left":{"color": "", "shapeDesc": "", "size": "", "line": "", "pattern": ""}, "right":{"color": "", "shapeDesc": "", "size": "", "line": "", "pattern": ""}, "rightMost":{"color": "", "shapeDesc": "", "size": ""}, "centre":{"color": "", "shapeDesc": "", "size": "", "upShift": "", "line": "", "pattern": ""}}, "numHitsEdge":"", "currentSpeed": "", "distFrmCentre": "", "distanceCovered": "", "fuelStatus": "", "timeDriven": "", "currentTrial": ""}]}]}
+var dictSet = {"currLevel": "", "speed": "", "acc": "", "variationStr": "", "moreMatch": "", "lessMatch": "", "nback": "", "respLimit": "", "startFuel": "", "bonusFuel": "", "stimInterval": "", "timeLimit": "", "task": "", "stimDuration": "", "intraN": "", "extraN": "", "penalty": "", "flankerN": "", "centreUp": "", "symComplexity": "", "startScreen": ""}
 var levelSet = {"GUID": "", "nback": "", "flanker": "", "setshift": "", "realnback": ""}
 
 

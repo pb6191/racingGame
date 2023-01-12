@@ -22,6 +22,7 @@ func get_url():
 	
 func assignVals():
 	global.dict.thisSession.append(global.dict.duplicate(true).thisSession[0])
+	global.dict.thisSession[global.dict.thisSession.size()-1].currLevel = global.currLevel
 	global.dict.thisSession[global.dict.thisSession.size()-1].speed = global.maxSpeedIP
 	global.dict.thisSession[global.dict.thisSession.size()-1].acc = global.accelerationIP
 	global.dict.thisSession[global.dict.thisSession.size()-1].nback = global.nBackIP
@@ -43,6 +44,7 @@ func assignVals():
 	global.dict.thisSession[global.dict.thisSession.size()-1].lessMatch = global.lessMatchGlobal
 
 func getLevelMapping():
+	global.currLevel = global.json_result[global.task][global.levelSet[global.task]]["currLevel"]
 	global.maxSpeedIP = global.json_result[global.task][global.levelSet[global.task]]["speed"]
 	global.accelerationIP = global.json_result[global.task][global.levelSet[global.task]]["acc"]
 	global.nBackIP = global.json_result[global.task][global.levelSet[global.task]]["nback"]
@@ -69,6 +71,7 @@ func getLevelMapping():
 func getDefaults():
 	if global.autoDifficulty == 0:
 		if maxID == -1:
+			global.currLevel = "default"
 			global.maxSpeedIP = 10
 			global.accelerationIP = 1
 			global.nBackIP = 0
@@ -93,6 +96,7 @@ func getDefaults():
 			global.startScrn = 0
 		else:
 			jsonSett = parse_json(nonDefSett)
+			global.currLevel = int(jsonSett["currLevel"])
 			global.maxSpeedIP = int(jsonSett["speed"])
 			#print(global.maxSpeedIP)
 			global.accelerationIP = int(jsonSett["acc"])
